@@ -30,7 +30,6 @@
   --info-bg: #e8f1fc;
   --info-texto: #164a8a;
   --sombra-selecionado: 0 1px 3px rgb(15 27 45 / .12);
-  --resultado-texto: #f8fafd;
   --contagem-texto: #1650a8;
   --alvo: 36px;
   /* Arredondamentos: cartões e painéis 14, botões e controlos 10, etiquetas 6, chips de estado em pílula.
@@ -67,7 +66,6 @@
     --alerta-borda: #6b5222;
     --info-bg: #13294a;
     --info-texto: #a9cbf2;
-    --resultado-texto: #06152b;
     --contagem-texto: #a9cbf2;
     color-scheme: dark;
   }
@@ -277,9 +275,10 @@ h1 {
 .jogo.expansivel { cursor: pointer; }
 .jogo.aberto { background: var(--superficie-2); }
 .jogo.choque { background: color-mix(in oklab, var(--alerta-bg) 60%, var(--superficie)); }
-/* Fim de semana com choque: contorno e divisória entre os jogos em choque na cor do chip de aviso. */
+/* Fim de semana com choque: contorno, divisórias e linha vertical da data na cor do chip de aviso. */
 .semana-jogos.com-choque { border-color: var(--alerta-borda); }
 .jogo.choque + .jogo.choque { border-top-color: var(--alerta-borda); }
+.jogo.choque .jogo-quando { border-left-color: var(--alerta-borda); }
 
 /* Ações do jogo, por baixo do cartão aberto; mesma grelha dos cartões dos próximos jogos. */
 .jogo-acoes { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; cursor: auto; }
@@ -363,14 +362,12 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
 .jogo-quando .icone-btn { margin-top: 6px; }
 .resultado {
   font: 700 24px/1 var(--fonte-titulo);
-  padding: 4px 8px;
-  border-radius: var(--raio-etiqueta);
-  color: var(--resultado-texto);
   font-variant-numeric: tabular-nums;
 }
-.resultado.v { background: var(--vitoria); }
-.resultado.e { background: var(--empate); }
-.resultado.d { background: var(--derrota); }
+/* Sem fundo: o marcador ganha a cor do resultado (o tipo também está no title). */
+.resultado.v { color: var(--vitoria); }
+.resultado.e { color: var(--empate); }
+.resultado.d { color: var(--derrota); }
 
 .icone-btn {
   display: inline-grid;
@@ -427,6 +424,8 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
 .painel-subscricao { gap: 14px; }
 .painel-subscricao .texto { margin: 0; max-width: 60ch; }
 .subscricao-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+/* Quando os três botões já não cabem numa linha, empilham a toda a largura em vez de partir 2 + 1. */
+@media (max-width: 540px) { .subscricao-btns { flex-direction: column; } }
 
 /* ---------- Carregamento ---------- */
 .esqueleto { min-height: 210px; }

@@ -231,7 +231,7 @@ Uma paleta contida: neutros frios ligeiramente azulados, um azul de clube para a
 - **Alerta** (`alerta-fundo`, `alerta-tinta`, `alerta-contorno`): choques de horário entre A e B e dados desatualizados.
 - **Informação** (`info-fundo`, `info-tinta`): notas sobre a origem dos dados e o chip da contagem decrescente.
 
-O modo escuro tem um token `-noite` para cada papel. Sobre superfícies claras no modo escuro (etiqueta da equipa A, marcadores) o texto passa a `sobre-claro-noite`.
+O modo escuro tem um token `-noite` para cada papel. Sobre superfícies claras no modo escuro (etiqueta da equipa A) o texto passa a `sobre-claro-noite`.
 
 ### Named Rules
 **The One Action Color Rule.** O Azul Anadia é a única cor de ação. Nenhum botão, ligação ou estado ativo usa verde, âmbar ou outra cor do clube.
@@ -306,8 +306,8 @@ Táteis e robustos: altos o suficiente para o polegar, texto numa linha só, uma
 ### Chips
 - **Equipa:** SUB-17 A em Azul Noite cheio, SUB-17 B em Céu Pálido; letra condensada em maiúsculas, cantos de 6px.
 - **Contagem:** pílula Informação com texto Azul Anadia ("Daqui a 5 dias").
-- **Choque:** pílula Alerta com contorno junto ao título do fim de semana, com o dia e a hora: "Jogam à mesma hora: dom 09:00" ou, com horas diferentes mas menos de 3h entre jogos, "Jogos seguidos: dom 09:00 e 11:30". É o único sítio onde o choque é dito por extenso na lista. O contentor desse fim de semana e a divisória entre os jogos em choque ganham o contorno do chip (Alerta Borda).
-- **Resultado:** marcador em Numeral small (24px) sobre Vitória, Empate ou Derrota, sempre com o resultado escrito.
+- **Choque:** pílula Alerta com contorno junto ao título do fim de semana, com o dia e a hora: "Jogam à mesma hora: dom 09:00" ou, com horas diferentes mas menos de 3h entre jogos, "Jogos seguidos: dom 09:00 e 11:30". É o único sítio onde o choque é dito por extenso na lista. O contentor desse fim de semana, a divisória entre os jogos em choque e a linha vertical antes da data ganham o contorno do chip (Alerta Borda).
+- **Resultado:** marcador em Numeral small (24px), sem fundo, com os algarismos na cor Vitória, Empate ou Derrota; o resultado está sempre escrito.
 
 ### Cards / Containers
 - **Corner Style:** 14px.
