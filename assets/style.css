@@ -431,6 +431,8 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
 .btn:active, .icone-btn:active, .segmentos button:active { transform: scale(.97); }
 .btn-principal { background: var(--azul-2); border-color: var(--azul-2); color: var(--branco); }
 .btn-principal:hover { background: var(--azul); }
+/* Adicionar e Partilhar (cartões e jogos abertos da lista): sem fundo, só o contorno. */
+.cartao-acoes .btn:not(.btn-principal), .jogo-acoes .btn:not(.btn-principal) { background: transparent; }
 .btn svg { width: 17px; height: 17px; }
 
 /* ---------- Subscrição ---------- */
@@ -481,18 +483,23 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
 .navbar { display: none; }
 #sec-proximos, #sec-calendario { scroll-margin-top: 8px; }
 @media (max-width: 768px) {
+  /* Barra flutuante: 8px de margem a toda a volta (acima da zona de gestos do iPhone), cantos de 12px,
+     fundo translúcido com desfoque do conteúdo por trás. */
   .navbar {
     position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    left: 8px;
+    right: 8px;
+    bottom: calc(8px + env(safe-area-inset-bottom, 0px));
     z-index: 10;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 4px;
-    padding: 6px 8px calc(6px + env(safe-area-inset-bottom, 0px));
-    background: var(--superficie);
-    border-top: 1px solid var(--linha);
+    padding: 6px 8px;
+    border: 1px solid color-mix(in oklab, var(--linha) 50%, transparent); /* contorno suave, nos dois modos */
+    border-radius: 12px;
+    background: color-mix(in oklab, var(--superficie) 72%, transparent);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    backdrop-filter: blur(16px) saturate(1.4);
   }
   .navbar a {
     display: flex;
@@ -516,8 +523,8 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
   /* A barra substitui o seletor Próximos | Resultados da lista. */
   .seg-vista { display: none; }
   /* Espaço para a barra não tapar o fim da página nem os avisos. */
-  body { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px)); }
-  .toast { bottom: calc(76px + env(safe-area-inset-bottom, 0px)); }
+  body { padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
+  .toast { bottom: calc(92px + env(safe-area-inset-bottom, 0px)); }
 }
 
 @media (max-width: 520px) {
