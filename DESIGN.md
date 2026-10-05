@@ -41,31 +41,41 @@ colors:
   info-tinta-noite: "#a9cbf2"
 typography:
   display:
-    fontFamily: "Barlow Condensed, Arial Narrow, system-ui, sans-serif"
-    fontSize: "clamp(40px, 9vw, 60px)"
-    fontWeight: 700
+    fontFamily: "Saira, Arial Narrow, system-ui, sans-serif"
+    fontStyle: italic
+    fontStretch: "75%"
+    fontSize: "clamp(52px, 13vw, 80px)"
+    fontWeight: 800
     lineHeight: 0.95
     letterSpacing: "-0.01em"
   numeral:
-    fontFamily: "Barlow Condensed, Arial Narrow, system-ui, sans-serif"
+    fontFamily: "Saira, Arial Narrow, system-ui, sans-serif"
+    fontStyle: italic
+    fontStretch: "75%"
     fontSize: "30px"
-    fontWeight: 700
+    fontWeight: 800
     lineHeight: 1
   numeral-small:
-    fontFamily: "Barlow Condensed, Arial Narrow, system-ui, sans-serif"
+    fontFamily: "Saira, Arial Narrow, system-ui, sans-serif"
+    fontStyle: italic
+    fontStretch: "75%"
     fontSize: "24px"
-    fontWeight: 700
+    fontWeight: 800
     lineHeight: 1
   headline:
-    fontFamily: "Barlow Condensed, Arial Narrow, system-ui, sans-serif"
+    fontFamily: "Saira, Arial Narrow, system-ui, sans-serif"
+    fontStyle: italic
+    fontStretch: "75%"
     fontSize: "24px"
-    fontWeight: 700
+    fontWeight: 800
     lineHeight: 1.1
     letterSpacing: "0.01em"
   team-tag:
-    fontFamily: "Barlow Condensed, Arial Narrow, system-ui, sans-serif"
+    fontFamily: "Saira, Arial Narrow, system-ui, sans-serif"
+    fontStyle: italic
+    fontStretch: "75%"
     fontSize: "13px"
-    fontWeight: 700
+    fontWeight: 800
     lineHeight: 1
     letterSpacing: "0.04em"
   title:
@@ -194,7 +204,7 @@ components:
 
 O sistema inspira-se na ficha que o diretor de equipa leva para o jogo: uma folha onde está tudo o que interessa (dia, hora, adversário, campo) e nada do que não interessa. Cada jogo é uma linha dessa folha, lida de relance por um diretor com o telemóvel numa mão e as chaves do carro na outra. A hierarquia vem do tamanho dos números (dia e hora em letra condensada e grossa) e não de cor ou de decoração.
 
-O registo é desportivo sem exagero. A Barlow Condensed em maiúsculas dá o sotaque de futebol (placard, camisola, quadro do balneário), mas fica nos títulos, nas datas e nas horas. Tudo o resto é Barlow normal, calma e legível. A cor do clube manda nas ações e na identidade (topo, equipa A, botões), e a cor semântica só aparece quando tem algo a dizer: resultado, aviso de choque, informação sobre os dados.
+O registo é desportivo sem exagero. A Saira condensada em itálico e maiúsculas dá o sotaque de futebol e de movimento (placard, camisola, quadro do balneário), mas fica nos títulos, nas datas e nas horas. Tudo o resto é Barlow normal, calma e legível. A cor do clube manda nas ações e na identidade (topo, equipa A, botões), e a cor semântica só aparece quando tem algo a dizer: resultado, aviso de choque, informação sobre os dados.
 
 Os componentes são táteis e robustos: alvos de toque com 44px em ecrãs táteis (36px com rato), uma ação principal por cartão em azul cheio, botões que cedem ligeiramente quando se carrega. A densidade é a de uma app do dia a dia, não a de um painel: uma coluna estreita (até 820px), cartões agrupados por fim de semana, espaço suficiente para o polegar.
 
@@ -242,18 +252,18 @@ O modo escuro tem um token `-noite` para cada papel. Sobre superfícies claras n
 
 ## Typography
 
-**Display Font:** Barlow Condensed (com Arial Narrow)
+**Display Font:** Saira, instância itálica 800 condensada (75%) (com Arial Narrow)
 **Body Font:** Barlow (com system-ui)
 
-**Character:** a condensada grossa em maiúsculas lembra um placard ou o número de uma camisola; a Barlow normal, da mesma família, mantém o texto corrido calmo e muito legível em ecrãs pequenos. As fontes estão alojadas no próprio site (woff2, OFL), sem pedidos a terceiros.
+**Character:** a Saira condensada, grossa, em itálico e maiúsculas lembra um equipamento desportivo ou um placard e dá dinamismo; a Barlow normal mantém o texto corrido calmo e muito legível em ecrãs pequenos. As fontes estão alojadas no próprio site (woff2, OFL), sem pedidos a terceiros.
 
 ### Hierarchy
-- **Display** (700, clamp 52-80px, 0.95, maiúsculas): só o título "Jogos Sub-17" no topo, com "Anadia FC · Época 2026/27" numa linha por cima.
-- **Numeral** (700, 30px, 1, maiúsculas): a data do próximo jogo nos cartões, com o dia da semana por extenso e a data no formato da lista ("SÁBADO 10 OUT 26"), seguida da hora no mesmo tamanho, em Grafite.
-- **Numeral small** (700, 24px, 1): marcadores dos resultados.
+- **Display** (Saira itálico 800, clamp 52-80px, 0.95, maiúsculas): só o título "AFC SUB17" no topo, com "Calendário de jogos 2026/27" numa linha por baixo. À esquerda, o escudo do Anadia FC (assets/icones/favicon.svg) com a altura do título e do subtítulo juntos (72-112px).
+- **Numeral** (Saira itálico 800, 30px, 1, maiúsculas): a data do próximo jogo nos cartões, com o dia da semana por extenso e a data no formato da lista ("SÁBADO 10 OUT 26"), seguida da hora no mesmo tamanho, em Grafite.
+- **Numeral small** (Saira itálico 800, 24px, 1): marcadores dos resultados.
 - **Data e hora da lista** (Barlow, 16px, algarismos fixos): a data ("17 out 26", 600) e, por baixo, a hora com o mesmo tamanho mas em peso normal (400).
-- **Headline** (700, 24px, 1.1, maiúsculas): títulos de secção ("Próximos jogos", "Calendário"). "Próximos jogos" é a exceção: usa o estilo dos títulos de fim de semana (Barlow 600, 15px, sem maiúsculas), para os cartões serem o destaque.
-- **Team tag** (700, 13px, 0.04em, maiúsculas): etiquetas SUB-17 A / SUB-17 B.
+- **Headline** (Saira itálico 800, 24px, 1.1, maiúsculas): títulos de secção ("Próximos jogos", "Calendário"). "Próximos jogos" é a exceção: usa o estilo dos títulos de fim de semana (Barlow 600, 15px, sem maiúsculas), para os cartões serem o destaque.
+- **Team tag** (Saira itálico 800, 13px, 0.04em, maiúsculas): etiquetas SUB-17 A / SUB-17 B.
 - **Title** (500, 16-17px): o confronto em formato de placard, equipa da casa por cima e de fora por baixo, cada uma com o seu emblema; Anadia FC a negrito (700).
 - **Body** (400, 16px, 1.45): texto corrido, com no máximo 60ch nos parágrafos explicativos.
 - **Control** (600, 14px): botões e controlos segmentados.
@@ -261,7 +271,7 @@ O modo escuro tem um token `-noite` para cada papel. Sobre superfícies claras n
 - **Meta** (400, 14px, Grafite): "Jornada 3 · Fora" / "Jornada 3 · Em casa", sempre nesta ordem, ao lado da etiqueta de equipa, na lista e nos cartões.
 
 ### Named Rules
-**The Numbers Shout Rule.** Só a data, a hora, o resultado e os títulos usam a condensada. Se um texto não é número nem título, é Barlow normal.
+**The Numbers Shout Rule.** Só a data, a hora, o resultado e os títulos usam a Saira. Se um texto não é número nem título, é Barlow normal.
 
 **The 14px Floor Rule.** Texto em minúsculas nunca fica abaixo de 14px. Só as etiquetas de equipa (Team tag, maiúsculas e negrito) descem a 13px. Datas, horas e marcadores usam algarismos de largura fixa (`tabular-nums`).
 
@@ -304,9 +314,9 @@ Táteis e robustos: altos o suficiente para o polegar, texto numa linha só, uma
 - **Icon button:** quadrado de 36px (44px em ecrãs táteis), Folha, ícone Grafite de 18px. Em cada linha da lista por realizar é uma seta (⌄) na coluna da hora: tocar na seta ou em qualquer parte da linha abre-a (fundo Giz, seta rodada e em Azul) e mostra por baixo as ações dos cartões ("Adicionar" e "Partilhar" lado a lado e, nos jogos fora, "Como chegar" a toda a largura por cima). Só uma linha aberta de cada vez. A regra do "Como chegar" é a mesma nos cartões e na lista: botão só nos jogos fora, onde o campo passa a texto; nos jogos em casa o campo continua a ser ligação para o mapa. Jogos realizados não abrem nem têm ações.
 
 ### Chips
-- **Equipa:** SUB-17 A em Azul Noite cheio, SUB-17 B em Céu Pálido; letra condensada em maiúsculas, cantos de 6px.
-- **Contagem:** pílula Informação com texto Azul Anadia ("Daqui a 5 dias").
-- **Choque:** pílula Alerta com contorno junto ao título do fim de semana, com o dia e a hora: "Jogam à mesma hora: dom 09:00" ou, com horas diferentes mas menos de 3h entre jogos, "Jogos seguidos: dom 09:00 e 11:30". É o único sítio onde o choque é dito por extenso na lista. O contentor desse fim de semana, a divisória entre os jogos em choque e a linha vertical antes da data ganham o contorno do chip (Alerta Borda).
+- **Equipa:** SUB-17 A em Azul Noite cheio, SUB-17 B em Céu Pálido; Saira itálica em maiúsculas, cantos de 6px.
+- **Contagem:** pílula Informação com texto Azul Anadia em peso normal ("Daqui a 5 dias").
+- **Choque:** pílula Alerta, sem contorno, junto ao título do fim de semana, com o dia e a hora: "Jogam à mesma hora: dom 09:00" ou, com horas diferentes mas menos de 3h entre jogos, "Jogos seguidos: dom 09:00 e 11:30". É o único sítio onde o choque é dito por extenso na lista. O contentor desse fim de semana, a divisória entre os jogos em choque e a linha vertical antes da data ganham a cor Alerta Borda.
 - **Resultado:** marcador em Numeral small (24px), sem fundo, com os algarismos na cor Vitória, Empate ou Derrota; o resultado está sempre escrito.
 
 ### Cards / Containers
@@ -337,7 +347,7 @@ A unidade da Folha de Jogo, em duas colunas separadas por uma linha vertical (1p
 ### Do:
 - **Do** dizer cada coisa uma vez: os próximos jogos não se repetem na lista, cada destino tem um só controlo (o campo é o "Como chegar"), e um choque é dito num só chip.
 - **Do** usar Azul Anadia (`#1650a8`) para todas as ações e só para ações.
-- **Do** escrever datas e horas em Barlow Condensed 700 e deixar que sejam o elemento mais visível de cada linha.
+- **Do** escrever datas e horas dos cartões em Saira itálico 800 e deixar que sejam o elemento mais visível de cada linha.
 - **Do** acompanhar qualquer cor semântica com texto ou ícone (resultado escrito, "Jogam à mesma hora: dom 09:00", ícone de aviso).
 - **Do** usar o token `--alvo` para tudo o que se toca: 36px com rato, 44px em ecrãs táteis. O texto dos botões fica sempre numa só linha.
 - **Do** usar ícones Phosphor (peso bold) incluídos como SVG, com `aria-hidden`.

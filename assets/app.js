@@ -41,7 +41,7 @@ function contagem(iso, hoje) {
 }
 
 // ---------- Estado ----------
-const estado = { equipa: 'todas', vista: 'proximos', dados: null, emblemas: {} };
+const estado = { equipa: 'todas', vista: 'proximos', dados: null, emblemas: {}, campos: {} };
 
 function guardar() {
   try { localStorage.setItem('afc-sub17', JSON.stringify({ equipa: estado.equipa, vista: estado.vista })); } catch { /* sem armazenamento */ }
@@ -113,13 +113,18 @@ function chipChoque(jogos, dias) {
   }).join(' · ');
 }
 
-const destino = (j) => encodeURIComponent(`${j.local}, ${j.localidade || j.casa}`);
+// Destino no mapa: coordenadas de data/campos.json quando o campo lá está (nome da FPF -> lat/lon); senão, o nome e a localidade.
+const destino = (j) => {
+  const c = estado.campos[j.local];
+  return c ? `${c.lat},${c.lon}` : encodeURIComponent(`${j.local}, ${j.localidade || j.casa}`);
+};
 const mapa = (j) => `https://www.google.com/maps/search/?api=1&query=${destino(j)}`;
 // Como chegar usa sempre o Google Maps, que encontra melhor os campos pelo nome da FPF; o link
 // abre a app quando está instalada. No telemóvel não abre separador novo, para não ficar
 // uma página vazia no browser quando passa para a app.
 const MOVEL = /Android|iPhone|iPad|iPod/.test(navigator.userAgent) || (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
-const comoChegar = (j) => `https://www.google.com/maps/dir/?api=1&destination=${destino(j)}`;
+// Abre o local no mapa (e não um percurso): o diretor vê o campo e pede as indicações na própria app.
+const comoChegar = mapa;
 const abrirMapa = MOVEL ? '' : ' target="_blank" rel="noopener"';
 const localCompleto = (j) => (j.localidade && !j.local.toLowerCase().includes(j.localidade.toLowerCase()) ? `${j.local} · ${j.localidade}` : j.local);
 
@@ -324,7 +329,7 @@ function renderSubscricoes() {
 }
 
 function renderCabecalho(dados) {
-  $('#subtitulo').textContent = `Época ${dados.epoca}`;
+  $('#subtitulo').textContent = `Calendário de jogos ${dados.epoca}`;
   $('#epoca-calendario').textContent = dados.epoca;
   const atual = new Date(dados.atualizado);
   const quando = new Intl.DateTimeFormat('pt-PT', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Lisbon' }).format(atual);
@@ -421,13 +426,15 @@ document.querySelectorAll('.segmentos').forEach((g) => g.addEventListener('keydo
 async function iniciar() {
   restaurar();
   try {
-    const [r, e] = await Promise.all([
+    const [r, e, c] = await Promise.all([
       fetch('data/jogos.json', { cache: 'no-cache' }),
       fetch('data/emblemas.json').catch(() => null),
+      fetch('data/campos.json').catch(() => null),
     ]);
     if (!r.ok) throw new Error(r.status);
     estado.dados = await r.json();
     if (e?.ok) estado.emblemas = await e.json().catch(() => ({}));
+    if (c?.ok) estado.campos = await c.json().catch(() => ({}));
   } catch {
     $('#proximos').removeAttribute('aria-busy');
     $('#proximos').innerHTML = `<div class="vazio erro"><p>Não foi possível carregar os jogos. Verifique a ligação à internet.</p>
