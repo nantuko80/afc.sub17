@@ -36,7 +36,7 @@ jobs:
       - name: Preparar site
         run: |
           mkdir _site
-          cp -r index.html assets data calendario _site/
+          cp -r index.html site.webmanifest assets data calendario _site/
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
