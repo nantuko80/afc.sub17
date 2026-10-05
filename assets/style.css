@@ -249,7 +249,7 @@ h1 {
 .semana-titulo strong { color: var(--texto); font-weight: 600; }
 .semana-alerta {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--alerta-texto);
   background: var(--alerta-bg);
   border: 1px solid var(--alerta-borda);
@@ -277,6 +277,9 @@ h1 {
 .jogo.expansivel { cursor: pointer; }
 .jogo.aberto { background: var(--superficie-2); }
 .jogo.choque { background: color-mix(in oklab, var(--alerta-bg) 60%, var(--superficie)); }
+/* Fim de semana com choque: contorno e divisória entre os jogos em choque na cor do chip de aviso. */
+.semana-jogos.com-choque { border-color: var(--alerta-borda); }
+.jogo.choque + .jogo.choque { border-top-color: var(--alerta-borda); }
 
 /* Ações do jogo, por baixo do cartão aberto; mesma grelha dos cartões dos próximos jogos. */
 .jogo-acoes { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; cursor: auto; }

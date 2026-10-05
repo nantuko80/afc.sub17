@@ -91,10 +91,26 @@ function calcularChoques(jogos) {
   return choques;
 }
 
-function textoChoque(jogos, dia) {
+// Horas da A e da B num dia de choque (o choque é marcado com menos de 3h entre jogos em sítios diferentes).
+function horasChoque(jogos, dia) {
   const a = jogos.find((j) => j.data === dia && j.equipa === 'A');
   const b = jogos.find((j) => j.data === dia && j.equipa === 'B');
-  return `A e B jogam à mesma hora em sítios diferentes (A às ${a.hora}, B às ${b.hora})`;
+  return { a: a.hora, b: b.hora, iguais: a.hora === b.hora };
+}
+// Aviso por extenso, no cartão do próximo jogo.
+function textoChoque(jogos, dia) {
+  const h = horasChoque(jogos, dia);
+  return h.iguais
+    ? `A e B jogam à mesma hora em sítios diferentes (${h.a})`
+    : `Jogos seguidos em sítios diferentes (A às ${h.a}, B às ${h.b})`;
+}
+// Chip junto ao título do fim de semana: "Jogam à mesma hora: dom 09:00" ou "Jogos seguidos: dom 09:00 e 11:30".
+function chipChoque(jogos, dias) {
+  return dias.map((d) => {
+    const h = horasChoque(jogos, d);
+    const dia = DIAS[paraData(d).getDay()];
+    return h.iguais ? `Jogam à mesma hora: ${dia} ${h.a}` : `Jogos seguidos: ${dia} ${[h.a, h.b].sort().join(' e ')}`;
+  }).join(' · ');
 }
 
 const destino = (j) => encodeURIComponent(`${j.local}, ${j.localidade || j.casa}`);
@@ -235,9 +251,9 @@ function renderLista(dados, hoje) {
     html += `<section class="semana">
       <div class="semana-cab">
         <h3 class="semana-titulo">${tituloSemana(segunda, lista)}</h3>
-        ${temChoque ? `<span class="semana-alerta">A e B à mesma hora: ${diasChoque.filter((d) => choques.get(d) === 'choque').map((d) => `${DIAS[paraData(d).getDay()]} ${lista.find((j) => j.data === d && j.hora)?.hora ?? ''}`.trim()).join(', ')}</span>` : ambas ? '<span class="semana-alerta">A e B no mesmo dia</span>' : ''}
+        ${temChoque ? `<span class="semana-alerta">${chipChoque(dados.jogos, diasChoque.filter((d) => choques.get(d) === 'choque'))}</span>` : ambas ? '<span class="semana-alerta">A e B no mesmo dia</span>' : ''}
       </div>
-      <ul class="semana-jogos">${lista.map((j) => linhaJogo(j, dados, hoje, verAmbas ? choques : null)).join('')}</ul>
+      <ul class="semana-jogos${temChoque ? ' com-choque' : ''}">${lista.map((j) => linhaJogo(j, dados, hoje, verAmbas ? choques : null)).join('')}</ul>
     </section>`;
   }
   $('#lista').innerHTML = html;

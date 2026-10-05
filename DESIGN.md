@@ -306,7 +306,7 @@ Táteis e robustos: altos o suficiente para o polegar, texto numa linha só, uma
 ### Chips
 - **Equipa:** SUB-17 A em Azul Noite cheio, SUB-17 B em Céu Pálido; letra condensada em maiúsculas, cantos de 6px.
 - **Contagem:** pílula Informação com texto Azul Anadia ("Daqui a 5 dias").
-- **Choque:** pílula Alerta com contorno junto ao título do fim de semana, com o dia e a hora ("A e B à mesma hora: dom 09:00"). É o único sítio onde o choque é dito por extenso na lista.
+- **Choque:** pílula Alerta com contorno junto ao título do fim de semana, com o dia e a hora: "Jogam à mesma hora: dom 09:00" ou, com horas diferentes mas menos de 3h entre jogos, "Jogos seguidos: dom 09:00 e 11:30". É o único sítio onde o choque é dito por extenso na lista. O contentor desse fim de semana e a divisória entre os jogos em choque ganham o contorno do chip (Alerta Borda).
 - **Resultado:** marcador em Numeral small (24px) sobre Vitória, Empate ou Derrota, sempre com o resultado escrito.
 
 ### Cards / Containers
@@ -338,7 +338,7 @@ A unidade da Folha de Jogo, em duas colunas separadas por uma linha vertical (1p
 - **Do** dizer cada coisa uma vez: os próximos jogos não se repetem na lista, cada destino tem um só controlo (o campo é o "Como chegar"), e um choque é dito num só chip.
 - **Do** usar Azul Anadia (`#1650a8`) para todas as ações e só para ações.
 - **Do** escrever datas e horas em Barlow Condensed 700 e deixar que sejam o elemento mais visível de cada linha.
-- **Do** acompanhar qualquer cor semântica com texto ou ícone (resultado escrito, "A e B à mesma hora: dom 09:00", ícone de aviso).
+- **Do** acompanhar qualquer cor semântica com texto ou ícone (resultado escrito, "Jogam à mesma hora: dom 09:00", ícone de aviso).
 - **Do** usar o token `--alvo` para tudo o que se toca: 36px com rato, 44px em ecrãs táteis. O texto dos botões fica sempre numa só linha.
 - **Do** usar ícones Phosphor (peso bold) incluídos como SVG, com `aria-hidden`.
 - **Do** testar cada alteração nos modos claro e escuro e a 375px de largura.

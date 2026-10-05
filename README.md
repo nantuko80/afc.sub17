@@ -4,7 +4,7 @@ Página **não oficial**, feita pelos diretores para se organizarem, com o calen
 
 - Próximo jogo de cada equipa, com contagem decrescente
 - Lista por fim de semana, com filtro A / B / ambas e resultados dos jogos realizados
-- Aviso quando a A e a B jogam no mesmo dia ou **à mesma hora em sítios diferentes**
+- Aviso quando a A e a B jogam no mesmo dia ou **com menos de 3 horas entre jogos em sítios diferentes**
 - O nome do campo abre o caminho no Google Maps; o próximo jogo fora tem o botão **Como chegar**
 - Partilhar qualquer jogo (WhatsApp, etc.) com a localização; adicionar os próximos jogos ao calendário
 - Calendários subscrevíveis (Google, iPhone, Outlook) que se atualizam sozinhos
