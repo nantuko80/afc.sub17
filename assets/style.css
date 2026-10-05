@@ -489,20 +489,20 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
 .navbar { display: none; }
 #sec-proximos, #sec-calendario { scroll-margin-top: 8px; }
 @media (max-width: 768px) {
-  /* Barra flutuante: 8px de margem a toda a volta (acima da zona de gestos do iPhone), cantos de 12px,
+  /* Barra flutuante em pílula: 12px de margem a toda a volta (acima da zona de gestos do iPhone),
      fundo translúcido com desfoque do conteúdo por trás. */
   .navbar {
     position: fixed;
-    left: 8px;
-    right: 8px;
-    bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+    left: 12px;
+    right: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
     z-index: 10;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 4px;
-    padding: 6px 8px;
+    padding: 4px; /* o item ativo fica a 4px da borda da barra */
     border: 1px solid color-mix(in oklab, var(--linha) 50%, transparent); /* contorno suave, nos dois modos */
-    border-radius: 12px;
+    border-radius: 999px;
     background: color-mix(in oklab, var(--superficie) 72%, transparent);
     -webkit-backdrop-filter: blur(16px) saturate(1.4);
     backdrop-filter: blur(16px) saturate(1.4);
@@ -513,8 +513,8 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
     align-items: center;
     justify-content: center;
     gap: 3px;
-    min-height: 50px;
-    border-radius: var(--raio-controlo);
+    min-height: 54px;
+    border-radius: 999px;
     color: var(--texto-2);
     font-size: 12px;
     font-weight: 600;
@@ -522,15 +522,16 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
     -webkit-tap-highlight-color: transparent;
   }
   .navbar a svg { width: 24px; height: 24px; }
-  .navbar a[aria-current="true"] { color: var(--contagem-texto); }
-  /* Ativo: estilo cheio — a forma exterior é preenchida e os traços de dentro ficam recortados na cor da barra. */
+  /* Ativo: pílula com o fundo da contagem ("Daqui a 5 dias") a 70% de opacidade e a cor do texto dela. */
+  .navbar a[aria-current="true"] { color: var(--contagem-texto); background: color-mix(in oklab, var(--info-bg) 70%, transparent); }
+  /* Ícone ativo em estilo cheio: a forma exterior é preenchida e os traços de dentro ficam recortados na cor da pílula. */
   .navbar a[aria-current="true"] .forma { fill: currentColor; }
-  .navbar a[aria-current="true"] .detalhe { stroke: var(--superficie); }
+  .navbar a[aria-current="true"] .detalhe { stroke: color-mix(in oklab, var(--info-bg) 70%, var(--superficie)); } /* o tom aparente da pílula a 70% */
   /* A barra substitui o seletor Próximos | Resultados da lista. */
   .seg-vista { display: none; }
   /* Espaço para a barra não tapar o fim da página nem os avisos. */
-  body { padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
-  .toast { bottom: calc(92px + env(safe-area-inset-bottom, 0px)); }
+  body { padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px)); }
+  .toast { bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
 }
 
 @media (max-width: 520px) {
