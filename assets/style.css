@@ -507,7 +507,22 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
     -webkit-backdrop-filter: blur(16px) saturate(1.4);
     backdrop-filter: blur(16px) saturate(1.4);
   }
+  /* Pílula do item ativo: uma só, que desliza entre itens (largura de um terço, menos o espaço entre itens). */
+  .nav-ind {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    width: calc((100% - 16px) / 3);
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--info-bg) 70%, transparent);
+    transition: transform .3s cubic-bezier(.3, .7, .3, 1);
+  }
+  .navbar[data-ativo="1"] .nav-ind { transform: translateX(calc(100% + 4px)); }
+  .navbar[data-ativo="2"] .nav-ind { transform: translateX(calc(200% + 8px)); }
   .navbar a {
+    position: relative; /* por cima da pílula */
+    transition: color .25s;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -522,8 +537,10 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
     -webkit-tap-highlight-color: transparent;
   }
   .navbar a svg { width: 24px; height: 24px; }
-  /* Ativo: pílula com o fundo da contagem ("Daqui a 5 dias") a 70% de opacidade e a cor do texto dela. */
-  .navbar a[aria-current="true"] { color: var(--contagem-texto); background: color-mix(in oklab, var(--info-bg) 70%, transparent); }
+  /* Ativo: a cor do texto da contagem ("Daqui a 5 dias"); o fundo é a pílula que desliza (.nav-ind). */
+  .navbar a[aria-current="true"] { color: var(--contagem-texto); }
+  .navbar .forma { fill: transparent; transition: fill .25s; }
+  .navbar .detalhe { transition: stroke .25s; }
   /* Ícone ativo em estilo cheio: a forma exterior é preenchida e os traços de dentro ficam recortados na cor da pílula. */
   .navbar a[aria-current="true"] .forma { fill: currentColor; }
   .navbar a[aria-current="true"] .detalhe { stroke: color-mix(in oklab, var(--info-bg) 70%, var(--superficie)); } /* o tom aparente da pílula a 70% */
@@ -542,5 +559,5 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .toast, .btn, .icone-btn, .segmentos button, .jogo-abrir svg { transition: none; }
+  .toast, .btn, .icone-btn, .segmentos button, .jogo-abrir svg, .nav-ind, .navbar a, .navbar .forma, .navbar .detalhe { transition: none; }
 }

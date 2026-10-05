@@ -393,6 +393,8 @@ function atualizarNav() {
     if (a.dataset.nav === ativo) a.setAttribute('aria-current', 'true');
     else a.removeAttribute('aria-current');
   });
+  // Posição da pílula que desliza por baixo do item ativo (0, 1 ou 2).
+  $('.navbar').dataset.ativo = ['proximos', 'calendario', 'resultados'].indexOf(ativo);
 }
 let navPendente = false;
 addEventListener('scroll', () => {
