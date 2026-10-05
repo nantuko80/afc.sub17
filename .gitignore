@@ -1,0 +1,16 @@
+calendario/
+_site/
+.DS_Store
+
+# Ferramentas de IA (skills, agentes e hooks locais)
+.claude/*
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/atualizar-jogos/
+.agents/
+.codex/
+.github/skills/
+.github/agents/
+.github/hooks/
+skills-lock.json
+.impeccable/
