@@ -290,7 +290,7 @@ h1 {
 .jogo-info { min-width: 0; }
 .jogo-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-bottom: 5px; }
 .jornada { font-size: 14px; color: var(--texto-2); }
-.jogo-equipas { font-size: 16px; font-weight: 500; overflow-wrap: anywhere; margin: 10px 0 8px; }
+.jogo-equipas { font-size: 16px; font-weight: 500; overflow-wrap: anywhere; margin: 12px 0 10px; }
 .jogo-equipas b { font-weight: 700; }
 
 /* Confronto em formato de placard: casa por cima, fora por baixo, cada um com o seu emblema.
