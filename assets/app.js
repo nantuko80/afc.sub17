@@ -115,12 +115,13 @@ function chipChoque(jogos, dias) {
   }).join(' · ');
 }
 
-// Destino no mapa: coordenadas de data/campos.json quando o campo lá está (nome da FPF -> lat/lon); senão, o nome e a localidade.
+// Destino da pesquisa no mapa: coordenadas de data/campos.json quando o campo lá está (nome da FPF -> lat/lon); senão, o nome e a localidade.
 const destino = (j) => {
   const c = estado.campos[j.local];
   return c ? `${c.lat},${c.lon}` : encodeURIComponent(`${j.local}, ${j.localidade || j.casa}`);
 };
-const mapa = (j) => `https://www.google.com/maps/search/?api=1&query=${destino(j)}`;
+// Link do mapa: o "url" de data/campos.json quando existe (ficha exata do Google Maps); senão, uma pesquisa pelo destino.
+const mapa = (j) => estado.campos[j.local]?.url || `https://www.google.com/maps/search/?api=1&query=${destino(j)}`;
 // Como chegar usa sempre o Google Maps, que encontra melhor os campos pelo nome da FPF; o link
 // abre a app quando está instalada. No telemóvel não abre separador novo, para não ficar
 // uma página vazia no browser quando passa para a app.
@@ -261,7 +262,7 @@ function renderLista(dados, hoje) {
         <h3 class="semana-titulo">${tituloSemana(segunda, lista)}</h3>
         ${temChoque ? `<span class="semana-alerta">${chipChoque(dados.jogos, diasChoque.filter((d) => choques.get(d) === 'choque'))}</span>` : ambas ? '<span class="semana-alerta">A e B no mesmo dia</span>' : ''}
       </div>
-      <ul class="semana-jogos${temChoque ? ' com-choque' : ''}">${lista.map((j) => linhaJogo(j, dados, hoje, verAmbas ? choques : null)).join('')}</ul>
+      <ul class="semana-jogos">${lista.map((j) => linhaJogo(j, dados, hoje, verAmbas ? choques : null)).join('')}</ul>
     </section>`;
   }
   $('#lista').innerHTML = html;

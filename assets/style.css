@@ -32,6 +32,8 @@
   --info-texto: #164a8a;
   --sombra-selecionado: 0 1px 3px rgb(15 27 45 / .12);
   --contagem-texto: #1650a8;
+  --bloco: #eef2f8;        /* jogos da lista: Giz sobre o fundo quase branco */
+  --bloco-aberto: #e3e9f2;
   --alvo: 36px;
   /* Arredondamentos: cartões e painéis 14, botões e controlos 10, etiquetas 6, chips de estado em pílula.
      Elementos dentro de um controlo usam o raio exterior menos o espaçamento interior. */
@@ -68,6 +70,8 @@
     --info-bg: #13294a;
     --info-texto: #a9cbf2;
     --contagem-texto: #a9cbf2;
+    --bloco: #121c2e;
+    --bloco-aberto: #18243a;
     color-scheme: dark;
   }
 }
@@ -259,10 +263,8 @@ h1 {
   list-style: none;
   margin: 0;
   padding: 0;
-  background: var(--superficie);
-  border: 1px solid var(--linha);
-  border-radius: var(--raio);
-  overflow: hidden;
+  display: grid;
+  gap: 8px;
 }
 .jogo {
   display: grid;
@@ -270,15 +272,14 @@ h1 {
   gap: 14px;
   padding: 14px;
   align-items: stretch;
+  background: var(--bloco);
+  border-radius: var(--raio);
 }
-.jogo + .jogo { border-top: 1px solid var(--linha); }
 .jogo.passado .jogo-quando .data, .jogo.passado .jogo-equipas { color: var(--texto-2); }
 .jogo.expansivel { cursor: pointer; }
-.jogo.aberto { background: var(--superficie-2); }
+.jogo.aberto { background: var(--bloco-aberto); }
 .jogo.choque { background: color-mix(in oklab, var(--alerta-bg) 60%, var(--superficie)); }
-/* Fim de semana com choque: contorno, divisórias e linha vertical da data na cor do chip de aviso. */
-.semana-jogos.com-choque { border-color: var(--alerta-borda); }
-.jogo.choque + .jogo.choque { border-top-color: var(--alerta-borda); }
+/* Jogo em choque: fundo âmbar e linha vertical da data em Alerta Borda (sem contorno). */
 .jogo.choque .jogo-quando { border-left-color: var(--alerta-borda); }
 
 /* Ações do jogo, por baixo do cartão aberto; mesma grelha dos cartões dos próximos jogos. */
