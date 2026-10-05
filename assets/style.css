@@ -99,10 +99,7 @@ button { font: inherit; color: inherit; }
   padding: 28px 16px 30px;
 }
 .sobretitulo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0 0 6px;
+  margin: 0 0 8px;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: .02em;
@@ -110,11 +107,10 @@ button { font: inherit; color: inherit; }
 }
 h1 {
   margin: 0;
-  font: 700 clamp(40px, 9vw, 60px)/.95 var(--fonte-titulo);
+  font: 700 clamp(52px, 13vw, 80px)/.95 var(--fonte-titulo);
   letter-spacing: -.01em;
   text-transform: uppercase;
 }
-.subtitulo { margin: 8px 0 0; font-size: 16px; opacity: .85; }
 
 /* ---------- Estrutura ---------- */
 .conteudo {
@@ -129,6 +125,7 @@ h1 {
   text-transform: uppercase;
   letter-spacing: .01em;
 }
+.titulo-epoca { color: var(--texto-2); }
 /* Título discreto: o mesmo estilo dos títulos de fim de semana ("Fim de semana · 24-25 out"). */
 .titulo-discreto { font: 600 15px/1.2 var(--fonte); text-transform: none; letter-spacing: 0; margin-bottom: 14px; }
 .texto { margin: -4px 0 14px; color: var(--texto-2); }
@@ -166,7 +163,7 @@ h1 {
   font: 700 30px/1 var(--fonte-titulo);
   text-transform: uppercase;
 }
-.cartao-quando small { font-size: 24px; color: var(--texto-2); margin-left: 6px; }
+.cartao-quando small { font-size: inherit; color: var(--texto-2); margin-left: 6px; }
 .cartao-jogo { font-size: 17px; font-weight: 500; margin-bottom: 8px; }
 .cartao-acoes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: auto; padding-top: 2px; }
 .cartao-acoes .btn-principal { grid-column: 1 / -1; }

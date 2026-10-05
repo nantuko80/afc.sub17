@@ -309,6 +309,7 @@ function renderSubscricoes() {
 
 function renderCabecalho(dados) {
   $('#subtitulo').textContent = `Época ${dados.epoca}`;
+  $('#epoca-calendario').textContent = dados.epoca;
   const atual = new Date(dados.atualizado);
   const quando = new Intl.DateTimeFormat('pt-PT', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Lisbon' }).format(atual);
   const comps = Object.values(dados.equipas)
