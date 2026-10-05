@@ -249,7 +249,7 @@ O modo escuro tem um token `-noite` para cada papel. Sobre superfícies claras n
 
 ### Hierarchy
 - **Display** (700, clamp 40-60px, 0.95, maiúsculas): só o título "Jogos Sub-17" no topo.
-- **Numeral** (700, 30px, 1, maiúsculas): a data do próximo jogo nos cartões.
+- **Numeral** (700, 30px, 1, maiúsculas): a data do próximo jogo nos cartões, com o dia da semana por extenso e a data no formato da lista ("SÁBADO 10 OUT 26").
 - **Numeral small** (700, 24px, 1): horas dos cartões e resultados.
 - **Data e hora da lista** (Barlow, 16px, algarismos fixos): a data ("17 out 26", 600) e, por baixo, a hora com o mesmo tamanho mas em peso normal (400).
 - **Headline** (700, 24px, 1.1, maiúsculas): títulos de secção ("Próximos jogos", "Calendário"). "Próximos jogos" é a exceção: usa o estilo dos títulos de fim de semana (Barlow 600, 15px, sem maiúsculas), para os cartões serem o destaque.

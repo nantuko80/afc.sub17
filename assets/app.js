@@ -154,7 +154,7 @@ function renderProximos(dados, hoje) {
         <span class="cartao-id"><span class="equipa equipa-${letra}">${esc(eq.nome)}</span><span class="jornada">${jornadaLado(j)}</span></span>
         <span class="contagem">${contagem(j.data, hoje)}</span>
       </div>
-      <div class="cartao-quando">${DIAS_LONGOS[d.getDay()]} ${d.getDate()} ${MESES[d.getMonth()]}<small>${j.hora ? esc(j.hora) : 'Hora a definir'}</small></div>
+      <div class="cartao-quando">${DIAS_LONGOS[d.getDay()]} ${dataCompacta(j.data)}<small>${j.hora ? esc(j.hora) : 'Hora a definir'}</small></div>
       <div>
         <div class="cartao-jogo">${equipasHtml(j)}</div>
         ${local(j, !j.emCasa)}
