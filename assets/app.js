@@ -107,11 +107,12 @@ function textoChoque(jogos, dia) {
     : `Jogos seguidos em sítios diferentes (A às ${h.a}, B às ${h.b})`;
 }
 // Chip junto ao título do fim de semana: "Jogam à mesma hora: dom 09:00" ou "Jogos seguidos: dom 09:00 e 11:30".
-function chipChoque(jogos, dias) {
+// Se o título já é o próprio dia ("Domingo · 25 out"), o dia sai do chip: "Jogam à mesma hora: 09:00".
+function chipChoque(jogos, dias, semDia) {
   return dias.map((d) => {
     const h = horasChoque(jogos, d);
-    const dia = DIAS[paraData(d).getDay()];
-    return h.iguais ? `Jogam à mesma hora: ${dia} ${h.a}` : `Jogos seguidos: ${dia} ${[h.a, h.b].sort().join(' e ')}`;
+    const dia = semDia ? '' : `${DIAS[paraData(d).getDay()]} `;
+    return h.iguais ? `Jogam à mesma hora: ${dia}${h.a}` : `Jogos seguidos: ${dia}${[h.a, h.b].sort().join(' e ')}`;
   }).join(' · ');
 }
 
@@ -214,9 +215,17 @@ function renderAvisos(dados, hoje) {
   $('#avisos').innerHTML = notas.join('');
 }
 
+// O dia comum quando há vários jogos e são todos na mesma data; senão, null.
+const diaUnico = (jogos) => (jogos.length > 1 && jogos.every((j) => j.data === jogos[0].data) ? jogos[0].data : null);
+
 function tituloSemana(segunda, jogos) {
   const sabado = somarDias(segunda, 5);
   const domingo = somarDias(segunda, 6);
+  // Vários jogos todos no mesmo dia (ex.: A e B ao domingo): o título é só esse dia, "Domingo · 25 out".
+  const dia = diaUnico(jogos);
+  if (dia) {
+    return `<strong>${DIAS_LONGOS[paraData(dia).getDay()]}</strong> · ${dataCurta(dia)}`;
+  }
   const soFimDeSemana = jogos.every((j) => j.data === sabado || j.data === domingo);
   if (soFimDeSemana) {
     const [s, d] = [paraData(sabado), paraData(domingo)];
@@ -260,7 +269,7 @@ function renderLista(dados, hoje) {
     html += `<section class="semana">
       <div class="semana-cab">
         <h3 class="semana-titulo">${tituloSemana(segunda, lista)}</h3>
-        ${temChoque ? `<span class="semana-alerta">${chipChoque(dados.jogos, diasChoque.filter((d) => choques.get(d) === 'choque'))}</span>` : ambas ? '<span class="semana-alerta">A e B no mesmo dia</span>' : ''}
+        ${temChoque ? `<span class="semana-alerta">${chipChoque(dados.jogos, diasChoque.filter((d) => choques.get(d) === 'choque'), diaUnico(lista))}</span>` : ambas ? '<span class="semana-alerta">A e B no mesmo dia</span>' : ''}
       </div>
       <ul class="semana-jogos">${lista.map((j) => linhaJogo(j, dados, hoje, verAmbas ? choques : null)).join('')}</ul>
     </section>`;

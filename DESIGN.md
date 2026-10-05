@@ -283,7 +283,7 @@ O modo escuro tem um token `-noite` para cada papel. Sobre superfícies claras n
 
 Uma coluna centrada com no máximo 820px e 16px de margem lateral, que funciona igual do telemóvel ao desktop. No desktop, os dois cartões de próximos jogos ficam lado a lado (grelha `auto-fit`, mínimo 260px); no telemóvel empilham.
 
-A lista agrupa os jogos por fim de semana: um título discreto ("Fim de semana · 24-25 out") e, por baixo, um bloco por jogo, sem contorno, com 8px entre blocos e cantos de 14px. O fundo do bloco é Giz (#eef2f8) no modo claro e Folha no escuro; o bloco aberto escurece um tom. Cada linha é uma grelha de três colunas: data (58px, 48px no telemóvel), informação do jogo, hora ou resultado. As ações ficam numa linha própria por baixo da informação.
+A lista agrupa os jogos por fim de semana: um título discreto ("Fim de semana · 24-25 out"; quando os jogos desse fim de semana são todos no mesmo dia, só esse dia: "Domingo · 25 out") e, por baixo, um bloco por jogo, sem contorno, com 8px entre blocos e cantos de 14px. O fundo do bloco é Giz (#eef2f8) no modo claro e Folha no escuro; o bloco aberto escurece um tom. Cada linha é uma grelha de três colunas: data (58px, 48px no telemóvel), informação do jogo, hora ou resultado. As ações ficam numa linha própria por baixo da informação.
 
 A barra de filtros fica fixa no topo ao fazer scroll, numa só linha mesmo no telemóvel. O espaçamento segue uma escala curta (4, 8, 12, 16, 28px): 28px entre secções, 16-18px entre fins de semana, 12-14px dentro dos cartões.
 
@@ -291,7 +291,7 @@ Ponto de quebra único: 520px, onde a coluna da data e hora estreita e os contro
 
 ## Elevation & Depth
 
-O sistema é plano com contorno. A profundidade vem de camadas tonais (no modo claro, Papel e Folha são quase brancos e iguais; Giz nos controlos; no escuro, Papel mais escuro do que Folha) e de um contorno de 1px em Linha de Cal. Cartões e listas não têm sombra, em nenhum dos modos: o contorno chega para os separar do fundo. No modo escuro, os cartões (próximos jogos, subscrição) também perdem o contorno e separam-se do fundo só pelo tom; os jogos da lista também não têm contorno (blocos separados por 8px).
+O sistema é plano com contorno. A profundidade vem de camadas tonais (no modo claro, Papel e Folha são quase brancos e iguais; Giz nos controlos; no escuro, Papel mais escuro do que Folha) e de um contorno de 1px em Linha de Cal. Cartões e listas não têm sombra, em nenhum dos modos: o contorno chega para os separar do fundo. Os cartões (próximos jogos, subscrição) e os jogos da lista não têm contorno em nenhum dos modos: separam-se do fundo pelo tom (Giz #eef2f8 no claro, Folha no escuro); os jogos da lista são blocos separados por 8px.
 
 ### Shadow Vocabulary
 - **Selecionado** (`box-shadow: 0 1px 3px rgb(15 27 45 / .12)`): opção ativa do controlo segmentado.
@@ -316,7 +316,7 @@ Táteis e robustos: altos o suficiente para o polegar, texto numa linha só, uma
 ### Chips
 - **Equipa:** SUB-17 A em Azul Noite cheio, SUB-17 B em Céu Pálido; Saira itálica em maiúsculas, cantos de 6px.
 - **Contagem:** pílula Informação com texto Azul Anadia em peso normal ("Daqui a 5 dias").
-- **Choque:** pílula Alerta, sem contorno, junto ao título do fim de semana, com o dia e a hora: "Jogam à mesma hora: dom 09:00" ou, com horas diferentes mas menos de 3h entre jogos, "Jogos seguidos: dom 09:00 e 11:30". É o único sítio onde o choque é dito por extenso na lista. Cada jogo em choque ganha fundo âmbar, sem contorno, e a linha vertical antes da data em Alerta Borda suavizada (45% de opacidade).
+- **Choque:** pílula Alerta, sem contorno, junto ao título do fim de semana, com o dia e a hora: "Jogam à mesma hora: dom 09:00" ou, com horas diferentes mas menos de 3h entre jogos, "Jogos seguidos: dom 09:00 e 11:30". Quando o título já é o próprio dia ("Domingo · 25 out"), o chip leva só as horas ("Jogam à mesma hora: 09:00"). É o único sítio onde o choque é dito por extenso na lista. Cada jogo em choque ganha fundo âmbar, sem contorno, e a linha vertical antes da data em Alerta Borda suavizada (45% de opacidade).
 - **Resultado:** marcador em Numeral small (24px), sem fundo, com os algarismos na cor Vitória, Empate ou Derrota; o resultado está sempre escrito.
 
 ### Cards / Containers

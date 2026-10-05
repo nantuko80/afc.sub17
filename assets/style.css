@@ -32,7 +32,7 @@
   --info-texto: #164a8a;
   --sombra-selecionado: 0 1px 3px rgb(15 27 45 / .12);
   --contagem-texto: #1650a8;
-  --bloco: #eef2f8;        /* jogos da lista: Giz sobre o fundo quase branco */
+  --bloco: #eef2f8;        /* cartões e jogos da lista: Giz sobre o fundo quase branco */
   --bloco-aberto: #e3e9f2;
   --alvo: 36px;
   /* Arredondamentos: cartões e painéis 14, botões e controlos 10, etiquetas 6, chips de estado em pílula.
@@ -146,8 +146,8 @@ h1 {
   margin-top: -6px;
 }
 .cartao {
-  background: var(--superficie);
-  border: 1px solid var(--linha);
+  background: var(--bloco);
+  border: 1px solid transparent; /* sem contorno: o cartão destaca-se do fundo pelo tom, nos dois modos */
   border-radius: var(--raio);
   padding: 16px;
   display: flex;
@@ -155,8 +155,6 @@ h1 {
   gap: 10px;
   min-width: 0;
 }
-/* No modo escuro o cartão destaca-se do fundo só pelo tom; o contorno fica transparente (o tamanho não muda). */
-@media (prefers-color-scheme: dark) { .cartao { border-color: transparent; } }
 .cartao-cab { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .cartao-id { display: flex; align-items: center; gap: 10px; }
 .contagem {
