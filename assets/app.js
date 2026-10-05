@@ -99,7 +99,12 @@ function textoChoque(jogos, dia) {
 
 const destino = (j) => encodeURIComponent(`${j.local}, ${j.localidade || j.casa}`);
 const mapa = (j) => `https://www.google.com/maps/search/?api=1&query=${destino(j)}`;
+// Como chegar usa sempre o Google Maps, que encontra melhor os campos pelo nome da FPF; o link
+// abre a app quando está instalada. No telemóvel não abre separador novo, para não ficar
+// uma página vazia no browser quando passa para a app.
+const MOVEL = /Android|iPhone|iPad|iPod/.test(navigator.userAgent) || (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
 const comoChegar = (j) => `https://www.google.com/maps/dir/?api=1&destination=${destino(j)}`;
+const abrirMapa = MOVEL ? '' : ' target="_blank" rel="noopener"';
 const localCompleto = (j) => (j.localidade && !j.local.toLowerCase().includes(j.localidade.toLowerCase()) ? `${j.local} · ${j.localidade}` : j.local);
 
 // Emblema do clube (data/emblemas.json: nome do clube sem "B" -> ficheiro); sem emblema, as iniciais.
@@ -115,7 +120,7 @@ function local(j, semLigacao) {
   const texto = `${ICONES.local}${esc(localCompleto(j))}`;
   return semLigacao
     ? `<span class="jogo-local">${texto}</span>`
-    : `<a class="jogo-local" href="${comoChegar(j)}" target="_blank" rel="noopener" aria-label="Como chegar a ${esc(localCompleto(j))}">${texto}</a>`;
+    : `<a class="jogo-local" href="${comoChegar(j)}"${abrirMapa} aria-label="Como chegar a ${esc(localCompleto(j))}">${texto}</a>`;
 }
 function equipasHtml(j) {
   const nome = (n) => `<span class="clube">${emblema(n)}${/Anadia/i.test(n) ? `<b>${esc(n)}</b>` : esc(n)}</span>`;
@@ -134,7 +139,7 @@ function textoPartilha(j, equipa) {
 
 // ---------- Renderização ----------
 const acoesHtml = (j, comRota) => `
-  ${comRota && j.local ? `<a class="btn btn-principal" href="${comoChegar(j)}" target="_blank" rel="noopener">${ICONES.rota}Como chegar</a>` : ''}
+  ${comRota && j.local ? `<a class="btn btn-principal" href="${comoChegar(j)}"${abrirMapa}>${ICONES.rota}Como chegar</a>` : ''}
   <button type="button" class="btn" data-adicionar="${j.id}">${ICONES.calendario}Adicionar</button>
   <button type="button" class="btn" data-partilhar="${j.id}">${ICONES.partilhar}Partilhar</button>`;
 const jornadaLado = (j) => `Jornada ${j.jornada} · ${j.emCasa ? 'Em casa' : 'Fora'}`;
