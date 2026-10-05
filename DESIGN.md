@@ -291,7 +291,7 @@ Ponto de quebra único: 520px, onde a coluna da data e hora estreita e os contro
 
 ## Elevation & Depth
 
-O sistema é plano com contorno. A profundidade vem de camadas tonais (no modo claro, Papel e Folha são quase brancos e iguais; Giz nos controlos; no escuro, Papel mais escuro do que Folha) e de um contorno de 1px em Linha de Cal. Cartões e listas não têm sombra, em nenhum dos modos: o contorno chega para os separar do fundo.
+O sistema é plano com contorno. A profundidade vem de camadas tonais (no modo claro, Papel e Folha são quase brancos e iguais; Giz nos controlos; no escuro, Papel mais escuro do que Folha) e de um contorno de 1px em Linha de Cal. Cartões e listas não têm sombra, em nenhum dos modos: o contorno chega para os separar do fundo. No modo escuro, os cartões (próximos jogos, subscrição) também perdem o contorno e separam-se do fundo só pelo tom; as listas dos fins de semana mantêm-no.
 
 ### Shadow Vocabulary
 - **Selecionado** (`box-shadow: 0 1px 3px rgb(15 27 45 / .12)`): opção ativa do controlo segmentado.

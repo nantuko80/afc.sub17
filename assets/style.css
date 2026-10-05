@@ -152,6 +152,8 @@ h1 {
   gap: 10px;
   min-width: 0;
 }
+/* No modo escuro o cartão destaca-se do fundo só pelo tom; o contorno fica transparente (o tamanho não muda). */
+@media (prefers-color-scheme: dark) { .cartao { border-color: transparent; } }
 .cartao-cab { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .cartao-id { display: flex; align-items: center; gap: 10px; }
 .contagem {
