@@ -185,14 +185,20 @@ h1 {
 .equipa-B { background: var(--equipa-b); color: var(--equipa-b-texto); }
 
 /* ---------- Barra de filtros ---------- */
-.barra {
+.cal-cab {
   position: sticky;
   top: 0;
   z-index: 5;
   background: var(--bg);
   padding: 8px 0;
   margin: -8px 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
+.cal-cab .titulo-bloco { margin: 0; }
+.barra { min-width: 0; }
 .filtros { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; }
 .segmentos {
   display: inline-flex;

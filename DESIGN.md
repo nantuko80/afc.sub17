@@ -285,7 +285,7 @@ Uma coluna centrada com no máximo 820px e 16px de margem lateral, que funciona 
 
 A lista agrupa os jogos por fim de semana: um título discreto ("Fim de semana · 24-25 out"; quando os jogos desse fim de semana são todos no mesmo dia, só esse dia: "Domingo · 25 out") e, por baixo, um bloco por jogo, sem contorno, com 8px entre blocos e cantos de 14px. O fundo do bloco é Giz (#eef2f8) no modo claro e Folha no escuro; o bloco aberto escurece um tom. Cada linha é uma grelha de três colunas: data (58px, 48px no telemóvel), informação do jogo, hora ou resultado. As ações ficam numa linha própria por baixo da informação.
 
-A barra de filtros fica fixa no topo ao fazer scroll, numa só linha mesmo no telemóvel. O espaçamento segue uma escala curta (4, 8, 12, 16, 28px): 28px entre secções, 16-18px entre fins de semana, 12-14px dentro dos cartões.
+O título "Calendário" e os filtros partilham uma linha (título à esquerda, filtros encostados à direita), que fica fixa no topo ao fazer scroll, mesmo no telemóvel. O espaçamento segue uma escala curta (4, 8, 12, 16, 28px): 28px entre secções, 16-18px entre fins de semana, 12-14px dentro dos cartões.
 
 Ponto de quebra único: 520px, onde a coluna da data e hora estreita e os controlos ficam mais compactos.
 
