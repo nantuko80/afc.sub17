@@ -316,7 +316,7 @@ Táteis e robustos: altos o suficiente para o polegar, texto numa linha só, uma
 ### Chips
 - **Equipa:** SUB-17 A em Azul Noite cheio, SUB-17 B em Céu Pálido; Saira itálica em maiúsculas, cantos de 6px.
 - **Contagem:** pílula Informação com texto Azul Anadia em peso normal ("Daqui a 5 dias").
-- **Choque:** pílula Alerta, sem contorno, junto ao título do fim de semana, com o dia e a hora: "Jogam à mesma hora: dom 09:00" ou, com horas diferentes mas menos de 3h entre jogos, "Jogos seguidos: dom 09:00 e 11:30". É o único sítio onde o choque é dito por extenso na lista. Cada jogo em choque ganha fundo âmbar, sem contorno, e a linha vertical antes da data em Alerta Borda.
+- **Choque:** pílula Alerta, sem contorno, junto ao título do fim de semana, com o dia e a hora: "Jogam à mesma hora: dom 09:00" ou, com horas diferentes mas menos de 3h entre jogos, "Jogos seguidos: dom 09:00 e 11:30". É o único sítio onde o choque é dito por extenso na lista. Cada jogo em choque ganha fundo âmbar, sem contorno, e a linha vertical antes da data em Alerta Borda suavizada (45% de opacidade).
 - **Resultado:** marcador em Numeral small (24px), sem fundo, com os algarismos na cor Vitória, Empate ou Derrota; o resultado está sempre escrito.
 
 ### Cards / Containers

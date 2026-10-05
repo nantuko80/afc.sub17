@@ -280,7 +280,7 @@ h1 {
 .jogo.aberto { background: var(--bloco-aberto); }
 .jogo.choque { background: color-mix(in oklab, var(--alerta-bg) 60%, var(--superficie)); }
 /* Jogo em choque: fundo âmbar e linha vertical da data em Alerta Borda (sem contorno). */
-.jogo.choque .jogo-quando { border-left-color: var(--alerta-borda); }
+.jogo.choque .jogo-quando { border-left-color: color-mix(in oklab, var(--alerta-borda) 45%, transparent); }
 
 /* Ações do jogo, por baixo do cartão aberto; mesma grelha dos cartões dos próximos jogos. */
 .jogo-acoes { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; cursor: auto; }
