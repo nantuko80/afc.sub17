@@ -12,14 +12,14 @@ colors:
   tinta: "#0f1b2d"
   grafite: "#4a5872"
   linha-de-cal: "#dbe2ee"
-  ceu-palido: "#d7e7f7"
+  ceu-palido: "#b8d0f0"
   vitoria: "#18794e"
   empate: "#8a6d1d"
   derrota: "#b42318"
   alerta-fundo: "#fff4e0"
   alerta-tinta: "#7a4b00"
   alerta-contorno: "#f2c46d"
-  info-fundo: "#e8f1fc"
+  info-fundo: "#c7daf4"
   info-tinta: "#164a8a"
   papel-noite: "#0a1220"
   folha-noite: "#121c2e"
@@ -337,7 +337,9 @@ Táteis e robustos: altos o suficiente para o polegar, texto numa linha só, uma
 - **Acessibilidade:** decorativos (`alt=""`), porque o nome do clube está sempre ao lado.
 
 ### Navigation
-Não há menu. O topo em Azul Noite mostra só "Anadia FC", o título e a época, sem emblema nem nome institucional, porque a página não é oficial. O rodapé diz sempre "Página não oficial". A navegação é o scroll e a barra de filtros fixa.
+O topo em Azul Noite mostra o escudo, "AFC SUB17" e "Calendário de jogos 2026/27". O rodapé diz sempre "Página não oficial".
+- **Barra de navegação (até 768px):** fixa em baixo, tipo app, com três itens de ícone (24px) e texto (12px, 600): Próximos (bola), Calendário (calendário) e Resultados (placard). Fundo Folha com contorno superior Linha de Cal; respeita a zona segura do iPhone. Próximos sobe ao topo da página; Calendário desce à lista com os jogos por realizar; Resultados muda a lista para os resultados e desce até ela. O item ativo acompanha a secção no ecrã (no fim da página conta como calendário) e fica na cor da contagem, com o ícone em estilo cheio (forma exterior preenchida, detalhes recortados na cor da barra); os inativos ficam em traço de 1.1px, Grafite. Nestes ecrãs o seletor Próximos | Resultados da lista desaparece.
+- **Computador (acima de 768px):** sem barra; a lista tem o seletor Próximos | Resultados ao lado do filtro de equipa, fixo no topo ao fazer scroll.
 
 ### Linha de jogo (signature component)
 A unidade da Folha de Jogo, em duas colunas separadas por uma linha vertical (1px Linha de Cal). À esquerda: etiqueta de equipa e a linha Meta ("Jornada 3 · Fora"); o confronto em Title (duas linhas, emblema de 22px à esquerda de cada clube); o campo com ícone de pin, que abre o caminho no Google Maps. À direita, centrado: dia da semana em minúsculas ("sáb"), a data ("17 out 26") e, por baixo, a hora ou o marcador do resultado; no fim, a seta que abre as ações do jogo. Nos jogos realizados (vista Próximos) a data e o confronto passam a Grafite. Num choque de horário, a linha inteira ganha um fundo âmbar suave (Alerta Fundo misturado 60% com Folha); o aviso por extenso fica no chip do fim de semana (e no cartão do próximo jogo, se o choque for aí).

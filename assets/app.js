@@ -359,7 +359,47 @@ function render() {
   renderAvisos(dados, hoje);
   renderLista(dados, hoje);
   renderSubscricoes();
+  atualizarNav();
 }
+
+// ---------- Barra de navegação (telemóvel) ----------
+// Próximos e Calendário descem até à secção (e repõem a lista nos jogos por realizar);
+// Resultados muda a lista para os resultados e desce até ela.
+function irPara(alvo) {
+  const vista = alvo === 'resultados' ? 'resultados' : 'proximos';
+  if (estado.dados && estado.vista !== vista) {
+    estado.vista = vista;
+    guardar();
+    render();
+  }
+  const behavior = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+  // O item tocado fica ativo logo, e não muda a meio do scroll.
+  navFixo = alvo;
+  clearTimeout(tempoNav);
+  tempoNav = setTimeout(() => { navFixo = null; atualizarNav(); }, 1000);
+  atualizarNav();
+  if (alvo === 'proximos') scrollTo({ top: 0, behavior }); // topo da página, com o cabeçalho
+  else $('#sec-calendario').scrollIntoView({ behavior, block: 'start' });
+}
+let navFixo = null;
+let tempoNav;
+// Item ativo: o da secção que está no ecrã; no calendário, Resultados quando a lista mostra resultados.
+function atualizarNav() {
+  // No fim da página também conta como calendário (com poucos resultados, a lista não chega ao topo do ecrã).
+  const noFim = scrollY + innerHeight >= document.documentElement.scrollHeight - 4;
+  const noCalendario = noFim || $('#sec-calendario').getBoundingClientRect().top <= innerHeight * 0.4;
+  const ativo = navFixo || (noCalendario ? (estado.vista === 'resultados' ? 'resultados' : 'calendario') : 'proximos');
+  document.querySelectorAll('[data-nav]').forEach((a) => {
+    if (a.dataset.nav === ativo) a.setAttribute('aria-current', 'true');
+    else a.removeAttribute('aria-current');
+  });
+}
+let navPendente = false;
+addEventListener('scroll', () => {
+  if (navPendente) return;
+  navPendente = true;
+  requestAnimationFrame(() => { navPendente = false; atualizarNav(); });
+}, { passive: true });
 
 // ---------- Ações ----------
 let tempoToast;
@@ -403,6 +443,12 @@ async function partilhar(id) {
 }
 
 document.addEventListener('click', (e) => {
+  const nav = e.target.closest('[data-nav]');
+  if (nav) {
+    e.preventDefault(); // sem mudar o endereço: o # do endereço guarda a equipa escolhida
+    irPara(nav.dataset.nav);
+    return;
+  }
   const b = e.target.closest('button');
   if (!b) {
     // Tocar em qualquer parte do cartão abre-o, exceto em ligações ou ao selecionar texto.

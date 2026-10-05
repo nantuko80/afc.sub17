@@ -20,7 +20,7 @@
   --topo-texto: #f8fafd;
   --equipa-a: #0b2a5b;
   --equipa-a-texto: #f8fafd;
-  --equipa-b: #d7e7f7;
+  --equipa-b: #b8d0f0;
   --equipa-b-texto: #0b2a5b;
   --vitoria: #18794e;
   --empate: #8a6d1d;
@@ -28,7 +28,7 @@
   --alerta-bg: #fff4e0;
   --alerta-texto: #7a4b00;
   --alerta-borda: #f2c46d;
-  --info-bg: #e8f1fc;
+  --info-bg: #c7daf4;
   --info-texto: #164a8a;
   --sombra-selecionado: 0 1px 3px rgb(15 27 45 / .12);
   --contagem-texto: #1650a8;
@@ -476,6 +476,49 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
   max-width: calc(100vw - 32px);
 }
 .toast.ver { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- Barra de navegação (tipo app, só em ecrãs estreitos) ---------- */
+.navbar { display: none; }
+#sec-proximos, #sec-calendario { scroll-margin-top: 8px; }
+@media (max-width: 768px) {
+  .navbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    padding: 6px 8px calc(6px + env(safe-area-inset-bottom, 0px));
+    background: var(--superficie);
+    border-top: 1px solid var(--linha);
+  }
+  .navbar a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    min-height: 50px;
+    border-radius: var(--raio-controlo);
+    color: var(--texto-2);
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .navbar a svg { width: 24px; height: 24px; }
+  .navbar a[aria-current="true"] { color: var(--contagem-texto); }
+  /* Ativo: estilo cheio — a forma exterior é preenchida e os traços de dentro ficam recortados na cor da barra. */
+  .navbar a[aria-current="true"] .forma { fill: currentColor; }
+  .navbar a[aria-current="true"] .detalhe { stroke: var(--superficie); }
+  /* A barra substitui o seletor Próximos | Resultados da lista. */
+  .seg-vista { display: none; }
+  /* Espaço para a barra não tapar o fim da página nem os avisos. */
+  body { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px)); }
+  .toast { bottom: calc(76px + env(safe-area-inset-bottom, 0px)); }
+}
 
 @media (max-width: 520px) {
   .jogo { gap: 10px; padding: 12px 10px 12px 12px; }
