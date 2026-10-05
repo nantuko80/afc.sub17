@@ -28,7 +28,7 @@ Cada jogo tem `"origem": "pdf"` ou `"fpf"` (só para controlo interno; não apar
 
 | Ficheiro | Para quê |
 |---|---|
-| `index.html`, `assets/` | O site (HTML/CSS/JS, sem dependências). Fontes Barlow (OFL) em `assets/fonts/` e ícones [Phosphor](https://phosphoricons.com) (MIT) incluídos no próprio site, sem pedidos a terceiros |
+| `index.html`, `assets/` | O site (HTML/CSS/JS, sem dependências). Fontes Barlow e Saira (OFL) em `assets/fonts/` e ícones [Tabler](https://tabler.io/icons) (MIT) incluídos no próprio site, sem pedidos a terceiros |
 | `data/jogos.json` | Os jogos — **é o único ficheiro que muda durante a época** |
 | `tools/extrair-fpf.js` | Lê jornadas da FPF (no browser) |
 | `scripts/juntar-fpf.mjs` | Escolhe as jornadas a ler e junta o resultado em `data/jogos.json` |

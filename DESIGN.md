@@ -52,7 +52,7 @@ typography:
     fontFamily: "Saira, Arial Narrow, system-ui, sans-serif"
     fontStyle: italic
     fontStretch: "75%"
-    fontSize: "30px"
+    fontSize: "28px"
     fontWeight: 800
     lineHeight: 1
   numeral-small:
@@ -259,7 +259,7 @@ O modo escuro tem um token `-noite` para cada papel. Sobre superfícies claras n
 
 ### Hierarchy
 - **Display** (Saira itálico 800, clamp 52-80px, 0.95, maiúsculas): só o título "AFC SUB17" no topo, com "Calendário de jogos 2026/27" numa linha por baixo. À esquerda, o escudo do Anadia FC (assets/icones/escudo.svg, recortado à largura do escudo; o favicon é a versão quadrada) com a altura do título e do subtítulo juntos (72-112px).
-- **Numeral** (Saira itálico 800, 30px, 1, maiúsculas): a data do próximo jogo nos cartões, com o dia da semana por extenso e a data no formato da lista ("SÁBADO 10 OUT 26"), seguida da hora no mesmo tamanho, em Grafite.
+- **Numeral** (Saira itálico 800, 28px, 1): a hora do próximo jogo nos cartões, ao centro entre os dois clubes, com o dia por cima em Barlow 600 14px Grafite ("sáb, 10 out"). Sem hora marcada: "Hora a definir" em 14px Grafite.
 - **Numeral small** (Saira itálico 800, 24px, 1): marcadores dos resultados.
 - **Data e hora da lista** (Barlow, 16px, algarismos fixos): a data ("17 out 26", 600) e, por baixo, a hora com o mesmo tamanho mas em peso normal (400).
 - **Headline** (Saira itálico 800, 24px, 1.1, maiúsculas): títulos de secção ("Próximos jogos", "Calendário"). "Próximos jogos" é a exceção: usa o estilo dos títulos de fim de semana (Barlow 600, 15px, sem maiúsculas), para os cartões serem o destaque.
@@ -308,7 +308,7 @@ Quatro raios com regra fixa: cartões e painéis 14px (`cartao`), botões e cont
 ### Buttons
 Táteis e robustos: altos o suficiente para o polegar, texto numa linha só, uma ação principal por contexto.
 - **Shape:** cantos suaves (10px), altura mínima de 40px com rato e 44px em ecrãs táteis (a seta de cada jogo da lista tem 36px com rato).
-- **Primary:** Azul Anadia com texto Branco Gelo, ícone Phosphor à esquerda, 8px 14px. Uma por cartão: "Como chegar" no cartão do próximo jogo, quando é fora; "Google Calendar" na subscrição.
+- **Primary:** Azul Anadia com texto Branco Gelo, ícone Tabler à esquerda, 8px 14px. Uma por cartão: "Como chegar" no cartão do próximo jogo, quando é fora; "Google Calendar" na subscrição.
 - **Hover / Focus / Active:** o primário escurece para Azul Noite; os secundários ganham contorno Celeste. O foco tem um anel de 3px Celeste afastado 2px. Ao carregar, encolhem para 97% durante 80ms (desligado com `prefers-reduced-motion`).
 - **Secondary:** Folha com contorno Linha de Cal e texto Tinta ("Adicionar" e "Partilhar" nos cartões, "iPhone / Outlook", "Copiar ligação").
 - **Icon button:** quadrado de 36px (44px em ecrãs táteis), Folha, ícone Grafite de 18px. Em cada linha da lista por realizar é uma seta (⌄) na coluna da hora: tocar na seta ou em qualquer parte da linha abre-a (fundo Giz, seta rodada e em Azul) e mostra por baixo as ações dos cartões ("Adicionar" e "Partilhar" lado a lado e, nos jogos fora, "Como chegar" a toda a largura por cima). Só uma linha aberta de cada vez. A regra do "Como chegar" é a mesma nos cartões e na lista: botão só nos jogos fora, onde o campo passa a texto; nos jogos em casa o campo continua a ser ligação para o mapa. Jogos realizados não abrem nem têm ações.
@@ -331,7 +331,7 @@ Táteis e robustos: altos o suficiente para o polegar, texto numa linha só, uma
 - **Próximos | Resultados:** segundo controlo segmentado, na mesma barra e com o mesmo estilo. "Próximos" (por defeito) mostra os jogos por realizar, sem os que já estão nos cartões; "Resultados" mostra só os realizados, do mais recente para o mais antigo, sem esbater. O filtro de equipa vale nos dois. As abas de equipa dizem "Ambas | S17·A | S17·B" (com `aria-label` completo, "Sub-17 A"), para os dois grupos caberem numa linha em qualquer ecrã.
 
 ### Emblemas
-- **Forma:** azulejo de 22px (26px no cartão do próximo jogo), cantos de 6px, fundo Branco Gelo e contorno Linha de Cal, porque os emblemas da FPF são JPEG com fundo branco. Igual nos dois modos.
+- **Forma:** azulejo de 22px na lista, cantos de 6px (no cartão do próximo jogo: 48px, cantos de 10px, com os dois clubes lado a lado, emblema por cima do nome centrado e um "x" Grafite ao meio), fundo Branco Gelo e contorno Linha de Cal, porque os emblemas da FPF são JPEG com fundo branco. Igual nos dois modos.
 - **Origem:** recolhidos uma vez do site da FPF, guardados em `assets/emblemas/` (WebP 56px) e mapeados em `data/emblemas.json`.
 - **Sem emblema:** iniciais do clube no mesmo azulejo, com as cores da etiqueta B.
 - **Acessibilidade:** decorativos (`alt=""`), porque o nome do clube está sempre ao lado.
@@ -350,7 +350,7 @@ A unidade da Folha de Jogo, em duas colunas separadas por uma linha vertical (1p
 - **Do** escrever datas e horas dos cartões em Saira itálico 800 e deixar que sejam o elemento mais visível de cada linha.
 - **Do** acompanhar qualquer cor semântica com texto ou ícone (resultado escrito, "Jogam à mesma hora: dom 09:00", ícone de aviso).
 - **Do** usar o token `--alvo` para tudo o que se toca: 36px com rato, 44px em ecrãs táteis. O texto dos botões fica sempre numa só linha.
-- **Do** usar ícones Phosphor (peso bold) incluídos como SVG, com `aria-hidden`.
+- **Do** usar ícones Tabler (contorno) incluídos como SVG, com `aria-hidden` e traço de 1.1px reais (`vector-effect: non-scaling-stroke`) em todos os tamanhos.
 - **Do** testar cada alteração nos modos claro e escuro e a 375px de largura.
 
 ### Don't:

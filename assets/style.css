@@ -164,11 +164,6 @@ h1 {
   border-radius: var(--raio-chip);
   white-space: nowrap;
 }
-.cartao-quando {
-  font: italic 800 30px/1 var(--fonte-titulo);
-  text-transform: uppercase;
-}
-.cartao-quando small { font-size: inherit; color: var(--texto-2); margin-left: 6px; }
 .cartao-jogo { font-size: 17px; font-weight: 500; margin-bottom: 8px; }
 .cartao-acoes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: auto; padding-top: 2px; }
 .cartao-acoes .btn-principal { grid-column: 1 / -1; }
@@ -323,6 +318,19 @@ h1 {
   background: var(--equipa-b);
 }
 .cartao-jogo .emblema { width: 26px; height: 26px; }
+/* Cartões dos próximos jogos: os dois clubes lado a lado, emblema grande por cima do nome, data e hora ao meio. */
+.cartao-jogo { grid-template-columns: 1fr auto 1fr; align-items: start; gap: 8px; margin: 14px 0 22px; }
+.cartao-jogo .clube { flex-direction: column; gap: 8px; text-align: center; line-height: 1.2; }
+.cartao-jogo .emblema { width: 48px; height: 48px; border-radius: var(--raio-controlo); }
+.cartao-jogo .emblema-ini { font-size: 18px; }
+/* Data e hora ao meio, à altura dos emblemas. */
+.cartao-meio { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 48px; text-align: center; white-space: nowrap; }
+.cartao-dia { font-size: 14px; font-weight: 600; color: var(--texto-2); }
+.cartao-hora { font: italic 800 28px/1 var(--fonte-titulo); font-variant-numeric: tabular-nums; }
+.cartao-hora-pc { font-size: 14px; color: var(--texto-2); }
+/* Morada centrada por baixo dos clubes (se partir em duas linhas, também fica centrada). */
+.cartao .jogo-local { display: block; text-align: center; }
+.cartao .jogo-local svg { display: inline-block; vertical-align: -3px; margin-right: 5px; }
 .sr-only {
   position: absolute;
   width: 1px;
@@ -345,7 +353,7 @@ h1 {
   margin-block: calc((20px - var(--alvo)) / 2);
 }
 a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
-.jogo-local svg { width: 14px; height: 14px; flex: none; }
+.jogo-local svg { width: 16px; height: 16px; flex: none; }
 .jogo-aviso { display: flex; gap: 6px; align-items: flex-start; margin-top: 6px; font-size: 14px; font-weight: 600; color: var(--alerta-texto); }
 .jogo-aviso svg { width: 16px; height: 16px; flex: none; margin-top: 1px; }
 
