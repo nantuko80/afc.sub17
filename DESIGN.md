@@ -258,7 +258,7 @@ O modo escuro tem um token `-noite` para cada papel. Sobre superfícies claras n
 **Character:** a Saira condensada, grossa, em itálico e maiúsculas lembra um equipamento desportivo ou um placard e dá dinamismo; a Barlow normal mantém o texto corrido calmo e muito legível em ecrãs pequenos. As fontes estão alojadas no próprio site (woff2, OFL), sem pedidos a terceiros.
 
 ### Hierarchy
-- **Display** (Saira itálico 800, clamp 52-80px, 0.95, maiúsculas): só o título "AFC SUB17" no topo, com "Calendário de jogos 2026/27" numa linha por baixo. À esquerda, o escudo do Anadia FC (assets/icones/favicon.svg) com a altura do título e do subtítulo juntos (72-112px).
+- **Display** (Saira itálico 800, clamp 52-80px, 0.95, maiúsculas): só o título "AFC SUB17" no topo, com "Calendário de jogos 2026/27" numa linha por baixo. À esquerda, o escudo do Anadia FC (assets/icones/escudo.svg, recortado à largura do escudo; o favicon é a versão quadrada) com a altura do título e do subtítulo juntos (72-112px).
 - **Numeral** (Saira itálico 800, 30px, 1, maiúsculas): a data do próximo jogo nos cartões, com o dia da semana por extenso e a data no formato da lista ("SÁBADO 10 OUT 26"), seguida da hora no mesmo tamanho, em Grafite.
 - **Numeral small** (Saira itálico 800, 24px, 1): marcadores dos resultados.
 - **Data e hora da lista** (Barlow, 16px, algarismos fixos): a data ("17 out 26", 600) e, por baixo, a hora com o mesmo tamanho mas em peso normal (400).

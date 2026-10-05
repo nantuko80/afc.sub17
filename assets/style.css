@@ -98,12 +98,12 @@ button { font: inherit; color: inherit; }
   padding: 28px 16px 30px;
   display: flex;
   align-items: center;
-  gap: clamp(12px, 3vw, 20px);
+  gap: clamp(10px, 2.5vw, 14px);
 }
 /* Escudo à esquerda do título, com a altura do título e do subtítulo juntos. */
 .topo-logo { flex: none; width: auto; height: clamp(72px, 18vw, 112px); }
 .subtitulo {
-  margin: 10px 0 0;
+  margin: 4px 0 0;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: .02em;
@@ -129,7 +129,6 @@ h1 {
   text-transform: uppercase;
   letter-spacing: .01em;
 }
-.titulo-epoca { color: var(--texto-2); }
 /* Título discreto: o mesmo estilo dos títulos de fim de semana ("Fim de semana · 24-25 out"). */
 .titulo-discreto { font: 600 15px/1.2 var(--fonte); text-transform: none; letter-spacing: 0; margin-bottom: 14px; }
 .texto { margin: -4px 0 14px; color: var(--texto-2); }
