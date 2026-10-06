@@ -1,3 +1,4 @@
 {
-  "Campo Monte": { "url": "https://maps.app.goo.gl/EUdZFHy2pQYWmi5y7", "lat": 40.6204254, "lon": -8.5751793, "nota": "GD Eixense, R. do Forno 68, Eixo - Aveiro" }
+  "Campo Monte": {"url": "https://maps.app.goo.gl/EUdZFHy2pQYWmi5y7", "lat": 40.6204254, "lon": -8.5751793, "nota": "GD Eixense, R. do Forno 68, Eixo - Aveiro"},
+  "Campo do Complexo Desportivo de Anadia": {"nome": "Campo do Complexo Desp. de Anadia"}
 }

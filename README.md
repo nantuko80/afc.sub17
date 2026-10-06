@@ -34,7 +34,7 @@ Cada jogo tem `"origem": "pdf"` ou `"fpf"` (só para controlo interno; não apar
 | `scripts/juntar-fpf.mjs` | Escolhe as jornadas a ler e junta o resultado em `data/jogos.json` |
 | `tools/importar-pdf.py` | Importa o calendário completo dos PDFs da AF Aveiro |
 | `assets/emblemas/`, `data/emblemas.json` | Emblemas dos clubes (recolhidos da FPF uma vez por época) e o mapa nome do clube → ficheiro |
-| `data/campos.json` | Campos cujo nome da FPF o Google Maps não encontra bem (nome do campo, tal como vem da FPF → `url` com o link do Google Maps, e/ou `lat`/`lon`). O `url` tem prioridade; usados no «Como chegar» e na partilha; campos que não estão aqui usam o nome |
+| `data/campos.json` | Campos cujo nome da FPF o Google Maps não encontra bem (nome do campo, tal como vem da FPF → `url` com o link do Google Maps, e/ou `lat`/`lon`, e/ou `nome` para mostrar um nome diferente, ex. abreviado). O `url` tem prioridade sobre as coordenadas; usados no «Como chegar» e na partilha; campos que não estão aqui usam o nome |
 | `scripts/gerar-ics.mjs` | Gera os calendários `.ics` (corre no GitHub Actions) |
 | `.github/workflows/publicar.yml` | Publica o site no GitHub Pages a cada alteração |
 

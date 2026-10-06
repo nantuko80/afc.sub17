@@ -119,7 +119,7 @@ function chipChoque(jogos, dias, semDia) {
 // Destino da pesquisa no mapa: coordenadas de data/campos.json quando o campo lá está (nome da FPF -> lat/lon); senão, o nome e a localidade.
 const destino = (j) => {
   const c = estado.campos[j.local];
-  return c ? `${c.lat},${c.lon}` : encodeURIComponent(`${j.local}, ${j.localidade || j.casa}`);
+  return c?.lat != null && c?.lon != null ? `${c.lat},${c.lon}` : encodeURIComponent(`${j.local}, ${j.localidade || j.casa}`);
 };
 // Link do mapa: o "url" de data/campos.json quando existe (ficha exata do Google Maps); senão, uma pesquisa pelo destino.
 const mapa = (j) => estado.campos[j.local]?.url || `https://www.google.com/maps/search/?api=1&query=${destino(j)}`;
@@ -130,7 +130,11 @@ const MOVEL = /Android|iPhone|iPad|iPod/.test(navigator.userAgent) || (/Macintos
 // Abre o local no mapa (e não um percurso): o diretor vê o campo e pede as indicações na própria app.
 const comoChegar = mapa;
 const abrirMapa = MOVEL ? '' : ' target="_blank" rel="noopener"';
-const localCompleto = (j) => (j.localidade && !j.local.toLowerCase().includes(j.localidade.toLowerCase()) ? `${j.local} · ${j.localidade}` : j.local);
+// Nome do campo a mostrar: o "nome" de data/campos.json quando existe (ex.: abreviado); senão, o da FPF, com a localidade.
+const localCompleto = (j) => {
+  const nome = estado.campos[j.local]?.nome || j.local;
+  return j.localidade && !nome.toLowerCase().includes(j.localidade.toLowerCase()) ? `${nome} · ${j.localidade}` : nome;
+};
 
 // Emblema do clube (data/emblemas.json: nome do clube sem "B" -> ficheiro); sem emblema, as iniciais.
 const clube = (n) => n.replace(/\s*"B"$/, '');
