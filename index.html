@@ -22,10 +22,21 @@
   <header class="topo">
     <div class="topo-in">
       <img class="topo-logo" src="assets/icones/escudo.svg" alt="" width="66" height="96">
-      <div>
+      <div class="topo-texto">
         <h1>AFC SUB17</h1>
         <p class="subtitulo" id="subtitulo">Calendário de jogos 2026/27</p>
       </div>
+      <!-- Grelha (grid-dots: 9 pontos, preenchidos, Tabler): abre o painel de ligações úteis. -->
+      <button type="button" class="topo-btn" id="topo-grelha" aria-label="Ligações úteis" aria-expanded="false" aria-controls="painel-links"><svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path vector-effect="non-scaling-stroke" d="M4 5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/><path vector-effect="non-scaling-stroke" d="M11 5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/><path vector-effect="non-scaling-stroke" d="M18 5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/><path vector-effect="non-scaling-stroke" d="M4 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/><path vector-effect="non-scaling-stroke" d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/><path vector-effect="non-scaling-stroke" d="M18 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/><path vector-effect="non-scaling-stroke" d="M4 19a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/><path vector-effect="non-scaling-stroke" d="M11 19a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/><path vector-effect="non-scaling-stroke" d="M18 19a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/></svg></button>
+    </div>
+    <div class="painel-links" id="painel-links" hidden>
+      <nav aria-label="Ligações úteis">
+        <ul>
+          <li><a href="https://score.fpf.pt/" target="_blank" rel="noopener"><img class="favicon" src="assets/icones/fpf-score.svg" alt="" width="32" height="32"><span><b>Score FPF</b><small>score.fpf.pt</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path vector-effect="non-scaling-stroke" d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6"/><path vector-effect="non-scaling-stroke" d="M11 13l9 -9"/><path vector-effect="non-scaling-stroke" d="M15 4h5v5"/></svg></a></li>
+          <li><a href="https://resultados.fpf.pt/Competition/Details?competitionId=29907&amp;seasonId=106" target="_blank" rel="noopener"><img class="favicon" src="assets/icones/fpf-resultados.svg" alt="" width="32" height="32"><span><b>Honra Sub17</b><small>Sub-17 A · Zona Sul</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path vector-effect="non-scaling-stroke" d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6"/><path vector-effect="non-scaling-stroke" d="M11 13l9 -9"/><path vector-effect="non-scaling-stroke" d="M15 4h5v5"/></svg></a></li>
+          <li><a href="https://resultados.fpf.pt/Competition/Details?competitionId=30260&amp;seasonId=106" target="_blank" rel="noopener"><img class="favicon" src="assets/icones/fpf-resultados.svg" alt="" width="32" height="32"><span><b>Distrital Sub17</b><small>Sub-17 B · Zona Sul</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path vector-effect="non-scaling-stroke" d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6"/><path vector-effect="non-scaling-stroke" d="M11 13l9 -9"/><path vector-effect="non-scaling-stroke" d="M15 4h5v5"/></svg></a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 

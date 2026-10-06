@@ -444,7 +444,28 @@ async function partilhar(id) {
   copiar(texto, 'Jogo copiado. Já pode colar no WhatsApp.');
 }
 
+// ---------- Painel de ligações úteis (grelha do topo) ----------
+function painelLinks(abrir) {
+  const btn = $('#topo-grelha');
+  const painel = $('#painel-links');
+  painel.hidden = !abrir;
+  btn.setAttribute('aria-expanded', String(abrir));
+  if (abrir) painel.querySelector('a').focus();
+}
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && !$('#painel-links').hidden) {
+    painelLinks(false);
+    $('#topo-grelha').focus();
+  }
+});
+
 document.addEventListener('click', (e) => {
+  // Grelha abre/fecha o painel; tocar fora dele ou num link fecha-o.
+  if (e.target.closest('#topo-grelha')) {
+    painelLinks($('#painel-links').hidden);
+    return;
+  }
+  if (!$('#painel-links').hidden && (!e.target.closest('#painel-links') || e.target.closest('a'))) painelLinks(false);
   const nav = e.target.closest('[data-nav]');
   if (nav) {
     e.preventDefault(); // sem mudar o endereço: o # do endereço guarda a equipa escolhida
