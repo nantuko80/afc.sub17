@@ -32,6 +32,10 @@
   --info-texto: #164a8a;
   --sombra-selecionado: 0 1px 3px rgb(15 27 45 / .12);
   --contagem-texto: #1650a8;
+  --nav-ativo: #f8fafd;     /* texto e ícone do item ativo da barra */
+  --nav-ativo-bg: #0b2a5b;  /* pílula do item ativo: claro, o azul do topo; escuro, o fundo da página a 70% */
+  --nav-ativo-op: 100%;
+  --nav-borda: rgb(219 226 238 / .5); /* Linha de Cal a 50% */
   --bloco: #eef2f8;        /* cartões e jogos da lista: Giz sobre o fundo quase branco */
   --bloco-aberto: #e3e9f2;
   --alvo: 36px;
@@ -70,6 +74,10 @@
     --info-bg: #13294a;
     --info-texto: #a9cbf2;
     --contagem-texto: #a9cbf2;
+    --nav-ativo: #a9cbf2;
+    --nav-ativo-bg: #0a1220;
+    --nav-ativo-op: 70%;
+    --nav-borda: #2b3d5c;
     --bloco: #121c2e;
     --bloco-aberto: #18243a;
     color-scheme: dark;
@@ -535,19 +543,19 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
 .navbar { display: none; }
 #sec-proximos, #sec-calendario { scroll-margin-top: 8px; }
 @media (max-width: 768px) {
-  /* Barra flutuante em pílula: 12px de margem a toda a volta (acima da zona de gestos do iPhone),
+  /* Barra flutuante em pílula: 16px de margem a toda a volta (acima da zona de gestos do iPhone),
      fundo translúcido com desfoque do conteúdo por trás. */
   .navbar {
     position: fixed;
-    left: 12px;
-    right: 12px;
-    bottom: max(12px, env(safe-area-inset-bottom, 0px)); /* no iPhone, logo acima da linha de gestos (a zona segura já inclui folga) */
+    left: 16px;
+    right: 16px;
+    bottom: max(16px, env(safe-area-inset-bottom, 0px)); /* no iPhone, logo acima da linha de gestos (a zona segura já inclui folga) */
     z-index: 10;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 4px;
     padding: 4px; /* o item ativo fica a 4px da borda da barra */
-    border: 1px solid color-mix(in oklab, var(--linha) 50%, transparent); /* contorno suave, nos dois modos */
+    border: 1px solid var(--nav-borda); /* contorno suave no claro; um pouco mais claro no escuro */
     border-radius: 999px;
     background: color-mix(in oklab, var(--superficie) 72%, transparent);
     -webkit-backdrop-filter: blur(16px) saturate(1.4);
@@ -561,7 +569,7 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
     left: 4px;
     width: calc((100% - 16px) / 3);
     border-radius: 999px;
-    background: color-mix(in oklab, var(--info-bg) 70%, transparent);
+    background: color-mix(in oklab, var(--nav-ativo-bg) var(--nav-ativo-op), transparent);
     transition: transform .3s cubic-bezier(.3, .7, .3, 1);
   }
   .navbar[data-ativo="1"] .nav-ind { transform: translateX(calc(100% + 4px)); }
@@ -584,17 +592,17 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
   }
   .navbar a svg { width: 25px; height: 25px; }
   /* Ativo: a cor do texto da contagem ("Daqui a 5 dias"); o fundo é a pílula que desliza (.nav-ind). */
-  .navbar a[aria-current="true"] { color: var(--contagem-texto); }
+  .navbar a[aria-current="true"] { color: var(--nav-ativo); }
   .navbar .forma { fill: transparent; transition: fill .25s; }
   .navbar .detalhe { transition: stroke .25s; }
   /* Ícone ativo em estilo cheio: a forma exterior é preenchida e os traços de dentro ficam recortados na cor da pílula. */
   .navbar a[aria-current="true"] .forma { fill: currentColor; }
-  .navbar a[aria-current="true"] .detalhe { stroke: color-mix(in oklab, var(--info-bg) 70%, var(--superficie)); } /* o tom aparente da pílula a 70% */
+  .navbar a[aria-current="true"] .detalhe { stroke: color-mix(in oklab, var(--nav-ativo-bg) var(--nav-ativo-op), var(--superficie)); } /* recortes no tom aparente da pílula */
   /* A barra substitui o seletor Próximos | Resultados da lista. */
   .seg-vista { display: none; }
   /* Espaço para a barra não tapar o fim da página nem os avisos. */
-  body { padding-bottom: calc(76px + max(12px, env(safe-area-inset-bottom, 0px))); }
-  .toast { bottom: calc(84px + max(12px, env(safe-area-inset-bottom, 0px))); }
+  body { padding-bottom: calc(76px + max(16px, env(safe-area-inset-bottom, 0px))); }
+  .toast { bottom: calc(84px + max(16px, env(safe-area-inset-bottom, 0px))); }
 }
 
 @media (max-width: 520px) {
