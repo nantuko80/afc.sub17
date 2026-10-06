@@ -541,7 +541,7 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
     position: fixed;
     left: 12px;
     right: 12px;
-    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    bottom: max(12px, env(safe-area-inset-bottom, 0px)); /* no iPhone, logo acima da linha de gestos (a zona segura já inclui folga) */
     z-index: 10;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -593,8 +593,8 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
   /* A barra substitui o seletor Próximos | Resultados da lista. */
   .seg-vista { display: none; }
   /* Espaço para a barra não tapar o fim da página nem os avisos. */
-  body { padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px)); }
-  .toast { bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
+  body { padding-bottom: calc(76px + max(12px, env(safe-area-inset-bottom, 0px))); }
+  .toast { bottom: calc(84px + max(12px, env(safe-area-inset-bottom, 0px))); }
 }
 
 @media (max-width: 520px) {
