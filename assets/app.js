@@ -346,7 +346,7 @@ function renderSubscricoes() {
 }
 
 function renderCabecalho(dados) {
-  $('#subtitulo').textContent = `Época ${dados.epoca}`;
+  $('#epoca').textContent = dados.epoca.replace('/', ' / '); // "2026 / 27", ao lado do título
   const atual = new Date(dados.atualizado);
   const quando = new Intl.DateTimeFormat('pt-PT', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Lisbon' }).format(atual);
   const comps = Object.values(dados.equipas)

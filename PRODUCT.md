@@ -12,7 +12,7 @@ A tarefa é sempre a mesma: saber **quando, onde e a que horas** é o próximo j
 
 ## Product Purpose
 
-Ferramenta **não oficial**, feita pelos diretores para organização interna. Não é um canal do clube nem o representa. Sem login, acessível só por ligação (não aparece nos motores de busca), com os jogos das duas equipas Sub-17 na época 2026/27 (Campeonato Distrital Honra e 1.ª Divisão, Zona Sul, AF Aveiro). Os dados vêm dos comunicados oficiais da AF Aveiro e do Centro de Resultados da FPF.
+Ferramenta **não oficial**, desenvolvida pelos diretores de equipa para organização interna. Não é um canal do clube nem o representa. Sem login, acessível só por ligação (não aparece nos motores de busca), com os jogos das duas equipas Sub-17 na época 2026/27 (Campeonato Distrital Honra e 1.ª Divisão, Zona Sul, AF Aveiro). Os dados vêm dos comunicados oficiais da AF Aveiro e do Centro de Resultados da FPF.
 
 Sucesso: **menos perguntas no grupo**. Os diretores deixam de perguntar uns aos outros quando, onde e a que horas é o jogo, porque a resposta está num sítio fiável e fácil de abrir, de partilhar e de levar para o calendário do telemóvel.
 
