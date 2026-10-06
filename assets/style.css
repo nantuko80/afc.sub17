@@ -32,8 +32,8 @@
   --info-texto: #164a8a;
   --sombra-selecionado: 0 1px 3px rgb(15 27 45 / .12);
   --contagem-texto: #1650a8;
-  --nav-ativo: #f8fafd;     /* texto e ícone do item ativo da barra */
-  --nav-ativo-bg: #0b2a5b;  /* pílula do item ativo: claro, o azul do topo; escuro, o fundo da página a 70% */
+  --nav-ativo: #1650a8;     /* texto e ícone do item ativo da barra (azul da contagem) */
+  --nav-ativo-bg: #dfe7f3;  /* pílula do item ativo: claro, um tom abaixo da barra; escuro, o fundo da página a 70% */
   --nav-ativo-op: 100%;
   --nav-borda: rgb(219 226 238 / .5); /* Linha de Cal a 50% */
   --bloco: #eef2f8;        /* cartões e jogos da lista: Giz sobre o fundo quase branco */
