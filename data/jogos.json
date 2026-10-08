@@ -1,6 +1,6 @@
 {
   "epoca": "2026/27",
-  "atualizado": "2026-10-05T14:30:00.000Z",
+  "atualizado": "2026-10-08T20:14:16.812Z",
   "fonte": "https://resultados.fpf.pt",
   "equipas": {
     "A": {
@@ -54,7 +54,7 @@
       "equipa": "A",
       "jornada": 3,
       "data": "2026-10-10",
-      "hora": "15:00",
+      "hora": "17:30",
       "casa": "AD Taboeira \"B\"",
       "fora": "Anadia FC",
       "emCasa": false,
