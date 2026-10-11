@@ -639,7 +639,7 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 3px;
+    gap: 2px;
     min-height: 54px;
     border-radius: 999px;
     color: var(--texto-2);
