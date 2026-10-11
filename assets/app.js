@@ -4,6 +4,7 @@ const DIAS = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
 const DIAS_LONGOS = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
 const MESES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
 const CHOQUE_MIN = 180; // jogos a menos de 3h em locais diferentes não dão para acompanhar ambos
+const FIM_MIN = 180; // um fim de semana (ou dia) só passa a realizado 3h depois do início do seu último jogo
 
 // Ícones Tabler (contorno, licença MIT) - https://tabler.io/icons
 // Todos com traço de 1.1px reais no ecrã, seja qual for o tamanho (vector-effect: non-scaling-stroke).
@@ -25,7 +26,13 @@ const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
 // ---------- Datas (sempre na hora de Lisboa) ----------
-const hojeLisboa = () => new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Lisbon' }).format(new Date());
+// "AAAA-MM-DDTHH:MM" na hora de Lisboa: compara-se como texto.
+const agoraLisboa = () => {
+  const p = Object.fromEntries(new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Europe/Lisbon', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
+  }).formatToParts(new Date()).map((x) => [x.type, x.value]));
+  return `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}`;
+};
 const paraData = (iso) => { const [a, m, d] = iso.split('-').map(Number); return new Date(a, m - 1, d); };
 const isoDe = (dt) => `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, '0')}-${String(dt.getDate()).padStart(2, '0')}`;
 const somarDias = (iso, n) => { const d = paraData(iso); d.setDate(d.getDate() + n); return isoDe(d); };
@@ -39,6 +46,7 @@ function contagem(iso, hoje) {
   const n = diasEntre(hoje, iso);
   if (n === 0) return 'Hoje';
   if (n === 1) return 'Amanhã';
+  if (n === -1) return 'Ontem';
   return `Daqui a ${n} dias`;
 }
 
@@ -67,7 +75,31 @@ function resultadoAnadia(j) {
   return nos > eles ? 'v' : nos < eles ? 'd' : 'e';
 }
 
-const realizado = (j, hoje) => !!j.resultado || (j.data && j.data < hoje);
+// Os jogos de A e B passam juntos a realizados: o sábado e o domingo contam como uma ronda
+// (outro dia da semana é uma ronda sozinho), que acaba 3h depois da hora de início do último jogo.
+const rondaDe = (iso) => ([0, 6].includes(paraData(iso).getDay()) ? `fs-${segundaDaSemana(iso)}` : iso);
+function fimJogo(j) {
+  if (!j.hora) return `${somarDias(j.data, 1)}T00:00`; // sem hora: até ao fim do dia
+  const t = minutos(j.hora) + FIM_MIN;
+  const hm = t % 1440;
+  return `${somarDias(j.data, Math.floor(t / 1440))}T${String(Math.floor(hm / 60)).padStart(2, '0')}:${String(hm % 60).padStart(2, '0')}`;
+}
+const finsDeRonda = new WeakMap();
+function fimDaRonda(iso) {
+  const jogos = estado.dados.jogos;
+  if (!finsDeRonda.has(jogos)) {
+    const fins = new Map();
+    for (const j of jogos) {
+      if (!j.data) continue;
+      const k = rondaDe(j.data);
+      const f = fimJogo(j);
+      if (!fins.has(k) || f > fins.get(k)) fins.set(k, f);
+    }
+    finsDeRonda.set(jogos, fins);
+  }
+  return finsDeRonda.get(jogos).get(rondaDe(iso)) ?? `${somarDias(iso, 1)}T00:00`;
+}
+const realizado = (j, agora) => (j.data ? agora >= fimDaRonda(j.data) : !!j.resultado);
 
 // Dias em que A e B jogam: "mesmo-dia" ou "choque" (horas próximas em locais diferentes).
 function calcularChoques(jogos) {
@@ -174,12 +206,13 @@ const acoesHtml = (j, comRota) => `
   <button type="button" class="btn" data-adicionar="${j.id}">${ICONES.calendario}Adicionar</button>
   <button type="button" class="btn" data-partilhar="${j.id}">${ICONES.partilhar}Partilhar</button>`;
 const jornadaLado = (j) => `Jornada ${j.jornada} · ${j.emCasa ? 'Em casa' : 'Fora'}`;
-const proximoDe = (dados, letra, hoje) => dados.jogos.find((x) => x.equipa === letra && x.data && x.data >= hoje && !x.resultado);
+const proximoDe = (dados, letra, agora) => dados.jogos.find((x) => x.equipa === letra && x.data && !realizado(x, agora));
 
-function renderProximos(dados, hoje) {
+function renderProximos(dados, agora) {
+  const hoje = agora.slice(0, 10);
   const choques = calcularChoques(dados.jogos);
   const html = Object.entries(dados.equipas).map(([letra, eq]) => {
-    const j = proximoDe(dados, letra, hoje);
+    const j = proximoDe(dados, letra, agora);
     if (!j) {
       return `<article class="cartao"><div class="cartao-cab"><span class="equipa equipa-${letra}">${esc(eq.nome)}</span></div>
         <p class="aviso">Sem jogos marcados de momento.</p></article>`;
@@ -202,7 +235,8 @@ function renderProximos(dados, hoje) {
   $('#proximos').removeAttribute('aria-busy');
 }
 
-function renderAvisos(dados, hoje) {
+function renderAvisos(dados, agora) {
+  const hoje = agora.slice(0, 10);
   const notas = [];
   const letras = estado.equipa === 'todas' ? Object.keys(dados.equipas) : [estado.equipa];
   for (const l of letras) {
@@ -241,15 +275,15 @@ function tituloSemana(segunda, jogos) {
   return `<strong>Semana</strong> · ${dataCurta(segunda)} - ${dataCurta(domingo)}`;
 }
 
-function renderLista(dados, hoje) {
+function renderLista(dados, agora) {
   const choques = calcularChoques(dados.jogos);
   const resultados = estado.vista === 'resultados';
   // Próximos: sem os jogos que já estão nos cartões. Resultados: só os realizados, do mais recente para o mais antigo.
-  const nosCartoes = new Set(Object.keys(dados.equipas).map((l) => proximoDe(dados, l, hoje)?.id));
+  const nosCartoes = new Set(Object.keys(dados.equipas).map((l) => proximoDe(dados, l, agora)?.id));
   let jogos = dados.jogos.filter((j) =>
     j.data &&
     (estado.equipa === 'todas' || j.equipa === estado.equipa) &&
-    (resultados ? realizado(j, hoje) : !realizado(j, hoje) && !nosCartoes.has(j.id)));
+    (resultados ? realizado(j, agora) : !realizado(j, agora) && !nosCartoes.has(j.id)));
   if (resultados) jogos = jogos.reverse();
 
   if (!jogos.length) {
@@ -267,7 +301,7 @@ function renderLista(dados, hoje) {
   const verAmbas = estado.equipa === 'todas';
   let html = '';
   for (const [segunda, lista] of semanas) {
-    const diasChoque = [...new Set(lista.map((j) => j.data))].filter((d) => choques.has(d) && !realizado({ data: d }, hoje));
+    const diasChoque = [...new Set(lista.map((j) => j.data))].filter((d) => choques.has(d) && !realizado({ data: d }, agora));
     const temChoque = verAmbas && diasChoque.some((d) => choques.get(d) === 'choque');
     const ambas = verAmbas && diasChoque.length && !temChoque;
     html += `<section class="semana">
@@ -275,7 +309,7 @@ function renderLista(dados, hoje) {
         <h3 class="semana-titulo">${tituloSemana(segunda, lista)}</h3>
         ${temChoque ? `<span class="semana-alerta">${chipChoque(dados.jogos, diasChoque.filter((d) => choques.get(d) === 'choque'), diaUnico(lista))}</span>` : ambas ? '<span class="semana-alerta">A e B no mesmo dia</span>' : ''}
       </div>
-      <ul class="semana-jogos">${lista.map((j) => linhaJogo(j, dados, hoje, verAmbas ? choques : null)).join('')}</ul>
+      <ul class="semana-jogos">${lista.map((j) => linhaJogo(j, dados, agora, verAmbas ? choques : null)).join('')}</ul>
     </section>`;
   }
   $('#lista').innerHTML = html;
@@ -283,9 +317,9 @@ function renderLista(dados, hoje) {
 
 const dataCompacta = (iso) => { const [a, m, d] = iso.split('-').map(Number); return `${d} ${MESES[m - 1]} ${String(a).slice(2)}`; };
 
-function linhaJogo(j, dados, hoje, choques) {
+function linhaJogo(j, dados, agora, choques) {
   const d = paraData(j.data);
-  const passado = realizado(j, hoje);
+  const passado = realizado(j, agora);
   const r = resultadoAnadia(j);
   const choque = choques && !passado && choques.get(j.data) === 'choque';
   const depois = r
@@ -356,12 +390,12 @@ function renderCabecalho(dados) {
 }
 
 function render() {
-  const hoje = hojeLisboa();
+  const agora = agoraLisboa();
   const dados = estado.dados;
   document.querySelectorAll('[data-equipa]').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.equipa === estado.equipa)));
   document.querySelectorAll('[data-vista]').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.vista === estado.vista)));
-  renderAvisos(dados, hoje);
-  renderLista(dados, hoje);
+  renderAvisos(dados, agora);
+  renderLista(dados, agora);
   renderSubscricoes();
   atualizarNav();
 }
@@ -527,8 +561,20 @@ async function iniciar() {
     return;
   }
   renderCabecalho(estado.dados);
-  renderProximos(estado.dados, hojeLisboa());
+  renderProximos(estado.dados, agoraLisboa());
   render();
+  // Com a página aberta, a ronda pode acabar: A e B passam juntos para o jogo seguinte.
+  let cartoes = idsNosCartoes();
+  const rever = () => {
+    const ids = idsNosCartoes();
+    if (ids === cartoes) return;
+    cartoes = ids;
+    renderProximos(estado.dados, agoraLisboa());
+    render();
+  };
+  setInterval(rever, 60000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) rever(); });
 }
+const idsNosCartoes = () => Object.keys(estado.dados.equipas).map((l) => proximoDe(estado.dados, l, agoraLisboa())?.id).join();
 
 iniciar();
