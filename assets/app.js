@@ -51,20 +51,37 @@ function contagem(iso, hoje) {
 }
 
 // ---------- Estado ----------
-const estado = { equipa: 'todas', vista: 'proximos', tabela: 'A', dados: null, classificacao: null, resultados: null, emblemas: {}, campos: {} };
+const estado = { equipa: 'todas', pagina: 'jogos', tabela: 'A', dados: null, classificacao: null, resultados: null, emblemas: {}, campos: {} };
+
+const PAGINAS = ['jogos', 'resultados', 'classificacao'];
 
 function guardar() {
-  try { localStorage.setItem('afc-sub17', JSON.stringify({ equipa: estado.equipa, vista: estado.vista })); } catch { /* sem armazenamento */ }
+  try { localStorage.setItem('afc-sub17', JSON.stringify({ equipa: estado.equipa })); } catch { /* sem armazenamento */ }
 }
 function restaurar() {
-  const hash = location.hash.replace('#', '').toUpperCase();
   try {
     const s = JSON.parse(localStorage.getItem('afc-sub17') || '{}');
     if (['todas', 'A', 'B'].includes(s.equipa)) estado.equipa = s.equipa;
-    if (['proximos', 'resultados'].includes(s.vista)) estado.vista = s.vista;
   } catch { /* sem armazenamento */ }
-  if (hash === 'A' || hash === 'B') estado.equipa = hash;
   if (estado.equipa !== 'todas') estado.tabela = estado.equipa;
+  lerEndereco();
+}
+// Endereço: #<vista>[-a|-b]. Nos jogos e resultados, a letra é o filtro de equipa; na classificação, o separador.
+// Sem endereço, Jogos com a equipa guardada; "#a" e "#b" (ligações antigas) são os jogos dessa equipa.
+function lerEndereco() {
+  const h = decodeURIComponent(location.hash.slice(1)).toLowerCase();
+  const m = h.match(/^(jogos|resultados|classificacao)?-?([ab])?$/);
+  estado.pagina = m?.[1] || 'jogos';
+  const letra = m?.[2]?.toUpperCase();
+  if (estado.pagina === 'classificacao') estado.tabela = letra || estado.tabela;
+  else if (letra) estado.equipa = estado.tabela = letra;
+  else if (m?.[1]) estado.equipa = 'todas';
+}
+function endereco() {
+  const sufixo = estado.pagina === 'classificacao'
+    ? (estado.tabela === 'B' ? '-b' : '')
+    : (estado.equipa === 'todas' ? '' : '-' + estado.equipa.toLowerCase());
+  return estado.pagina === 'jogos' && !sufixo ? location.pathname + location.search : `#${estado.pagina}${sufixo}`;
 }
 
 // ---------- Lógica dos jogos ----------
@@ -307,7 +324,7 @@ function tituloSemana(segunda, jogos) {
 
 function renderLista(dados, agora) {
   const choques = calcularChoques(dados.jogos);
-  const resultados = estado.vista === 'resultados';
+  const resultados = estado.pagina === 'resultados';
   // Próximos: sem os jogos que já estão nos cartões. Resultados: só os realizados, do mais recente para o mais antigo.
   const nosCartoes = new Set(Object.keys(dados.equipas).map((l) => proximoDe(dados, l, agora)?.id));
   let jogos = dados.jogos.filter((j) =>
@@ -357,7 +374,7 @@ function linhaJogo(j, dados, agora, choques) {
     : j.hora
       ? `<span class="hora">${esc(j.hora)}</span>`
       : passado ? '' : '<span class="hora hora-pc">Hora a definir</span>';
-  const esbater = passado && estado.vista !== 'resultados';
+  const esbater = passado && estado.pagina !== 'resultados';
   // Jogos por realizar abrem no próprio cartão com as ações (como chegar, adicionar, partilhar).
   const abre = !passado;
   const painel = `acoes-${j.id}`;
@@ -457,7 +474,8 @@ function render() {
   const agora = agoraLisboa();
   const dados = estado.dados;
   document.querySelectorAll('[data-equipa]').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.equipa === estado.equipa)));
-  document.querySelectorAll('[data-vista]').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.vista === estado.vista)));
+  document.querySelectorAll('[data-paginas]').forEach((s) => { s.hidden = !s.dataset.paginas.split(' ').includes(estado.pagina); });
+  $('#t-calendario').textContent = estado.pagina === 'resultados' ? 'Resultados' : 'Calendário';
   renderAvisos(dados, agora);
   renderLista(dados, agora);
   renderClassificacao();
@@ -465,47 +483,28 @@ function render() {
   atualizarNav();
 }
 
-// ---------- Barra de navegação (telemóvel) ----------
-// Próximos e Calendário descem até à secção (e repõem a lista nos jogos por realizar);
-// Resultados muda a lista para os resultados e desce até ela; Classificação desce até às tabelas.
-function irPara(alvo) {
-  const vista = alvo === 'resultados' ? 'resultados' : 'proximos';
-  if (estado.dados && alvo !== 'classificacao' && estado.vista !== vista) {
-    estado.vista = vista;
-    guardar();
+// ---------- Navegação entre vistas ----------
+// Separadores (computador) e barra (telemóvel) mudam de vista e voltam ao topo; o "voltar" do browser também funciona.
+function irPara(pagina) {
+  if (pagina !== estado.pagina) {
+    estado.pagina = pagina;
+    history.pushState(null, '', endereco());
     render();
   }
-  const behavior = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
-  // O item tocado fica ativo logo, e não muda a meio do scroll.
-  navFixo = alvo;
-  clearTimeout(tempoNav);
-  tempoNav = setTimeout(() => { navFixo = null; atualizarNav(); }, 1000);
-  atualizarNav();
-  if (alvo === 'proximos') scrollTo({ top: 0, behavior }); // topo da página, com o cabeçalho
-  else $(alvo === 'classificacao' ? '#sec-classificacao' : '#sec-calendario').scrollIntoView({ behavior, block: 'start' });
+  scrollTo({ top: 0, behavior: 'auto' });
 }
-let navFixo = null;
-let tempoNav;
-// Item ativo: o da secção que está no ecrã; no calendário, Resultados quando a lista mostra resultados.
+addEventListener('popstate', () => {
+  lerEndereco();
+  if (estado.dados) render();
+});
 function atualizarNav() {
-  // O fim da página também conta como classificação (a secção pode não chegar ao topo do ecrã).
-  const noFim = scrollY + innerHeight >= document.documentElement.scrollHeight - 4;
-  const acima = (s) => $(s).getBoundingClientRect().top <= innerHeight * 0.4;
-  const ativo = navFixo || (noFim || acima('#sec-classificacao') ? 'classificacao'
-    : acima('#sec-calendario') ? (estado.vista === 'resultados' ? 'resultados' : 'calendario') : 'proximos');
   document.querySelectorAll('[data-nav]').forEach((a) => {
-    if (a.dataset.nav === ativo) a.setAttribute('aria-current', 'true');
+    if (a.dataset.nav === estado.pagina) a.setAttribute('aria-current', 'page');
     else a.removeAttribute('aria-current');
   });
-  // Posição da pílula que desliza por baixo do item ativo (0 a 3).
-  $('.navbar').dataset.ativo = ['proximos', 'calendario', 'resultados', 'classificacao'].indexOf(ativo);
+  // Posição da pílula que desliza por baixo do item ativo (0 a 2).
+  $('.navbar').dataset.ativo = PAGINAS.indexOf(estado.pagina);
 }
-let navPendente = false;
-addEventListener('scroll', () => {
-  if (navPendente) return;
-  navPendente = true;
-  requestAnimationFrame(() => { navPendente = false; atualizarNav(); });
-}, { passive: true });
 
 // ---------- Ações ----------
 let tempoToast;
@@ -572,7 +571,7 @@ document.addEventListener('click', (e) => {
   if (!$('#painel-links').hidden && (!e.target.closest('#painel-links') || e.target.closest('a'))) painelLinks(false);
   const nav = e.target.closest('[data-nav]');
   if (nav) {
-    e.preventDefault(); // sem mudar o endereço: o # do endereço guarda a equipa escolhida
+    e.preventDefault(); // o endereço é escrito por irPara (com a equipa escolhida)
     irPara(nav.dataset.nav);
     return;
   }
@@ -586,15 +585,12 @@ document.addEventListener('click', (e) => {
   if (b.dataset.abrir !== undefined) alternar(b.closest('.jogo'));
   else if (b.dataset.tabela) {
     estado.tabela = b.dataset.tabela;
+    history.replaceState(null, '', endereco());
     renderClassificacao();
   } else if (b.dataset.equipa) {
     estado.equipa = b.dataset.equipa;
     if (estado.equipa !== 'todas') estado.tabela = estado.equipa; // a classificação acompanha a equipa escolhida
-    history.replaceState(null, '', estado.equipa === 'todas' ? location.pathname + location.search : '#' + estado.equipa.toLowerCase());
-    guardar();
-    render();
-  } else if (b.dataset.vista) {
-    estado.vista = b.dataset.vista;
+    history.replaceState(null, '', endereco());
     guardar();
     render();
   } else if (b.dataset.adicionar) adicionar(b.dataset.adicionar);
@@ -637,6 +633,7 @@ async function iniciar() {
   renderCabecalho(estado.dados);
   renderProximos(estado.dados, agoraLisboa());
   render();
+  history.replaceState(null, '', endereco()); // ligações antigas (#a, #b) passam ao formato novo
   // Com a página aberta, a ronda pode acabar: A e B passam juntos para o jogo seguinte.
   let cartoes = idsNosCartoes();
   const rever = () => {

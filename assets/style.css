@@ -174,6 +174,31 @@ h1 {
   text-transform: uppercase;
 }
 
+/* ---------- Separadores das vistas (computador) ---------- */
+/* Jogos | Resultados | Classificação: o mesmo desenho do controlo segmentado, em ligações. */
+.separadores {
+  display: flex;
+  width: fit-content;
+  margin: 20px 0 0;
+  background: var(--superficie-2);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-controlo);
+  padding: 3px;
+}
+.separadores a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--alvo);
+  padding: 7px 16px;
+  border-radius: var(--raio-interior);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--texto-2);
+  text-decoration: none;
+}
+.separadores a:hover { color: var(--texto); }
+.separadores a[aria-current="page"] { background: var(--superficie); color: var(--texto); box-shadow: var(--sombra-selecionado); }
+
 /* ---------- Estrutura ---------- */
 .conteudo {
   max-width: 820px;
@@ -575,7 +600,6 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
 
 /* ---------- Barra de navegação (tipo app, só em ecrãs estreitos) ---------- */
 .navbar { display: none; }
-#sec-proximos, #sec-calendario, #sec-classificacao { scroll-margin-top: 8px; }
 @media (max-width: 768px) {
   /* Barra flutuante em pílula: 16px de margem a toda a volta (acima da zona de gestos do iPhone),
      fundo translúcido com desfoque do conteúdo por trás. */
@@ -586,7 +610,7 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
     bottom: max(16px, env(safe-area-inset-bottom, 0px)); /* no iPhone, logo acima da linha de gestos (a zona segura já inclui folga) */
     z-index: 10;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 4px;
     padding: 4px; /* o item ativo fica a 4px da borda da barra */
     border: 1px solid var(--nav-borda); /* contorno suave no claro; um pouco mais claro no escuro */
@@ -595,20 +619,19 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
     -webkit-backdrop-filter: blur(16px) saturate(1.4);
     backdrop-filter: blur(16px) saturate(1.4);
   }
-  /* Pílula do item ativo: uma só, que desliza entre itens (um quarto da largura, menos o espaço entre itens). */
+  /* Pílula do item ativo: uma só, que desliza entre itens (um terço da largura, menos o espaço entre itens). */
   .nav-ind {
     position: absolute;
     top: 4px;
     bottom: 4px;
     left: 4px;
-    width: calc((100% - 20px) / 4);
+    width: calc((100% - 16px) / 3);
     border-radius: 999px;
     background: color-mix(in oklab, var(--nav-ativo-bg) var(--nav-ativo-op), transparent);
     transition: transform .3s cubic-bezier(.3, .7, .3, 1);
   }
   .navbar[data-ativo="1"] .nav-ind { transform: translateX(calc(100% + 4px)); }
   .navbar[data-ativo="2"] .nav-ind { transform: translateX(calc(200% + 8px)); }
-  .navbar[data-ativo="3"] .nav-ind { transform: translateX(calc(300% + 12px)); }
   .navbar a {
     position: relative; /* por cima da pílula */
     transition: color .25s;
@@ -627,14 +650,14 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
   }
   .navbar a svg { width: 25px; height: 25px; }
   /* Ativo: a cor do texto da contagem ("Daqui a 5 dias"); o fundo é a pílula que desliza (.nav-ind). */
-  .navbar a[aria-current="true"] { color: var(--nav-ativo); }
+  .navbar a[aria-current="page"] { color: var(--nav-ativo); }
   .navbar .forma { fill: transparent; transition: fill .25s; }
   .navbar .detalhe { transition: stroke .25s; }
   /* Ícone ativo em estilo cheio: a forma exterior é preenchida e os traços de dentro ficam recortados na cor da pílula. */
-  .navbar a[aria-current="true"] .forma { fill: currentColor; }
-  .navbar a[aria-current="true"] .detalhe { stroke: color-mix(in oklab, var(--nav-ativo-bg) var(--nav-ativo-op), var(--superficie)); } /* recortes no tom aparente da pílula */
-  /* A barra substitui o seletor Próximos | Resultados da lista. */
-  .seg-vista { display: none; }
+  .navbar a[aria-current="page"] .forma { fill: currentColor; }
+  .navbar a[aria-current="page"] .detalhe { stroke: color-mix(in oklab, var(--nav-ativo-bg) var(--nav-ativo-op), var(--superficie)); } /* recortes no tom aparente da pílula */
+  /* A barra substitui os separadores das vistas. */
+  .separadores { display: none; }
   /* Classificação: uma tabela de cada vez, escolhida nos separadores. */
   .seg-tabela { display: inline-flex; }
   .tabelas { grid-template-columns: 1fr; }
