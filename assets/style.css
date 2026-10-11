@@ -660,6 +660,7 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
   .separadores { display: none; }
   /* Classificação: uma tabela de cada vez, escolhida nos separadores. */
   .seg-tabela { display: inline-flex; }
+  .seg-tabela button { min-width: 76px; } /* só dois separadores: mais área de toque */
   .tabelas { grid-template-columns: 1fr; }
   .tabelas[data-ativa="A"] .tabela-B, .tabelas[data-ativa="B"] .tabela-A { display: none; }
   /* Espaço para a barra não tapar o fim da página nem os avisos. */
