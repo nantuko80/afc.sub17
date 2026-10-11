@@ -15,7 +15,7 @@ Os diretores não são técnicos: esta atualização é sempre feita aqui, a ped
    ```
    node scripts/juntar-fpf.mjs plano
    ```
-   Por defeito: só jogos já realizados sem resultado (inclui adiados). Se o utilizador pedir para verificar também alterações de data/hora, usar `plano --com-proximos` (próximas 8 semanas).
+   Por defeito: só jogos já realizados sem resultado (inclui adiados e os de hoje que começaram há mais de 6h; antes disso a AF Aveiro ainda não publicou). Se o utilizador pedir para verificar também alterações de data/hora, usar `plano --com-proximos` (próximas 8 semanas).
    Se todas as listas `jornadas` vierem vazias, **não ir à FPF**: dizer que não há nada para atualizar.
 
 2. **Abrir a FPF** no browser integrado: `navigate` para `https://resultados.fpf.pt/Competition/GetCompetitionsByAssociation?associationId=217&seasonId=<seasonId>`. Confirmar com `get_page_text` que não é a página "Um momento…"/verificação; se for, pedir ao utilizador para a passar e esperar.

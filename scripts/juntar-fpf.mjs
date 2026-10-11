@@ -13,11 +13,28 @@ import { fileURLToPath } from 'node:url';
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
 const FICHEIRO = join(RAIZ, 'data/jogos.json');
 const DIAS_A_FRENTE = 56; // alterações de data/hora costumam surgir nas semanas seguintes
+const ESPERA_RESULTADO_MIN = 360; // a AF Aveiro não publica resultados antes de ~6h depois do início do jogo
 const MAX_JORNADAS = 22; // a FPF aceita ~30 pedidos seguidos; deixa margem para as páginas das competições
 
 const dados = JSON.parse(readFileSync(FICHEIRO, 'utf8'));
-const hoje = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Lisbon' }).format(new Date());
+// "AAAA-MM-DDTHH:MM" na hora de Lisboa: compara-se como texto.
+const agora = (() => {
+  const p = Object.fromEntries(new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Europe/Lisbon', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
+  }).formatToParts(new Date()).map((x) => [x.type, x.value]));
+  return `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}`;
+})();
+const hoje = agora.slice(0, 10);
 const somarDias = (iso, n) => { const d = new Date(`${iso}T12:00:00Z`); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+// Já deve haver resultado: jogos de dias anteriores, ou de hoje que começaram há mais de 6h.
+function podeTerResultado(j) {
+  if (!j.data || j.data > hoje) return false;
+  if (j.data < hoje) return true;
+  if (!j.hora) return false;
+  const [h, m] = j.hora.split(':').map(Number);
+  const t = h * 60 + m + ESPERA_RESULTADO_MIN;
+  return t < 1440 && agora >= `${hoje}T${String(Math.floor(t / 60)).padStart(2, '0')}:${String(t % 60).padStart(2, '0')}`;
+}
 const chave = (s) => (s || '').normalize('NFKD').replace(/[^\w]/g, '').toLowerCase();
 
 function plano(comProximos) {
@@ -27,9 +44,9 @@ function plano(comProximos) {
   for (const [letra, eq] of Object.entries(dados.equipas)) {
     const url = new URL(eq.url);
     const jogos = dados.jogos.filter((j) => j.equipa === letra);
-    // Jogos já realizados sem resultado (inclui jogos adiados, que assim ficam com a data nova);
+    // Jogos já realizados sem resultado, incluindo os de hoje com mais de 6h (e os adiados, que assim ficam com a data nova);
     // opcionalmente, os próximos, para apanhar mudanças de data ou hora.
-    const semResultado = jogos.filter((j) => j.data && j.data < hoje && !j.resultado).map((j) => j.jornada);
+    const semResultado = jogos.filter((j) => podeTerResultado(j) && !j.resultado).map((j) => j.jornada);
     const proximos = comProximos ? jogos.filter((j) => j.data && j.data >= hoje && j.data <= limite).map((j) => j.jornada) : [];
     equipas[letra] = {
       competitionId: Number(url.searchParams.get('competitionId')),
@@ -47,7 +64,7 @@ function plano(comProximos) {
   const seasonId = Number(new URL(Object.values(dados.equipas)[0].url).searchParams.get('seasonId'));
   const anoInicio = Number(dados.epoca.slice(0, 4));
   console.log(JSON.stringify({ seasonId, anoInicio, equipas }));
-  console.error(`Hoje: ${hoje}. Jornadas a ler: ${total}.`, JSON.stringify(motivos));
+  console.error(`Agora: ${agora.replace('T', ' ')}. Jornadas a ler: ${total}.`, JSON.stringify(motivos));
 }
 
 function juntar(caminho) {
