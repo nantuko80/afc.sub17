@@ -51,7 +51,7 @@ function contagem(iso, hoje) {
 }
 
 // ---------- Estado ----------
-const estado = { equipa: 'todas', vista: 'proximos', tabela: 'A', dados: null, classificacao: null, emblemas: {}, campos: {} };
+const estado = { equipa: 'todas', vista: 'proximos', tabela: 'A', dados: null, classificacao: null, resultados: null, emblemas: {}, campos: {} };
 
 function guardar() {
   try { localStorage.setItem('afc-sub17', JSON.stringify({ equipa: estado.equipa, vista: estado.vista })); } catch { /* sem armazenamento */ }
@@ -187,12 +187,33 @@ function local(j, semLigacao) {
 // Linha de um clube na classificação da equipa (A ou B); só depois de ter jogado.
 const chaveNome = (s) => (s || '').normalize('NFKD').replace(/[^\w]/g, '').toLowerCase();
 const linhaClass = (letra, n) => estado.classificacao?.equipas?.[letra]?.linhas.find((l) => l.j > 0 && chaveNome(l.equipa) === chaveNome(n));
+// Forma recente: os últimos 5 resultados do clube na série (data/resultados.json), do mais antigo para o mais recente.
+const NOMES_RES = { v: 'vitória', e: 'empate', d: 'derrota' };
+function ultimos(letra, n) {
+  const k = chaveNome(n);
+  return Object.values(estado.resultados?.equipas?.[letra]?.jornadas || {}).flat()
+    .filter((g) => g.resultado && (chaveNome(g.casa) === k || chaveNome(g.fora) === k))
+    .sort((a, b) => (a.data || '').localeCompare(b.data || ''))
+    .slice(-5)
+    .map((g) => {
+      const [c, f] = g.resultado.split('-').map(Number);
+      const [nos, eles] = chaveNome(g.casa) === k ? [c, f] : [f, c];
+      return nos > eles ? 'v' : nos < eles ? 'd' : 'e';
+    });
+}
+function ultimosHtml(letra, n) {
+  const r = ultimos(letra, n);
+  if (!r.length) return '';
+  return `<span class="ultimos" role="img" title="Últimos jogos (o mais recente à direita)" aria-label="Últimos jogos: ${r.map((x) => NOMES_RES[x]).join(', ')}">${
+    r.map((x) => `<span class="u u-${x}" aria-hidden="true">${x.toUpperCase()}</span>`).join('')}</span>`;
+}
 // meio: o que fica entre os clubes (nos cartões, a data e a hora); o " x " continua lá para leitores de ecrã.
-// comPosicao: nos cartões, a posição e os pontos de cada clube por baixo do nome.
+// comPosicao: nos cartões, a posição, os pontos e a forma recente de cada clube por baixo do nome.
 function equipasHtml(j, meio = '', comPosicao = false) {
   const pos = (n) => {
-    const l = comPosicao && linhaClass(j.equipa, n);
-    return l ? `<span class="clube-pos">${l.pos}.º · ${l.pts} ${l.pts === 1 ? 'pt' : 'pts'}</span>` : '';
+    if (!comPosicao) return '';
+    const l = linhaClass(j.equipa, n);
+    return (l ? `<span class="clube-pos">${l.pos}.º · ${l.pts} ${l.pts === 1 ? 'pt' : 'pts'}</span>` : '') + ultimosHtml(j.equipa, n);
   };
   const nome = (n) => `<span class="clube">${emblema(n)}${/Anadia/i.test(n) ? `<b>${esc(n)}</b>` : esc(n)}${pos(n)}</span>`;
   const x = '<span class="sr-only"> x </span>';
@@ -594,17 +615,19 @@ document.querySelectorAll('.segmentos').forEach((g) => g.addEventListener('keydo
 async function iniciar() {
   restaurar();
   try {
-    const [r, e, c, cl] = await Promise.all([
+    const [r, e, c, cl, rs] = await Promise.all([
       fetch('data/jogos.json', { cache: 'no-cache' }),
       fetch('data/emblemas.json').catch(() => null),
       fetch('data/campos.json').catch(() => null),
       fetch('data/classificacao.json', { cache: 'no-cache' }).catch(() => null),
+      fetch('data/resultados.json', { cache: 'no-cache' }).catch(() => null),
     ]);
     if (!r.ok) throw new Error(r.status);
     estado.dados = await r.json();
     if (e?.ok) estado.emblemas = await e.json().catch(() => ({}));
     if (c?.ok) estado.campos = await c.json().catch(() => ({}));
     if (cl?.ok) estado.classificacao = await cl.json().catch(() => null);
+    if (rs?.ok) estado.resultados = await rs.json().catch(() => null);
   } catch {
     $('#proximos').removeAttribute('aria-busy');
     $('#proximos').innerHTML = `<div class="vazio erro"><p>Não foi possível carregar os jogos. Verifique a ligação à internet.</p>

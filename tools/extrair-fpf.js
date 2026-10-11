@@ -1,6 +1,7 @@
 /*
  * Lê jornadas do Centro de Resultados da FPF (resultados.fpf.pt), a partir do próprio browser.
- * A página de cada jornada traz também a classificação depois dessa jornada: fica a da jornada mais recente lida.
+ * A página de cada jornada traz também a classificação depois dessa jornada (fica a da jornada mais recente lida)
+ * e os jogos de todas as equipas da série (para a forma recente dos adversários).
  *
  * O site da FPF bloqueia pedidos de servidores (Cloudflare) e limita pedidos seguidos (~30),
  * por isso isto corre numa página de resultados.fpf.pt já aberta, só lê as jornadas pedidas
@@ -45,7 +46,7 @@ window.extrairFPF = async function extrairFPF({ seasonId, anoInicio, equipas, cl
     return { data: `${ano}-${pad(mes)}-${pad(m[1])}`, hora: m[3] ? m[3].padStart(5, '0') : null };
   }
 
-  const saida = { lidoEm: new Date().toISOString(), equipas: {}, jogos: [], jornadasLidas: {}, classificacao: {} };
+  const saida = { lidoEm: new Date().toISOString(), equipas: {}, jogos: [], jornadasLidas: {}, classificacao: {}, serie: {} };
   try {
     for (const [letra, cfg] of Object.entries(equipas)) {
       if (!cfg.jornadas?.length) continue; // nada a ler: nenhum pedido
@@ -63,6 +64,7 @@ window.extrairFPF = async function extrairFPF({ seasonId, anoInicio, equipas, cl
         jornadas: links.size,
       };
       saida.jornadasLidas[letra] = [];
+      saida.serie[letra] = {};
       for (const n of cfg.jornadas) {
         if (!links.has(n)) continue;
         const d = await html(links.get(n));
@@ -76,6 +78,15 @@ window.extrairFPF = async function extrairFPF({ seasonId, anoInicio, equipas, cl
         const completa = [...d.querySelectorAll('#matches .game')]
           .every((g) => /^\d+\s*-\s*\d+$/.test(limpar(g.querySelector('.score > span:not(.game-schedule)')?.textContent)));
         if (linhas.length && !(saida.classificacao[letra]?.jornada > n)) saida.classificacao[letra] = { jornada: n, completa, linhas };
+        saida.serie[letra][n] = [...d.querySelectorAll('#matches .game')].map((g) => {
+          const res = limpar(g.querySelector('.score > span:not(.game-schedule)')?.textContent);
+          return {
+            data: lerData(limpar(g.querySelector('.game-schedule')?.textContent)).data,
+            casa: bonito(g.querySelector('.home-team')?.textContent),
+            fora: bonito(g.querySelector('.away-team')?.textContent),
+            resultado: /^\d+\s*-\s*\d+$/.test(res) ? res.replace(/\s+/g, '') : null,
+          };
+        });
         for (const g of d.querySelectorAll('#matches .game')) {
           if (!CLUBE.test(g.textContent)) continue; // jornada de folga: não há jogo do clube
           const casa = bonito(g.querySelector('.home-team')?.textContent);

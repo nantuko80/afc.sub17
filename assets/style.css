@@ -522,6 +522,12 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
 .tabela-nota { font-size: 13px; padding: 0 4px; }
 /* Posição e pontos por baixo do nome, nos cartões dos próximos jogos. */
 .clube-pos { font-size: 13px; color: var(--texto-2); margin-top: -5px; }
+/* Forma recente: um quadrado por jogo, na cor do resultado, com a letra no tom do fundo. */
+.ultimos { display: flex; justify-content: center; gap: 3px; margin-top: -3px; }
+.u { width: 16px; height: 16px; border-radius: 4px; font: 600 10px/16px var(--fonte); text-align: center; color: var(--bg); }
+.u-v { background: var(--vitoria); }
+.u-e { background: var(--empate); }
+.u-d { background: var(--derrota); }
 
 /* ---------- Subscrição ---------- */
 .painel-subscricao { gap: 14px; }
