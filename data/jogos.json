@@ -1,6 +1,6 @@
 {
   "epoca": "2026/27",
-  "atualizado": "2026-10-11T16:49:54.250Z",
+  "atualizado": "2026-10-11T20:36:04.903Z",
   "fonte": "https://resultados.fpf.pt",
   "equipas": {
     "A": {
@@ -74,7 +74,7 @@
       "fora": "Anadia FC \"B\"",
       "emCasa": false,
       "adversario": "GD Eixense",
-      "resultado": null,
+      "resultado": "1-4",
       "local": "Campo Monte",
       "origem": "fpf",
       "localidade": "Eixo - Aveiro"
