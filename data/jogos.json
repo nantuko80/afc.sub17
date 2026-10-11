@@ -1,6 +1,6 @@
 {
   "epoca": "2026/27",
-  "atualizado": "2026-10-08T20:14:16.812Z",
+  "atualizado": "2026-10-11T13:19:06.582Z",
   "fonte": "https://resultados.fpf.pt",
   "equipas": {
     "A": {
@@ -59,7 +59,7 @@
       "fora": "Anadia FC",
       "emCasa": false,
       "adversario": "AD Taboeira \"B\"",
-      "resultado": null,
+      "resultado": "1-2",
       "local": "Complexo Desportivo da Taboeira",
       "origem": "fpf",
       "localidade": "Taboeira - Aveiro"
