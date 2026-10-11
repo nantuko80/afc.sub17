@@ -15,7 +15,7 @@ Os diretores não são técnicos: esta atualização é sempre feita aqui, a ped
    ```
    node scripts/juntar-fpf.mjs plano
    ```
-   Por defeito: só jogos já realizados sem resultado (inclui adiados e os de hoje que começaram há mais de 6h; antes disso a AF Aveiro ainda não publicou). Se o utilizador pedir para verificar também alterações de data/hora, usar `plano --com-proximos` (próximas 8 semanas).
+   Por defeito: só jogos já realizados sem resultado (inclui adiados e os de hoje que começaram há mais de 6h; antes disso a AF Aveiro ainda não publicou), mais a última jornada jogada de cada equipa enquanto a classificação dessa jornada não estiver guardada e completa. Se o utilizador pedir para verificar também alterações de data/hora, usar `plano --com-proximos` (próximas 8 semanas).
    Se todas as listas `jornadas` vierem vazias, **não ir à FPF**: dizer que não há nada para atualizar.
 
 2. **Abrir a FPF** no browser integrado: `navigate` para `https://resultados.fpf.pt/Competition/GetCompetitionsByAssociation?associationId=217&seasonId=<seasonId>`. Confirmar com `get_page_text` que não é a página "Um momento…"/verificação; se for, pedir ao utilizador para a passar e esperar.
@@ -32,11 +32,11 @@ Os diretores não são técnicos: esta atualização é sempre feita aqui, a ped
    ```
    node scripts/juntar-fpf.mjs juntar <scratchpad>/fpf.json
    ```
-   Mostra as alterações (resultados novos, adiamentos, horas). Confirmar que fazem sentido.
+   Escreve `data/jogos.json` e `data/classificacao.json` e mostra as alterações (resultados novos, adiamentos, horas, classificação). Confirmar que fazem sentido.
 
 6. **Verificar** no site local (servidor `python3 -m http.server 8417` na raiz do projeto, browser integrado em http://127.0.0.1:8417): sem erros na consola, jogos alterados certos.
 
-7. **Publicar**: `git add data/jogos.json`, commit ("Atualiza jogos (FPF, AAAA-MM-DD)") e push para `main`, se o repositório já estiver ligado ao GitHub (o GitHub Actions publica o site e regenera os .ics). Se ainda não houver remoto, dizer ao utilizador.
+7. **Publicar**: `git add data/jogos.json data/classificacao.json`, commit ("Atualiza jogos (FPF, AAAA-MM-DD)") e push para `main`, se o repositório já estiver ligado ao GitHub (o GitHub Actions publica o site e regenera os .ics). Se ainda não houver remoto, dizer ao utilizador.
 
 8. **Resumo ao utilizador**: o que mudou (resultados, adiamentos), nº de pedidos à FPF, e se ficou publicado.
 

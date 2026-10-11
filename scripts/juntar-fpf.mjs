@@ -2,7 +2,10 @@
 //
 //   node scripts/juntar-fpf.mjs plano            -> configuração para extrairFPF(): jogos já realizados sem resultado
 //   node scripts/juntar-fpf.mjs plano --com-proximos  -> idem, mais as próximas 8 semanas (adiamentos, horas)
-//   node scripts/juntar-fpf.mjs juntar fpf.json  -> junta o que veio da FPF em data/jogos.json
+//   node scripts/juntar-fpf.mjs juntar fpf.json  -> junta o que veio da FPF em data/jogos.json e data/classificacao.json
+//
+// O plano inclui sempre a última jornada jogada de cada equipa enquanto a classificação dessa jornada
+// não estiver guardada e completa (os outros jogos da jornada às vezes saem mais tarde).
 //
 // A FPF tem prioridade (adiamentos, horas, resultados). Do que já temos mantém-se a localidade,
 // a grafia dos nomes e a hora de jogos já realizados (a FPF deixa de a mostrar).
@@ -12,11 +15,14 @@ import { fileURLToPath } from 'node:url';
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
 const FICHEIRO = join(RAIZ, 'data/jogos.json');
+const FICHEIRO_CLASS = join(RAIZ, 'data/classificacao.json');
+const DIAS_CLASS = 7; // classificação incompleta (jogo adiado na jornada): deixar de insistir ao fim de uma semana
 const DIAS_A_FRENTE = 56; // alterações de data/hora costumam surgir nas semanas seguintes
 const ESPERA_RESULTADO_MIN = 360; // a AF Aveiro não publica resultados antes de ~6h depois do início do jogo
 const MAX_JORNADAS = 22; // a FPF aceita ~30 pedidos seguidos; deixa margem para as páginas das competições
 
 const dados = JSON.parse(readFileSync(FICHEIRO, 'utf8'));
+const lerClass = () => { try { return JSON.parse(readFileSync(FICHEIRO_CLASS, 'utf8')); } catch { return { equipas: {} }; } };
 // "AAAA-MM-DDTHH:MM" na hora de Lisboa: compara-se como texto.
 const agora = (() => {
   const p = Object.fromEntries(new Intl.DateTimeFormat('en-CA', {
@@ -48,11 +54,17 @@ function plano(comProximos) {
     // opcionalmente, os próximos, para apanhar mudanças de data ou hora.
     const semResultado = jogos.filter((j) => podeTerResultado(j) && !j.resultado).map((j) => j.jornada);
     const proximos = comProximos ? jogos.filter((j) => j.data && j.data >= hoje && j.data <= limite).map((j) => j.jornada) : [];
+    // Classificação: a última jornada jogada, se ainda não a temos ou se faltavam resultados de outros jogos.
+    const ultima = jogos.filter(podeTerResultado).at(-1);
+    const guardada = lerClass().equipas[letra];
+    const classificacao = ultima && (!guardada || guardada.jornada < ultima.jornada ||
+      (guardada.jornada === ultima.jornada && !guardada.completa && ultima.data >= somarDias(hoje, -DIAS_CLASS)))
+      ? [ultima.jornada] : [];
     equipas[letra] = {
       competitionId: Number(url.searchParams.get('competitionId')),
-      jornadas: [...new Set([...semResultado, ...proximos])].sort((a, b) => a - b),
+      jornadas: [...new Set([...semResultado, ...proximos, ...classificacao])].sort((a, b) => a - b),
     };
-    motivos[letra] = { semResultado, proximos };
+    motivos[letra] = { semResultado, proximos, classificacao };
   }
   // Respeitar o limite de pedidos: cortar primeiro as jornadas mais distantes.
   let total = Object.values(equipas).reduce((n, e) => n + e.jornadas.length, 0);
@@ -94,6 +106,24 @@ function juntar(caminho) {
   dados.atualizado = fpf.lidoEm || new Date().toISOString();
   dados.jogos = [...porId.values()].sort((a, b) => (a.data || '9').localeCompare(b.data || '9') || (a.hora || '').localeCompare(b.hora || ''));
   writeFileSync(FICHEIRO, JSON.stringify(dados, null, 2) + '\n');
+
+  // Classificação: fica a da jornada mais recente, com os nomes escritos como em data/jogos.json.
+  const nomes = new Map(dados.jogos.flatMap((j) => [j.casa, j.fora]).map((n) => [chave(n), n]));
+  const cls = lerClass();
+  for (const [letra, nova] of Object.entries(fpf.classificacao || {})) {
+    const antiga = cls.equipas[letra];
+    if (antiga && antiga.jornada > nova.jornada) continue;
+    nova.linhas = nova.linhas.map((l) => ({ ...l, equipa: nomes.get(chave(l.equipa)) || l.equipa }));
+    if (JSON.stringify(antiga) === JSON.stringify(nova)) continue;
+    cls.equipas[letra] = nova;
+    const nos = nova.linhas.find((l) => /anadia/i.test(l.equipa));
+    alteracoes.push(`classificação ${letra}: jornada ${nova.jornada}${nova.completa ? '' : ' (faltam resultados)'}` +
+      (nos ? `, Anadia ${nos.pos}.º com ${nos.pts} pts` : ''));
+  }
+  if (Object.keys(fpf.classificacao || {}).length) {
+    cls.atualizado = dados.atualizado;
+    writeFileSync(FICHEIRO_CLASS, JSON.stringify({ atualizado: cls.atualizado, equipas: cls.equipas }, null, 2) + '\n');
+  }
   console.log(`Jornadas lidas: ${JSON.stringify(fpf.jornadasLidas)}`);
   console.log(alteracoes.length ? `Alterações (${alteracoes.length}):\n- ${alteracoes.join('\n- ')}` : 'Sem alterações.');
 }

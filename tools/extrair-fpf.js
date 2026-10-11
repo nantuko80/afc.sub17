@@ -1,5 +1,6 @@
 /*
  * Lê jornadas do Centro de Resultados da FPF (resultados.fpf.pt), a partir do próprio browser.
+ * A página de cada jornada traz também a classificação depois dessa jornada: fica a da jornada mais recente lida.
  *
  * O site da FPF bloqueia pedidos de servidores (Cloudflare) e limita pedidos seguidos (~30),
  * por isso isto corre numa página de resultados.fpf.pt já aberta, só lê as jornadas pedidas
@@ -44,7 +45,7 @@ window.extrairFPF = async function extrairFPF({ seasonId, anoInicio, equipas, cl
     return { data: `${ano}-${pad(mes)}-${pad(m[1])}`, hora: m[3] ? m[3].padStart(5, '0') : null };
   }
 
-  const saida = { lidoEm: new Date().toISOString(), equipas: {}, jogos: [], jornadasLidas: {} };
+  const saida = { lidoEm: new Date().toISOString(), equipas: {}, jogos: [], jornadasLidas: {}, classificacao: {} };
   try {
     for (const [letra, cfg] of Object.entries(equipas)) {
       if (!cfg.jornadas?.length) continue; // nada a ler: nenhum pedido
@@ -66,6 +67,15 @@ window.extrairFPF = async function extrairFPF({ seasonId, anoInicio, equipas, cl
         if (!links.has(n)) continue;
         const d = await html(links.get(n));
         saida.jornadasLidas[letra].push(n);
+        // Classificação: POS, nome, JGS, V, E, D, GM, GS, PTS. "completa" se todos os jogos da jornada já têm resultado.
+        const linhas = [...d.querySelectorAll('#classification .game.classification')].map((r) => {
+          const c = [...r.children].map((x) => limpar(x.textContent));
+          const [pos, j, v, e, der, gm, gs, pts] = [c[0], ...c.slice(2, 9)].map(Number);
+          return { pos, equipa: bonito(c[1]), j, v, e, d: der, gm, gs, pts };
+        });
+        const completa = [...d.querySelectorAll('#matches .game')]
+          .every((g) => /^\d+\s*-\s*\d+$/.test(limpar(g.querySelector('.score > span:not(.game-schedule)')?.textContent)));
+        if (linhas.length && !(saida.classificacao[letra]?.jornada > n)) saida.classificacao[letra] = { jornada: n, completa, linhas };
         for (const g of d.querySelectorAll('#matches .game')) {
           if (!CLUBE.test(g.textContent)) continue; // jornada de folga: não há jogo do clube
           const casa = bonito(g.querySelector('.home-team')?.textContent);

@@ -51,7 +51,7 @@ function contagem(iso, hoje) {
 }
 
 // ---------- Estado ----------
-const estado = { equipa: 'todas', vista: 'proximos', dados: null, emblemas: {}, campos: {} };
+const estado = { equipa: 'todas', vista: 'proximos', tabela: 'A', dados: null, classificacao: null, emblemas: {}, campos: {} };
 
 function guardar() {
   try { localStorage.setItem('afc-sub17', JSON.stringify({ equipa: estado.equipa, vista: estado.vista })); } catch { /* sem armazenamento */ }
@@ -64,6 +64,7 @@ function restaurar() {
     if (['proximos', 'resultados'].includes(s.vista)) estado.vista = s.vista;
   } catch { /* sem armazenamento */ }
   if (hash === 'A' || hash === 'B') estado.equipa = hash;
+  if (estado.equipa !== 'todas') estado.tabela = estado.equipa;
 }
 
 // ---------- Lógica dos jogos ----------
@@ -183,9 +184,17 @@ function local(j, semLigacao) {
     ? `<span class="jogo-local">${texto}</span>`
     : `<a class="jogo-local" href="${comoChegar(j)}"${abrirMapa} aria-label="Como chegar a ${esc(localCompleto(j))}">${texto}</a>`;
 }
+// Linha de um clube na classificação da equipa (A ou B); só depois de ter jogado.
+const chaveNome = (s) => (s || '').normalize('NFKD').replace(/[^\w]/g, '').toLowerCase();
+const linhaClass = (letra, n) => estado.classificacao?.equipas?.[letra]?.linhas.find((l) => l.j > 0 && chaveNome(l.equipa) === chaveNome(n));
 // meio: o que fica entre os clubes (nos cartões, a data e a hora); o " x " continua lá para leitores de ecrã.
-function equipasHtml(j, meio = '') {
-  const nome = (n) => `<span class="clube">${emblema(n)}${/Anadia/i.test(n) ? `<b>${esc(n)}</b>` : esc(n)}</span>`;
+// comPosicao: nos cartões, a posição e os pontos de cada clube por baixo do nome.
+function equipasHtml(j, meio = '', comPosicao = false) {
+  const pos = (n) => {
+    const l = comPosicao && linhaClass(j.equipa, n);
+    return l ? `<span class="clube-pos">${l.pos}.º · ${l.pts} ${l.pts === 1 ? 'pt' : 'pts'}</span>` : '';
+  };
+  const nome = (n) => `<span class="clube">${emblema(n)}${/Anadia/i.test(n) ? `<b>${esc(n)}</b>` : esc(n)}${pos(n)}</span>`;
   const x = '<span class="sr-only"> x </span>';
   return `${nome(j.casa)}${meio ? `<span class="cartao-meio">${x}${meio}</span>` : x}${nome(j.fora)}`;
 }
@@ -224,7 +233,7 @@ function renderProximos(dados, agora) {
         <span class="contagem">${contagem(j.data, hoje)}</span>
       </div>
       <div>
-        <div class="cartao-jogo">${equipasHtml(j, `<span class="cartao-dia">${DIAS[d.getDay()]}, ${dataCurta(j.data)}</span>${j.hora ? `<span class="cartao-hora">${esc(j.hora)}</span>` : '<span class="cartao-hora-pc">Hora a definir</span>'}`)}</div>
+        <div class="cartao-jogo">${equipasHtml(j, `<span class="cartao-dia">${DIAS[d.getDay()]}, ${dataCurta(j.data)}</span>${j.hora ? `<span class="cartao-hora">${esc(j.hora)}</span>` : '<span class="cartao-hora-pc">Hora a definir</span>'}`, true)}</div>
         ${local(j, !j.emCasa)}
         ${choques.get(j.data) === 'choque' ? `<div class="jogo-aviso">${ICONES.alerta}<span>${esc(textoChoque(dados.jogos, j.data))}</span></div>` : ''}
       </div>
@@ -365,6 +374,40 @@ function fechar(li) {
   li.querySelector('.jogo-acoes').hidden = true;
 }
 
+// ---------- Classificação ----------
+function tabelaHtml(letra) {
+  const eq = estado.dados.equipas[letra];
+  const c = estado.classificacao?.equipas?.[letra];
+  const cab = `<div class="tabela-cab"><span class="equipa equipa-${letra}">${esc(eq.nome)}</span>${c ? `<span class="jornada">Após a jornada ${c.jornada}</span>` : ''}</div>`;
+  if (!c?.linhas.length) return `<article class="cartao tabela tabela-${letra}">${cab}<p class="aviso">Ainda sem classificação.</p></article>`;
+  const linhas = c.linhas.map((l) => {
+    const dg = l.gm - l.gs;
+    return `<tr${/Anadia/i.test(l.equipa) ? ' class="nos"' : ''}>
+      <td class="c-pos">${l.pos}</td>
+      <td class="c-eq"><span class="clube">${emblema(l.equipa)}<span class="c-nome" title="${esc(l.equipa)}">${esc(l.equipa)}</span></span></td>
+      <td>${l.j}</td><td>${l.v}</td><td>${l.e}</td><td>${l.d}</td>
+      <td>${dg > 0 ? '+' + dg : dg}</td><td class="c-pts">${l.pts}</td>
+    </tr>`;
+  }).join('');
+  return `<article class="cartao tabela tabela-${letra}">${cab}
+    <table class="classif">
+      <thead><tr>
+        <th class="c-pos" scope="col"><abbr title="Posição">#</abbr></th><th class="c-eq" scope="col">Equipa</th>
+        <th scope="col"><abbr title="Jogos">J</abbr></th><th scope="col"><abbr title="Vitórias">V</abbr></th>
+        <th scope="col"><abbr title="Empates">E</abbr></th><th scope="col"><abbr title="Derrotas">D</abbr></th>
+        <th scope="col"><abbr title="Diferença de golos">DG</abbr></th><th class="c-pts" scope="col"><abbr title="Pontos">Pts</abbr></th>
+      </tr></thead>
+      <tbody>${linhas}</tbody>
+    </table>
+    ${c.completa ? '' : `<p class="aviso tabela-nota">Ainda faltam resultados de jogos da jornada ${c.jornada}.</p>`}
+  </article>`;
+}
+function renderClassificacao() {
+  $('#tabelas').innerHTML = Object.keys(estado.dados.equipas).map(tabelaHtml).join('');
+  $('#tabelas').dataset.ativa = estado.tabela;
+  document.querySelectorAll('[data-tabela]').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.tabela === estado.tabela)));
+}
+
 function renderSubscricoes() {
   const c = CALENDARIOS.find((x) => (estado.equipa === 'todas' ? x.equipas.length > 1 : x.equipas.join() === estado.equipa));
   const https = new URL(`calendario/${c.ficheiro}`, location.href).href;
@@ -396,16 +439,17 @@ function render() {
   document.querySelectorAll('[data-vista]').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.vista === estado.vista)));
   renderAvisos(dados, agora);
   renderLista(dados, agora);
+  renderClassificacao();
   renderSubscricoes();
   atualizarNav();
 }
 
 // ---------- Barra de navegação (telemóvel) ----------
 // Próximos e Calendário descem até à secção (e repõem a lista nos jogos por realizar);
-// Resultados muda a lista para os resultados e desce até ela.
+// Resultados muda a lista para os resultados e desce até ela; Classificação desce até às tabelas.
 function irPara(alvo) {
   const vista = alvo === 'resultados' ? 'resultados' : 'proximos';
-  if (estado.dados && estado.vista !== vista) {
+  if (estado.dados && alvo !== 'classificacao' && estado.vista !== vista) {
     estado.vista = vista;
     guardar();
     render();
@@ -417,22 +461,23 @@ function irPara(alvo) {
   tempoNav = setTimeout(() => { navFixo = null; atualizarNav(); }, 1000);
   atualizarNav();
   if (alvo === 'proximos') scrollTo({ top: 0, behavior }); // topo da página, com o cabeçalho
-  else $('#sec-calendario').scrollIntoView({ behavior, block: 'start' });
+  else $(alvo === 'classificacao' ? '#sec-classificacao' : '#sec-calendario').scrollIntoView({ behavior, block: 'start' });
 }
 let navFixo = null;
 let tempoNav;
 // Item ativo: o da secção que está no ecrã; no calendário, Resultados quando a lista mostra resultados.
 function atualizarNav() {
-  // No fim da página também conta como calendário (com poucos resultados, a lista não chega ao topo do ecrã).
+  // O fim da página também conta como classificação (a secção pode não chegar ao topo do ecrã).
   const noFim = scrollY + innerHeight >= document.documentElement.scrollHeight - 4;
-  const noCalendario = noFim || $('#sec-calendario').getBoundingClientRect().top <= innerHeight * 0.4;
-  const ativo = navFixo || (noCalendario ? (estado.vista === 'resultados' ? 'resultados' : 'calendario') : 'proximos');
+  const acima = (s) => $(s).getBoundingClientRect().top <= innerHeight * 0.4;
+  const ativo = navFixo || (noFim || acima('#sec-classificacao') ? 'classificacao'
+    : acima('#sec-calendario') ? (estado.vista === 'resultados' ? 'resultados' : 'calendario') : 'proximos');
   document.querySelectorAll('[data-nav]').forEach((a) => {
     if (a.dataset.nav === ativo) a.setAttribute('aria-current', 'true');
     else a.removeAttribute('aria-current');
   });
-  // Posição da pílula que desliza por baixo do item ativo (0, 1 ou 2).
-  $('.navbar').dataset.ativo = ['proximos', 'calendario', 'resultados'].indexOf(ativo);
+  // Posição da pílula que desliza por baixo do item ativo (0 a 3).
+  $('.navbar').dataset.ativo = ['proximos', 'calendario', 'resultados', 'classificacao'].indexOf(ativo);
 }
 let navPendente = false;
 addEventListener('scroll', () => {
@@ -518,8 +563,12 @@ document.addEventListener('click', (e) => {
     return;
   }
   if (b.dataset.abrir !== undefined) alternar(b.closest('.jogo'));
-  else if (b.dataset.equipa) {
+  else if (b.dataset.tabela) {
+    estado.tabela = b.dataset.tabela;
+    renderClassificacao();
+  } else if (b.dataset.equipa) {
     estado.equipa = b.dataset.equipa;
+    if (estado.equipa !== 'todas') estado.tabela = estado.equipa; // a classificação acompanha a equipa escolhida
     history.replaceState(null, '', estado.equipa === 'todas' ? location.pathname + location.search : '#' + estado.equipa.toLowerCase());
     guardar();
     render();
@@ -545,15 +594,17 @@ document.querySelectorAll('.segmentos').forEach((g) => g.addEventListener('keydo
 async function iniciar() {
   restaurar();
   try {
-    const [r, e, c] = await Promise.all([
+    const [r, e, c, cl] = await Promise.all([
       fetch('data/jogos.json', { cache: 'no-cache' }),
       fetch('data/emblemas.json').catch(() => null),
       fetch('data/campos.json').catch(() => null),
+      fetch('data/classificacao.json', { cache: 'no-cache' }).catch(() => null),
     ]);
     if (!r.ok) throw new Error(r.status);
     estado.dados = await r.json();
     if (e?.ok) estado.emblemas = await e.json().catch(() => ({}));
     if (c?.ok) estado.campos = await c.json().catch(() => ({}));
+    if (cl?.ok) estado.classificacao = await cl.json().catch(() => null);
   } catch {
     $('#proximos').removeAttribute('aria-busy');
     $('#proximos').innerHTML = `<div class="vazio erro"><p>Não foi possível carregar os jogos. Verifique a ligação à internet.</p>
