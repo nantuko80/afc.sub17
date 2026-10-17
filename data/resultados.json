@@ -1,5 +1,5 @@
 {
-  "atualizado": "2026-10-11T20:36:04.903Z",
+  "atualizado": "2026-10-17T09:40:59.796Z",
   "equipas": {
     "A": {
       "jornadas": {
@@ -26,7 +26,7 @@
           {"data":"2026-10-10","casa":"AD Taboeira \"B\"","fora":"Anadia FC","resultado":"1-2"},
           {"data":"2026-10-11","casa":"AA Avanca","fora":"Severfintas","resultado":"2-2"},
           {"data":"2026-10-11","casa":"AD Valonguense","fora":"SC Alba","resultado":"3-2"},
-          {"data":"2026-10-11","casa":"CD Estarreja","fora":"Recreio Desp. Águeda","resultado":null},
+          {"data":"2026-10-11","casa":"CD Estarreja","fora":"Recreio Desp. Águeda","resultado":"3-4"},
           {"data":"2026-10-11","casa":"Casa Benfica Em Albergaria-A-Velha","fora":"CD Luso","resultado":"2-5"},
           {"data":"2026-10-11","casa":"GDR Soutelo","fora":"GD Gafanha \"B\"","resultado":"2-3"}
         ]
