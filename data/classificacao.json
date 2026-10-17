@@ -1,5 +1,5 @@
 {
-  "atualizado": "2026-10-17T09:40:59.796Z",
+  "atualizado": "2026-10-17T09:42:07.852Z",
   "equipas": {
     "A": {
       "jornada": 3,
@@ -163,10 +163,21 @@
     },
     "B": {
       "jornada": 2,
-      "completa": false,
+      "completa": true,
       "linhas": [
         {
           "pos": 1,
+          "equipa": "GD Mealhada",
+          "j": 2,
+          "v": 2,
+          "e": 0,
+          "d": 0,
+          "gm": 16,
+          "gs": 3,
+          "pts": 6
+        },
+        {
+          "pos": 2,
           "equipa": "Gverreiros do Futuro de Vale Domingos \"B\"",
           "j": 2,
           "v": 2,
@@ -177,7 +188,7 @@
           "pts": 6
         },
         {
-          "pos": 2,
+          "pos": 3,
           "equipa": "UD Mourisquense",
           "j": 2,
           "v": 2,
@@ -188,7 +199,7 @@
           "pts": 6
         },
         {
-          "pos": 3,
+          "pos": 4,
           "equipa": "ARC Barroca",
           "j": 2,
           "v": 2,
@@ -197,17 +208,6 @@
           "gm": 3,
           "gs": 0,
           "pts": 6
-        },
-        {
-          "pos": 4,
-          "equipa": "GD Mealhada",
-          "j": 1,
-          "v": 1,
-          "e": 0,
-          "d": 0,
-          "gm": 4,
-          "gs": 1,
-          "pts": 3
         },
         {
           "pos": 5,
@@ -244,17 +244,6 @@
         },
         {
           "pos": 8,
-          "equipa": "Liga Amigos Aguada Cima",
-          "j": 1,
-          "v": 0,
-          "e": 1,
-          "d": 0,
-          "gm": 2,
-          "gs": 2,
-          "pts": 1
-        },
-        {
-          "pos": 9,
           "equipa": "N.E.G.E.",
           "j": 2,
           "v": 0,
@@ -262,6 +251,17 @@
           "d": 1,
           "gm": 2,
           "gs": 4,
+          "pts": 1
+        },
+        {
+          "pos": 9,
+          "equipa": "Liga Amigos Aguada Cima",
+          "j": 2,
+          "v": 0,
+          "e": 1,
+          "d": 1,
+          "gm": 4,
+          "gs": 14,
           "pts": 1
         },
         {

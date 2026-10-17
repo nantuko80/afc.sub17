@@ -1,5 +1,5 @@
 {
-  "atualizado": "2026-10-17T09:40:59.796Z",
+  "atualizado": "2026-10-17T09:42:07.852Z",
   "equipas": {
     "A": {
       "jornadas": {
@@ -44,7 +44,7 @@
         ],
         "2": [
           {"data":"2026-10-11","casa":"GD Eixense","fora":"Anadia FC \"B\"","resultado":"1-4"},
-          {"data":"2026-10-11","casa":"GD Mealhada","fora":"Liga Amigos Aguada Cima","resultado":null},
+          {"data":"2026-10-11","casa":"GD Mealhada","fora":"Liga Amigos Aguada Cima","resultado":"12-2"},
           {"data":"2026-10-11","casa":"SC Fermentelos","fora":"FC Vaguense","resultado":"1-2"},
           {"data":"2026-10-11","casa":"N.E.G.E.","fora":"Gverreiros do Futuro de Vale Domingos \"B\"","resultado":"0-2"},
           {"data":"2026-10-11","casa":"UD Mourisquense","fora":"Cl. Estrela Azul","resultado":"3-1"},
