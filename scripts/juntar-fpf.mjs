@@ -106,6 +106,8 @@ function juntar(caminho) {
         if (antigo[k] && chave(antigo[k]) === chave(novo[k])) novo[k] = antigo[k];
       }
       if (!novo.hora && antigo.hora && antigo.data === novo.data) novo.hora = antigo.hora;
+      // Resultado posto à mão enquanto a FPF não o publica: só é substituído por um resultado da FPF.
+      if (!novo.resultado && antigo.resultado && antigo.data === novo.data) novo.resultado = antigo.resultado;
       const mudou = ['data', 'hora', 'casa', 'fora', 'resultado'].filter((k) => chave(antigo[k]) !== chave(novo[k]));
       if (mudou.length) {
         alteracoes.push(`${novo.id}: ` + mudou.map((k) => `${k} ${antigo[k] ?? '-'} → ${novo[k] ?? '-'}`).join(', '));
@@ -145,7 +147,11 @@ function juntar(caminho) {
     const eq = (res.equipas[letra] ||= { jornadas: {} });
     for (const [n, jogos] of Object.entries(jornadas)) {
       const antes = eq.jornadas[n] || [];
-      eq.jornadas[n] = jogos.map((g) => ({ ...g, casa: nomes.get(chave(g.casa)) || g.casa, fora: nomes.get(chave(g.fora)) || g.fora }));
+      eq.jornadas[n] = jogos.map((g) => {
+        const casa = nomes.get(chave(g.casa)) || g.casa, fora = nomes.get(chave(g.fora)) || g.fora;
+        const ja = !g.resultado && antes.find((a) => a.resultado && a.data === g.data && chave(a.casa) === chave(casa) && chave(a.fora) === chave(fora));
+        return { ...g, casa, fora, resultado: g.resultado || (ja ? ja.resultado : null) };
+      });
       novosRes += eq.jornadas[n].filter((g) => g.resultado).length - antes.filter((g) => g.resultado).length;
     }
   }
