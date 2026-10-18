@@ -1,5 +1,5 @@
 {
-  "atualizado": "2026-10-18T06:36:25.623Z",
+  "atualizado": "2026-10-18T14:39:44.989Z",
   "equipas": {
     "A": {
       "jornadas": {
@@ -33,11 +33,11 @@
         "4": [
           {"data":"2026-10-17","casa":"Severfintas","fora":"SC Vista Alegre \"B\"","resultado":"1-2"},
           {"data":"2026-10-17","casa":"Anadia FC","fora":"CD Estarreja","resultado":"3-0"},
-          {"data":"2026-10-18","casa":"Recreio Desp. Águeda","fora":"GDR Soutelo","resultado":null},
-          {"data":"2026-10-18","casa":"SC Alba","fora":"AA Avanca","resultado":null},
-          {"data":"2026-10-18","casa":"Juveforce - ADC Ponte Vagos","fora":"Casa Benfica Em Albergaria-A-Velha","resultado":null},
-          {"data":"2026-10-18","casa":"CD Luso","fora":"AD Taboeira \"B\"","resultado":null},
-          {"data":"2026-10-18","casa":"GD Gafanha \"B\"","fora":"AD Valonguense","resultado":null}
+          {"data":"2026-10-18","casa":"GD Gafanha \"B\"","fora":"AD Valonguense","resultado":"0-1"},
+          {"data":"2026-10-18","casa":"SC Alba","fora":"AA Avanca","resultado":"0-1"},
+          {"data":"2026-10-18","casa":"Recreio Desp. Águeda","fora":"GDR Soutelo","resultado":"4-2"},
+          {"data":"2026-10-18","casa":"CD Luso","fora":"AD Taboeira \"B\"","resultado":"0-8"},
+          {"data":"2026-10-18","casa":"Juveforce - ADC Ponte Vagos","fora":"Casa Benfica Em Albergaria-A-Velha","resultado":"3-0"}
         ]
       }
     },
@@ -58,6 +58,14 @@
           {"data":"2026-10-11","casa":"N.E.G.E.","fora":"Gverreiros do Futuro de Vale Domingos \"B\"","resultado":"0-2"},
           {"data":"2026-10-11","casa":"UD Mourisquense","fora":"Cl. Estrela Azul","resultado":"3-1"},
           {"data":"2026-10-11","casa":"GD Águas Boas","fora":"ARC Barroca","resultado":"0-2"}
+        ],
+        "3": [
+          {"data":"2026-10-17","casa":"Oliveira Bairro SC \"B\"","fora":"GD Águas Boas","resultado":"4-2"},
+          {"data":"2026-10-18","casa":"Liga Amigos Aguada Cima","fora":"SC Fermentelos","resultado":"5-4"},
+          {"data":"2026-10-18","casa":"Cl. Estrela Azul","fora":"GD Eixense","resultado":"3-0"},
+          {"data":"2026-10-18","casa":"ARC Barroca","fora":"UD Mourisquense","resultado":"2-0"},
+          {"data":"2026-10-18","casa":"Anadia FC \"B\"","fora":"N.E.G.E.","resultado":null},
+          {"data":"2026-10-18","casa":"Gverreiros do Futuro de Vale Domingos \"B\"","fora":"GD Mealhada","resultado":"2-3"}
         ]
       }
     }
