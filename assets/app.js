@@ -153,7 +153,7 @@ function horasChoque(jogos, dia) {
 function textoChoque(jogos, dia) {
   const h = horasChoque(jogos, dia);
   return h.iguais
-    ? `A e B jogam à mesma hora em sítios diferentes (${h.a})`
+    ? 'A e B jogam no mesmo dia e hora.'
     : `Jogos seguidos em sítios diferentes (A às ${h.a}, B às ${h.b})`;
 }
 // Chip junto ao título do fim de semana: "Jogam à mesma hora: dom 09:00" ou "Jogos seguidos: dom 09:00 e 11:30".
