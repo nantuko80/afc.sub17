@@ -265,13 +265,18 @@ function renderProximos(dados, agora) {
         <p class="aviso">Sem jogos marcados de momento.</p></article>`;
     }
     const d = paraData(j.data);
+    // Jogo já com resultado (a ronda ainda não acabou): o marcador toma o lugar da hora.
+    const r = resultadoAnadia(j);
+    const marcador = r
+      ? `<span class="resultado ${r}" title="${{ v: 'Vitória', e: 'Empate', d: 'Derrota' }[r]}">${esc(j.resultado)}</span>${j.hora ? `<span class="cartao-hora-peq">${esc(j.hora)}</span>` : ''}`
+      : j.hora ? `<span class="cartao-hora">${esc(j.hora)}</span>` : '<span class="cartao-hora-pc">Hora a definir</span>';
     return `<article class="cartao">
       <div class="cartao-cab">
         <span class="cartao-id"><span class="equipa equipa-${letra}">${esc(eq.nome)}</span><span class="jornada">${jornadaLado(j)}</span></span>
         <span class="contagem">${contagem(j.data, hoje)}</span>
       </div>
       <div>
-        <div class="cartao-jogo">${equipasHtml(j, `<span class="cartao-dia">${DIAS[d.getDay()]}, ${dataCurta(j.data)}</span>${j.hora ? `<span class="cartao-hora">${esc(j.hora)}</span>` : '<span class="cartao-hora-pc">Hora a definir</span>'}`, true)}</div>
+        <div class="cartao-jogo">${equipasHtml(j, `<span class="cartao-dia">${DIAS[d.getDay()]}, ${dataCurta(j.data)}</span>${marcador}`, true)}</div>
         ${local(j, !j.emCasa)}
         ${choques.get(j.data) === 'choque' ? `<div class="jogo-aviso">${ICONES.alerta}<span>${esc(textoChoque(dados.jogos, j.data))}</span></div>` : ''}
       </div>

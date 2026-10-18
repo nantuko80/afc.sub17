@@ -412,6 +412,7 @@ h1 {
 .cartao-dia { font-size: 14px; font-weight: 600; color: var(--texto-2); }
 .cartao-hora { font: italic 800 28px/1 var(--fonte-titulo); font-variant-numeric: tabular-nums; }
 .cartao-hora-pc { font-size: 14px; color: var(--texto-2); }
+.cartao-hora-peq { font-size: 13px; color: var(--texto-2); font-variant-numeric: tabular-nums; }
 /* Morada centrada por baixo dos clubes (se partir em duas linhas, também fica centrada). */
 .cartao .jogo-local { display: block; text-align: center; }
 .cartao .jogo-local svg { display: inline-block; vertical-align: -3px; margin-right: 5px; }
@@ -466,6 +467,7 @@ a.jogo-local:hover { color: var(--azul-2); text-decoration: underline; }
 .resultado.v { color: var(--vitoria); }
 .resultado.e { color: var(--empate); }
 .resultado.d { color: var(--derrota); }
+.cartao-meio .resultado { font-size: 28px; }
 
 .icone-btn {
   display: inline-grid;
