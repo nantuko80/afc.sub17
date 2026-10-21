@@ -75,9 +75,14 @@ window.extrairFPF = async function extrairFPF({ seasonId, anoInicio, equipas, cl
           const [pos, j, v, e, der, gm, gs, pts] = [c[0], ...c.slice(2, 9)].map(Number);
           return { pos, equipa: bonito(c[1]), j, v, e, d: der, gm, gs, pts };
         });
-        const completa = [...d.querySelectorAll('#matches .game')]
-          .every((g) => /^\d+\s*-\s*\d+$/.test(limpar(g.querySelector('.score > span:not(.game-schedule)')?.textContent)));
-        if (linhas.length && !(saida.classificacao[letra]?.jornada > n)) saida.classificacao[letra] = { jornada: n, completa, linhas };
+        // Só conta uma jornada já começada (algum resultado): as futuras mostram a mesma tabela,
+        // e guardá-la com o número delas faria o site dizer "faltam resultados" e o plano deixar de a reler.
+        const comResultado = [...d.querySelectorAll('#matches .game')]
+          .map((g) => /^\d+\s*-\s*\d+$/.test(limpar(g.querySelector('.score > span:not(.game-schedule)')?.textContent)));
+        const completa = comResultado.every(Boolean);
+        if (linhas.length && comResultado.some(Boolean) && !(saida.classificacao[letra]?.jornada > n)) {
+          saida.classificacao[letra] = { jornada: n, completa, linhas };
+        }
         saida.serie[letra][n] = [...d.querySelectorAll('#matches .game')].map((g) => {
           const res = limpar(g.querySelector('.score > span:not(.game-schedule)')?.textContent);
           return {
