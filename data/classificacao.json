@@ -1,12 +1,34 @@
 {
-  "atualizado": "2026-10-18T14:39:44.989Z",
+  "atualizado": "2026-10-25T19:31:28.946Z",
   "equipas": {
     "A": {
-      "jornada": 4,
-      "completa": true,
+      "jornada": 5,
+      "completa": false,
       "linhas": [
         {
           "pos": 1,
+          "equipa": "AD Taboeira \"B\"",
+          "j": 5,
+          "v": 4,
+          "e": 0,
+          "d": 1,
+          "gm": 24,
+          "gs": 2,
+          "pts": 12
+        },
+        {
+          "pos": 2,
+          "equipa": "Recreio Desp. Águeda",
+          "j": 5,
+          "v": 4,
+          "e": 0,
+          "d": 1,
+          "gm": 15,
+          "gs": 12,
+          "pts": 12
+        },
+        {
+          "pos": 3,
           "equipa": "Anadia FC",
           "j": 3,
           "v": 3,
@@ -17,18 +39,7 @@
           "pts": 9
         },
         {
-          "pos": 2,
-          "equipa": "AD Taboeira \"B\"",
-          "j": 4,
-          "v": 3,
-          "e": 0,
-          "d": 1,
-          "gm": 16,
-          "gs": 2,
-          "pts": 9
-        },
-        {
-          "pos": 3,
+          "pos": 4,
           "equipa": "SC Vista Alegre \"B\"",
           "j": 3,
           "v": 3,
@@ -39,18 +50,18 @@
           "pts": 9
         },
         {
-          "pos": 4,
-          "equipa": "Recreio Desp. Águeda",
-          "j": 4,
+          "pos": 5,
+          "equipa": "CD Estarreja",
+          "j": 5,
           "v": 3,
           "e": 0,
-          "d": 1,
+          "d": 2,
           "gm": 12,
-          "gs": 11,
+          "gs": 12,
           "pts": 9
         },
         {
-          "pos": 5,
+          "pos": 6,
           "equipa": "Severfintas",
           "j": 4,
           "v": 2,
@@ -61,8 +72,8 @@
           "pts": 7
         },
         {
-          "pos": 6,
-          "equipa": "Juveforce - ADC Ponte Vagos",
+          "pos": 7,
+          "equipa": "AA Avanca",
           "j": 4,
           "v": 2,
           "e": 1,
@@ -73,46 +84,35 @@
         },
         {
           "pos": 7,
-          "equipa": "AD Valonguense",
+          "equipa": "Juveforce - ADC Ponte Vagos",
           "j": 4,
           "v": 2,
           "e": 1,
           "d": 1,
-          "gm": 4,
-          "gs": 4,
+          "gm": 6,
+          "gs": 5,
           "pts": 7
         },
         {
-          "pos": 8,
-          "equipa": "CD Estarreja",
-          "j": 4,
-          "v": 2,
-          "e": 0,
-          "d": 2,
-          "gm": 7,
-          "gs": 8,
-          "pts": 6
-        },
-        {
           "pos": 9,
-          "equipa": "AA Avanca",
-          "j": 3,
-          "v": 1,
+          "equipa": "AD Valonguense",
+          "j": 5,
+          "v": 2,
           "e": 1,
-          "d": 1,
+          "d": 2,
           "gm": 5,
-          "gs": 5,
-          "pts": 4
+          "gs": 7,
+          "pts": 7
         },
         {
           "pos": 10,
           "equipa": "GD Gafanha \"B\"",
-          "j": 4,
+          "j": 5,
           "v": 1,
           "e": 0,
-          "d": 3,
+          "d": 4,
           "gm": 4,
-          "gs": 8,
+          "gs": 9,
           "pts": 3
         },
         {
@@ -129,12 +129,12 @@
         {
           "pos": 12,
           "equipa": "CD Luso",
-          "j": 3,
+          "j": 4,
           "v": 1,
           "e": 0,
-          "d": 2,
-          "gm": 7,
-          "gs": 14,
+          "d": 3,
+          "gm": 11,
+          "gs": 19,
           "pts": 3
         },
         {
@@ -151,52 +151,52 @@
         {
           "pos": 14,
           "equipa": "Casa Benfica Em Albergaria-A-Velha",
-          "j": 4,
+          "j": 5,
           "v": 0,
           "e": 0,
-          "d": 4,
+          "d": 5,
           "gm": 3,
-          "gs": 21,
+          "gs": 29,
           "pts": 0
         }
       ]
     },
     "B": {
-      "jornada": 3,
-      "completa": true,
+      "jornada": 4,
+      "completa": false,
       "linhas": [
         {
           "pos": 1,
           "equipa": "GD Mealhada",
-          "j": 3,
-          "v": 3,
+          "j": 4,
+          "v": 4,
           "e": 0,
           "d": 0,
-          "gm": 19,
-          "gs": 5,
-          "pts": 9
+          "gm": 24,
+          "gs": 9,
+          "pts": 12
         },
         {
           "pos": 2,
           "equipa": "ARC Barroca",
-          "j": 3,
-          "v": 3,
+          "j": 4,
+          "v": 4,
           "e": 0,
           "d": 0,
-          "gm": 5,
-          "gs": 0,
-          "pts": 9
+          "gm": 8,
+          "gs": 1,
+          "pts": 12
         },
         {
           "pos": 3,
           "equipa": "UD Mourisquense",
-          "j": 3,
-          "v": 2,
+          "j": 4,
+          "v": 3,
           "e": 0,
           "d": 1,
-          "gm": 7,
-          "gs": 4,
-          "pts": 6
+          "gm": 9,
+          "gs": 5,
+          "pts": 9
         },
         {
           "pos": 4,
@@ -211,69 +211,69 @@
         },
         {
           "pos": 5,
-          "equipa": "Cl. Estrela Azul",
+          "equipa": "FC Vaguense",
           "j": 3,
           "v": 2,
           "e": 0,
           "d": 1,
-          "gm": 6,
-          "gs": 4,
+          "gm": 4,
+          "gs": 5,
           "pts": 6
         },
         {
           "pos": 6,
-          "equipa": "Anadia FC \"B\"",
-          "j": 3,
-          "v": 1,
-          "e": 1,
-          "d": 1,
+          "equipa": "Cl. Estrela Azul",
+          "j": 4,
+          "v": 2,
+          "e": 0,
+          "d": 2,
           "gm": 7,
-          "gs": 7,
-          "pts": 4
+          "gs": 11,
+          "pts": 6
         },
         {
           "pos": 7,
-          "equipa": "Liga Amigos Aguada Cima",
-          "j": 3,
+          "equipa": "N.E.G.E.",
+          "j": 4,
           "v": 1,
-          "e": 1,
+          "e": 2,
           "d": 1,
-          "gm": 9,
-          "gs": 18,
-          "pts": 4
+          "gm": 11,
+          "gs": 7,
+          "pts": 5
         },
         {
           "pos": 8,
-          "equipa": "Oliveira Bairro SC \"B\"",
-          "j": 2,
+          "equipa": "Anadia FC \"B\"",
+          "j": 4,
           "v": 1,
-          "e": 0,
-          "d": 1,
-          "gm": 4,
-          "gs": 3,
-          "pts": 3
+          "e": 1,
+          "d": 2,
+          "gm": 11,
+          "gs": 12,
+          "pts": 4
         },
         {
           "pos": 9,
-          "equipa": "FC Vaguense",
-          "j": 2,
+          "equipa": "Liga Amigos Aguada Cima",
+          "j": 4,
           "v": 1,
-          "e": 0,
-          "d": 1,
-          "gm": 3,
-          "gs": 5,
-          "pts": 3
+          "e": 1,
+          "d": 2,
+          "gm": 9,
+          "gs": 19,
+          "pts": 4
         },
         {
           "pos": 10,
-          "equipa": "N.E.G.E.",
+          "equipa": "Oliveira Bairro SC \"B\"",
           "j": 3,
-          "v": 0,
-          "e": 2,
-          "d": 1,
-          "gm": 4,
-          "gs": 6,
-          "pts": 2
+          "v": 1,
+          "e": 0,
+          "d": 2,
+          "gm": 5,
+          "gs": 5,
+          "pts": 3
         },
         {
           "pos": 11,
@@ -300,12 +300,12 @@
         {
           "pos": 13,
           "equipa": "GD Eixense",
-          "j": 3,
+          "j": 4,
           "v": 0,
           "e": 0,
-          "d": 3,
-          "gm": 1,
-          "gs": 14,
+          "d": 4,
+          "gm": 2,
+          "gs": 17,
           "pts": 0
         }
       ]

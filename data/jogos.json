@@ -1,6 +1,6 @@
 {
   "epoca": "2026/27",
-  "atualizado": "2026-10-18T14:39:44.989Z",
+  "atualizado": "2026-10-25T19:31:28.946Z",
   "fonte": "https://resultados.fpf.pt",
   "equipas": {
     "A": {
@@ -134,7 +134,7 @@
       "fora": "Anadia FC \"B\"",
       "emCasa": false,
       "adversario": "GD Mealhada",
-      "resultado": null,
+      "resultado": "5-4",
       "local": "Campo Treinos GD Mealhada",
       "origem": "fpf",
       "localidade": "Mealhada"
