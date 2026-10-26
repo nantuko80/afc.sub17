@@ -1,5 +1,5 @@
 {
-  "atualizado": "2026-10-25T19:31:28.946Z",
+  "atualizado": "2026-10-26T08:30:00.000Z",
   "equipas": {
     "A": {
       "jornada": 5,
@@ -163,7 +163,7 @@
     },
     "B": {
       "jornada": 4,
-      "completa": false,
+      "completa": true,
       "linhas": [
         {
           "pos": 1,
@@ -189,6 +189,17 @@
         },
         {
           "pos": 3,
+          "equipa": "Gverreiros do Futuro de Vale Domingos \"B\"",
+          "j": 4,
+          "v": 3,
+          "e": 0,
+          "d": 1,
+          "gm": 16,
+          "gs": 5,
+          "pts": 9
+        },
+        {
+          "pos": 4,
           "equipa": "UD Mourisquense",
           "j": 4,
           "v": 3,
@@ -197,17 +208,6 @@
           "gm": 9,
           "gs": 5,
           "pts": 9
-        },
-        {
-          "pos": 4,
-          "equipa": "Gverreiros do Futuro de Vale Domingos \"B\"",
-          "j": 3,
-          "v": 2,
-          "e": 0,
-          "d": 1,
-          "gm": 11,
-          "gs": 3,
-          "pts": 6
         },
         {
           "pos": 5,
@@ -278,12 +278,12 @@
         {
           "pos": 11,
           "equipa": "SC Fermentelos",
-          "j": 2,
+          "j": 3,
           "v": 0,
           "e": 0,
-          "d": 2,
-          "gm": 5,
-          "gs": 7,
+          "d": 3,
+          "gm": 7,
+          "gs": 12,
           "pts": 0
         },
         {
