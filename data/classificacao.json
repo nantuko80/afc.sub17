@@ -1,5 +1,5 @@
 {
-  "atualizado": "2026-10-26T08:30:00.000Z",
+  "atualizado": "2026-10-27T17:07:00.000Z",
   "equipas": {
     "A": {
       "jornada": 5,
@@ -18,6 +18,17 @@
         },
         {
           "pos": 2,
+          "equipa": "Anadia FC",
+          "j": 4,
+          "v": 4,
+          "e": 0,
+          "d": 0,
+          "gm": 22,
+          "gs": 2,
+          "pts": 12
+        },
+        {
+          "pos": 3,
           "equipa": "Recreio Desp. Águeda",
           "j": 5,
           "v": 4,
@@ -28,18 +39,18 @@
           "pts": 12
         },
         {
-          "pos": 3,
-          "equipa": "Anadia FC",
-          "j": 3,
+          "pos": 4,
+          "equipa": "Juveforce - ADC Ponte Vagos",
+          "j": 5,
           "v": 3,
-          "e": 0,
-          "d": 0,
-          "gm": 14,
-          "gs": 1,
-          "pts": 9
+          "e": 1,
+          "d": 1,
+          "gm": 8,
+          "gs": 6,
+          "pts": 10
         },
         {
-          "pos": 4,
+          "pos": 5,
           "equipa": "SC Vista Alegre \"B\"",
           "j": 3,
           "v": 3,
@@ -50,7 +61,7 @@
           "pts": 9
         },
         {
-          "pos": 5,
+          "pos": 6,
           "equipa": "CD Estarreja",
           "j": 5,
           "v": 3,
@@ -61,30 +72,19 @@
           "pts": 9
         },
         {
-          "pos": 6,
+          "pos": 7,
           "equipa": "Severfintas",
-          "j": 4,
+          "j": 5,
           "v": 2,
           "e": 1,
-          "d": 1,
-          "gm": 6,
-          "gs": 4,
+          "d": 2,
+          "gm": 7,
+          "gs": 6,
           "pts": 7
         },
         {
-          "pos": 7,
+          "pos": 8,
           "equipa": "AA Avanca",
-          "j": 4,
-          "v": 2,
-          "e": 1,
-          "d": 1,
-          "gm": 6,
-          "gs": 5,
-          "pts": 7
-        },
-        {
-          "pos": 7,
-          "equipa": "Juveforce - ADC Ponte Vagos",
           "j": 4,
           "v": 2,
           "e": 1,
@@ -106,6 +106,17 @@
         },
         {
           "pos": 10,
+          "equipa": "GDR Soutelo",
+          "j": 5,
+          "v": 1,
+          "e": 0,
+          "d": 4,
+          "gm": 16,
+          "gs": 18,
+          "pts": 3
+        },
+        {
+          "pos": 11,
           "equipa": "GD Gafanha \"B\"",
           "j": 5,
           "v": 1,
@@ -113,17 +124,6 @@
           "d": 4,
           "gm": 4,
           "gs": 9,
-          "pts": 3
-        },
-        {
-          "pos": 11,
-          "equipa": "GDR Soutelo",
-          "j": 4,
-          "v": 1,
-          "e": 0,
-          "d": 3,
-          "gm": 15,
-          "gs": 10,
           "pts": 3
         },
         {
