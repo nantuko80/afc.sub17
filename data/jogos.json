@@ -1,6 +1,6 @@
 {
   "epoca": "2026/27",
-  "atualizado": "2026-10-27T17:07:00.000Z",
+  "atualizado": "2026-11-01T09:08:07.279Z",
   "fonte": "https://resultados.fpf.pt",
   "equipas": {
     "A": {
@@ -149,23 +149,8 @@
       "fora": "AD Valonguense",
       "emCasa": true,
       "adversario": "AD Valonguense",
-      "resultado": null,
+      "resultado": "6-1",
       "local": "Campo Dr. Pequito Rebelo",
-      "origem": "fpf",
-      "localidade": "Anadia"
-    },
-    {
-      "id": "B-05",
-      "equipa": "B",
-      "jornada": 5,
-      "data": "2027-02-14",
-      "hora": "09:00",
-      "casa": "Anadia FC \"B\"",
-      "fora": "SC Fermentelos",
-      "emCasa": true,
-      "adversario": "SC Fermentelos",
-      "resultado": null,
-      "local": "Campo do Complexo Desportivo de Anadia",
       "origem": "fpf",
       "localidade": "Anadia"
     },
@@ -513,6 +498,21 @@
       "local": "Parque Desportivo Gafanha Encarnacao",
       "localidade": "Gafanha Encarnação",
       "origem": "pdf"
+    },
+    {
+      "id": "B-05",
+      "equipa": "B",
+      "jornada": 5,
+      "data": "2027-02-14",
+      "hora": "09:00",
+      "casa": "Anadia FC \"B\"",
+      "fora": "SC Fermentelos",
+      "emCasa": true,
+      "adversario": "SC Fermentelos",
+      "resultado": null,
+      "local": "Campo do Complexo Desportivo de Anadia",
+      "origem": "fpf",
+      "localidade": "Anadia"
     },
     {
       "id": "A-19",

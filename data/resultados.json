@@ -1,5 +1,5 @@
 {
-  "atualizado": "2026-10-27T17:07:00.000Z",
+  "atualizado": "2026-11-01T09:08:07.279Z",
   "equipas": {
     "A": {
       "jornadas": {
@@ -47,6 +47,15 @@
           {"data":"2026-10-25","casa":"AA Avanca","fora":"GD Gafanha \"B\"","resultado":"1-0"},
           {"data":"2026-10-25","casa":"Casa Benfica Em Albergaria-A-Velha","fora":"AD Taboeira \"B\"","resultado":"0-8"},
           {"data":"2026-12-01","casa":"SC Vista Alegre \"B\"","fora":"SC Alba","resultado":null}
+        ],
+        "6": [
+          {"data":"2026-10-31","casa":"Anadia FC","fora":"AD Valonguense","resultado":"6-1"},
+          {"data":"2026-10-31","casa":"AD Taboeira \"B\"","fora":"CD Estarreja","resultado":"6-2"},
+          {"data":"2026-10-31","casa":"Severfintas","fora":"Casa Benfica Em Albergaria-A-Velha","resultado":"5-0"},
+          {"data":"2026-10-31","casa":"Recreio Desp. Águeda","fora":"AA Avanca","resultado":"4-0"},
+          {"data":"2026-10-31","casa":"GD Gafanha \"B\"","fora":"SC Vista Alegre \"B\"","resultado":"0-2"},
+          {"data":"2026-11-01","casa":"CD Luso","fora":"GDR Soutelo","resultado":null},
+          {"data":"2026-11-01","casa":"SC Alba","fora":"Juveforce - ADC Ponte Vagos","resultado":null}
         ]
       }
     },
