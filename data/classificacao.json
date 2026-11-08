@@ -1,100 +1,89 @@
 {
-  "atualizado": "2026-11-02T08:30:00.000Z",
+  "atualizado": "2026-11-08T20:20:00.000Z",
   "equipas": {
     "A": {
-      "jornada": 6,
+      "jornada": 7,
       "completa": false,
       "linhas": [
         {
           "pos": 1,
           "equipa": "Anadia FC",
-          "j": 5,
-          "v": 5,
+          "j": 6,
+          "v": 6,
           "e": 0,
           "d": 0,
-          "gm": 28,
+          "gm": 33,
           "gs": 3,
-          "pts": 15
+          "pts": 18
         },
         {
           "pos": 2,
           "equipa": "AD Taboeira \"B\"",
-          "j": 6,
-          "v": 5,
+          "j": 7,
+          "v": 6,
           "e": 0,
           "d": 1,
-          "gm": 30,
-          "gs": 4,
-          "pts": 15
+          "gm": 34,
+          "gs": 5,
+          "pts": 18
         },
         {
           "pos": 3,
           "equipa": "Recreio Desp. Águeda",
-          "j": 6,
+          "j": 7,
           "v": 5,
-          "e": 0,
+          "e": 1,
           "d": 1,
-          "gm": 19,
-          "gs": 12,
-          "pts": 15
+          "gm": 22,
+          "gs": 15,
+          "pts": 16
         },
         {
           "pos": 4,
           "equipa": "SC Vista Alegre \"B\"",
-          "j": 4,
+          "j": 5,
           "v": 4,
-          "e": 0,
+          "e": 1,
           "d": 0,
-          "gm": 11,
-          "gs": 2,
-          "pts": 12
+          "gm": 14,
+          "gs": 5,
+          "pts": 13
         },
         {
           "pos": 5,
-          "equipa": "Juveforce - ADC Ponte Vagos",
-          "j": 5,
-          "v": 3,
+          "equipa": "Severfintas",
+          "j": 7,
+          "v": 4,
           "e": 1,
-          "d": 1,
-          "gm": 8,
+          "d": 2,
+          "gm": 25,
           "gs": 6,
-          "pts": 10
+          "pts": 13
         },
         {
           "pos": 6,
-          "equipa": "Severfintas",
+          "equipa": "Juveforce - ADC Ponte Vagos",
           "j": 6,
           "v": 3,
           "e": 1,
           "d": 2,
-          "gm": 12,
-          "gs": 6,
+          "gm": 10,
+          "gs": 10,
           "pts": 10
         },
         {
           "pos": 7,
           "equipa": "CD Estarreja",
-          "j": 6,
+          "j": 7,
           "v": 3,
-          "e": 0,
+          "e": 1,
           "d": 3,
-          "gm": 14,
-          "gs": 18,
-          "pts": 9
+          "gm": 16,
+          "gs": 20,
+          "pts": 10
         },
         {
           "pos": 8,
-          "equipa": "AA Avanca",
-          "j": 5,
-          "v": 2,
-          "e": 1,
-          "d": 2,
-          "gm": 6,
-          "gs": 9,
-          "pts": 7
-        },
-        {
-          "pos": 9,
           "equipa": "AD Valonguense",
           "j": 6,
           "v": 2,
@@ -105,26 +94,37 @@
           "pts": 7
         },
         {
-          "pos": 10,
-          "equipa": "GDR Soutelo",
+          "pos": 9,
+          "equipa": "AA Avanca",
           "j": 6,
           "v": 2,
+          "e": 1,
+          "d": 3,
+          "gm": 6,
+          "gs": 14,
+          "pts": 7
+        },
+        {
+          "pos": 10,
+          "equipa": "GD Gafanha \"B\"",
+          "j": 7,
+          "v": 2,
           "e": 0,
-          "d": 4,
-          "gm": 22,
-          "gs": 21,
+          "d": 5,
+          "gm": 8,
+          "gs": 13,
           "pts": 6
         },
         {
           "pos": 11,
-          "equipa": "GD Gafanha \"B\"",
-          "j": 6,
-          "v": 1,
+          "equipa": "GDR Soutelo",
+          "j": 7,
+          "v": 2,
           "e": 0,
           "d": 5,
-          "gm": 4,
-          "gs": 11,
-          "pts": 3
+          "gm": 23,
+          "gs": 25,
+          "pts": 6
         },
         {
           "pos": 12,
@@ -139,64 +139,64 @@
         },
         {
           "pos": 13,
-          "equipa": "SC Alba",
-          "j": 4,
+          "equipa": "Casa Benfica Em Albergaria-A-Velha",
+          "j": 7,
           "v": 0,
-          "e": 0,
-          "d": 4,
-          "gm": 4,
-          "gs": 17,
-          "pts": 0
+          "e": 1,
+          "d": 6,
+          "gm": 5,
+          "gs": 36,
+          "pts": 1
         },
         {
           "pos": 14,
-          "equipa": "Casa Benfica Em Albergaria-A-Velha",
-          "j": 6,
+          "equipa": "SC Alba",
+          "j": 5,
           "v": 0,
           "e": 0,
-          "d": 6,
-          "gm": 3,
-          "gs": 34,
+          "d": 5,
+          "gm": 4,
+          "gs": 30,
           "pts": 0
         }
       ]
     },
     "B": {
-      "jornada": 5,
-      "completa": false,
+      "jornada": 6,
+      "completa": true,
       "linhas": [
         {
           "pos": 1,
-          "equipa": "ARC Barroca",
+          "equipa": "GD Mealhada",
           "j": 5,
           "v": 5,
           "e": 0,
           "d": 0,
-          "gm": 9,
-          "gs": 1,
+          "gm": 29,
+          "gs": 9,
           "pts": 15
         },
         {
           "pos": 2,
-          "equipa": "GD Mealhada",
-          "j": 4,
-          "v": 4,
+          "equipa": "Gverreiros do Futuro de Vale Domingos \"B\"",
+          "j": 6,
+          "v": 5,
           "e": 0,
-          "d": 0,
-          "gm": 24,
-          "gs": 9,
-          "pts": 12
+          "d": 1,
+          "gm": 27,
+          "gs": 7,
+          "pts": 15
         },
         {
           "pos": 3,
-          "equipa": "Gverreiros do Futuro de Vale Domingos \"B\"",
-          "j": 5,
-          "v": 4,
+          "equipa": "ARC Barroca",
+          "j": 6,
+          "v": 5,
           "e": 0,
           "d": 1,
-          "gm": 25,
+          "gm": 9,
           "gs": 6,
-          "pts": 12
+          "pts": 15
         },
         {
           "pos": 4,
@@ -211,102 +211,102 @@
         },
         {
           "pos": 5,
-          "equipa": "Cl. Estrela Azul",
-          "j": 4,
-          "v": 2,
+          "equipa": "FC Vaguense",
+          "j": 5,
+          "v": 3,
           "e": 0,
           "d": 2,
-          "gm": 7,
-          "gs": 11,
-          "pts": 6
+          "gm": 6,
+          "gs": 14,
+          "pts": 9
         },
         {
           "pos": 6,
-          "equipa": "FC Vaguense",
+          "equipa": "Oliveira Bairro SC \"B\"",
           "j": 4,
           "v": 2,
           "e": 0,
           "d": 2,
-          "gm": 5,
-          "gs": 14,
+          "gm": 6,
+          "gs": 5,
           "pts": 6
         },
         {
           "pos": 7,
-          "equipa": "N.E.G.E.",
+          "equipa": "Cl. Estrela Azul",
           "j": 5,
-          "v": 1,
-          "e": 2,
-          "d": 2,
-          "gm": 11,
-          "gs": 8,
-          "pts": 5
+          "v": 2,
+          "e": 0,
+          "d": 3,
+          "gm": 7,
+          "gs": 13,
+          "pts": 6
         },
         {
           "pos": 8,
-          "equipa": "Anadia FC \"B\"",
-          "j": 4,
+          "equipa": "N.E.G.E.",
+          "j": 6,
           "v": 1,
-          "e": 1,
-          "d": 2,
+          "e": 2,
+          "d": 3,
           "gm": 11,
-          "gs": 12,
-          "pts": 4
+          "gs": 9,
+          "pts": 5
         },
         {
           "pos": 9,
-          "equipa": "Liga Amigos Aguada Cima",
-          "j": 4,
+          "equipa": "Anadia FC \"B\"",
+          "j": 5,
           "v": 1,
           "e": 1,
-          "d": 2,
-          "gm": 9,
-          "gs": 19,
+          "d": 3,
+          "gm": 11,
+          "gs": 13,
           "pts": 4
         },
         {
           "pos": 10,
-          "equipa": "Oliveira Bairro SC \"B\"",
-          "j": 3,
+          "equipa": "Liga Amigos Aguada Cima",
+          "j": 5,
           "v": 1,
-          "e": 0,
-          "d": 2,
-          "gm": 5,
-          "gs": 5,
-          "pts": 3
+          "e": 1,
+          "d": 3,
+          "gm": 10,
+          "gs": 21,
+          "pts": 4
         },
         {
           "pos": 11,
           "equipa": "SC Fermentelos",
-          "j": 3,
-          "v": 0,
+          "j": 4,
+          "v": 1,
           "e": 0,
           "d": 3,
-          "gm": 7,
+          "gm": 9,
           "gs": 12,
-          "pts": 0
+          "pts": 3
         },
         {
           "pos": 12,
           "equipa": "GD Águas Boas",
-          "j": 4,
+          "j": 5,
           "v": 0,
-          "e": 0,
+          "e": 1,
           "d": 4,
           "gm": 3,
           "gs": 12,
-          "pts": 0
+          "pts": 1
         },
         {
           "pos": 13,
           "equipa": "GD Eixense",
-          "j": 4,
+          "j": 5,
           "v": 0,
-          "e": 0,
+          "e": 1,
           "d": 4,
           "gm": 2,
           "gs": 17,
-          "pts": 0
+          "pts": 1
         }
       ]
     }

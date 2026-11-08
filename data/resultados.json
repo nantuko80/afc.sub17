@@ -1,5 +1,5 @@
 {
-  "atualizado": "2026-11-02T08:30:00.000Z",
+  "atualizado": "2026-11-08T20:20:00.000Z",
   "equipas": {
     "A": {
       "jornadas": {
@@ -54,8 +54,17 @@
           {"data":"2026-10-31","casa":"Severfintas","fora":"Casa Benfica Em Albergaria-A-Velha","resultado":"5-0"},
           {"data":"2026-10-31","casa":"Recreio Desp. Águeda","fora":"AA Avanca","resultado":"4-0"},
           {"data":"2026-10-31","casa":"GD Gafanha \"B\"","fora":"SC Vista Alegre \"B\"","resultado":"0-2"},
-          {"data":"2026-11-01","casa":"CD Luso","fora":"GDR Soutelo","resultado":"3-6"},
-          {"data":"2026-11-01","casa":"SC Alba","fora":"Juveforce - ADC Ponte Vagos","resultado":null}
+          {"data":"2026-11-01","casa":"SC Alba","fora":"Juveforce - ADC Ponte Vagos","resultado":null},
+          {"data":"2026-11-01","casa":"CD Luso","fora":"GDR Soutelo","resultado":"3-6"}
+        ],
+        "7": [
+          {"data":"2026-11-07","casa":"SC Vista Alegre \"B\"","fora":"Recreio Desp. Águeda","resultado":"3-3"},
+          {"data":"2026-11-07","casa":"Severfintas","fora":"SC Alba","resultado":"13-0"},
+          {"data":"2026-11-08","casa":"AD Valonguense","fora":"CD Luso","resultado":null},
+          {"data":"2026-11-08","casa":"GDR Soutelo","fora":"AD Taboeira \"B\"","resultado":"1-4"},
+          {"data":"2026-11-08","casa":"Juveforce - ADC Ponte Vagos","fora":"GD Gafanha \"B\"","resultado":"2-4"},
+          {"data":"2026-11-08","casa":"Casa Benfica Em Albergaria-A-Velha","fora":"CD Estarreja","resultado":"2-2"},
+          {"data":"2026-11-08","casa":"AA Avanca","fora":"Anadia FC","resultado":"0-5"}
         ]
       }
     },
@@ -100,6 +109,14 @@
           {"data":"2026-12-01","casa":"Oliveira Bairro SC \"B\"","fora":"GD Eixense","resultado":null},
           {"data":"2027-02-09","casa":"Cl. Estrela Azul","fora":"GD Mealhada","resultado":null},
           {"data":"2027-02-14","casa":"Anadia FC \"B\"","fora":"SC Fermentelos","resultado":null}
+        ],
+        "6": [
+          {"data":"2026-11-07","casa":"Liga Amigos Aguada Cima","fora":"Gverreiros do Futuro de Vale Domingos \"B\"","resultado":"1-2"},
+          {"data":"2026-11-08","casa":"N.E.G.E.","fora":"Oliveira Bairro SC \"B\"","resultado":"0-1"},
+          {"data":"2026-11-08","casa":"FC Vaguense","fora":"Anadia FC \"B\"","resultado":"1-0"},
+          {"data":"2026-11-08","casa":"SC Fermentelos","fora":"Cl. Estrela Azul","resultado":"2-0"},
+          {"data":"2026-11-08","casa":"GD Mealhada","fora":"ARC Barroca","resultado":"5-0"},
+          {"data":"2026-11-08","casa":"GD Eixense","fora":"GD Águas Boas","resultado":"0-0"}
         ]
       }
     }

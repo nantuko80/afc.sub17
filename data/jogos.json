@@ -1,6 +1,6 @@
 {
   "epoca": "2026/27",
-  "atualizado": "2026-11-01T09:08:07.279Z",
+  "atualizado": "2026-11-08T20:20:00.000Z",
   "fonte": "https://resultados.fpf.pt",
   "equipas": {
     "A": {
@@ -164,7 +164,7 @@
       "fora": "Anadia FC",
       "emCasa": false,
       "adversario": "AA Avanca",
-      "resultado": null,
+      "resultado": "0-5",
       "local": "Campo Nº.3 P.Desp.A.A.Avanca",
       "origem": "fpf",
       "localidade": "Avanca"
@@ -179,7 +179,7 @@
       "fora": "Anadia FC \"B\"",
       "emCasa": false,
       "adversario": "FC Vaguense",
-      "resultado": null,
+      "resultado": "1-0",
       "local": "Estadio Municipalde Vagos",
       "origem": "fpf",
       "localidade": "Vagos"
