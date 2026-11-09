@@ -1,5 +1,5 @@
 {
-  "atualizado": "2026-11-08T20:20:00.000Z",
+  "atualizado": "2026-11-09T22:35:50.393Z",
   "equipas": {
     "A": {
       "jornada": 7,
@@ -73,6 +73,17 @@
         },
         {
           "pos": 7,
+          "equipa": "AD Valonguense",
+          "j": 7,
+          "v": 3,
+          "e": 1,
+          "d": 3,
+          "gm": 7,
+          "gs": 13,
+          "pts": 10
+        },
+        {
+          "pos": 8,
           "equipa": "CD Estarreja",
           "j": 7,
           "v": 3,
@@ -81,17 +92,6 @@
           "gm": 16,
           "gs": 20,
           "pts": 10
-        },
-        {
-          "pos": 8,
-          "equipa": "AD Valonguense",
-          "j": 6,
-          "v": 2,
-          "e": 1,
-          "d": 3,
-          "gm": 6,
-          "gs": 13,
-          "pts": 7
         },
         {
           "pos": 9,
@@ -129,12 +129,12 @@
         {
           "pos": 12,
           "equipa": "CD Luso",
-          "j": 5,
+          "j": 6,
           "v": 1,
           "e": 0,
-          "d": 4,
+          "d": 5,
           "gm": 14,
-          "gs": 25,
+          "gs": 26,
           "pts": 3
         },
         {
