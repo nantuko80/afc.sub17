@@ -3,7 +3,7 @@
   "equipas": {
     "A": {
       "jornada": 7,
-      "completa": false,
+      "completa": true,
       "linhas": [
         {
           "pos": 1,
