@@ -1,6 +1,6 @@
 {
   "epoca": "2026/27",
-  "atualizado": "2026-11-09T22:35:50.393Z",
+  "atualizado": "2026-11-16T08:30:00.000Z",
   "fonte": "https://resultados.fpf.pt",
   "equipas": {
     "A": {
@@ -194,7 +194,7 @@
       "fora": "SC Vista Alegre \"B\"",
       "emCasa": true,
       "adversario": "SC Vista Alegre \"B\"",
-      "resultado": null,
+      "resultado": "2-0",
       "local": "Campo Dr. Pequito Rebelo",
       "origem": "fpf",
       "localidade": "Anadia"
@@ -215,21 +215,6 @@
       "origem": "fpf"
     },
     {
-      "id": "A-09",
-      "equipa": "A",
-      "jornada": 9,
-      "data": "2026-11-22",
-      "hora": "09:00",
-      "casa": "Juveforce - ADC Ponte Vagos",
-      "fora": "Anadia FC",
-      "emCasa": false,
-      "adversario": "Juveforce - ADC Ponte Vagos",
-      "resultado": null,
-      "local": "Campo Jose Maria Neto",
-      "origem": "fpf",
-      "localidade": "Ponte de Vagos"
-    },
-    {
       "id": "B-08",
       "equipa": "B",
       "jornada": 8,
@@ -243,6 +228,21 @@
       "local": "Campo 1º Maio",
       "localidade": null,
       "origem": "fpf"
+    },
+    {
+      "id": "A-09",
+      "equipa": "A",
+      "jornada": 9,
+      "data": "2026-11-22",
+      "hora": "09:00",
+      "casa": "Juveforce - ADC Ponte Vagos",
+      "fora": "Anadia FC",
+      "emCasa": false,
+      "adversario": "Juveforce - ADC Ponte Vagos",
+      "resultado": null,
+      "local": "Campo Jose Maria Neto",
+      "origem": "fpf",
+      "localidade": "Ponte de Vagos"
     },
     {
       "id": "A-10",
