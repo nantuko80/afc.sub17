@@ -1,6 +1,6 @@
 {
   "epoca": "2026/27",
-  "atualizado": "2026-11-16T08:30:00.000Z",
+  "atualizado": "2026-11-17T19:47:07.062Z",
   "fonte": "https://resultados.fpf.pt",
   "equipas": {
     "A": {
@@ -209,10 +209,10 @@
       "fora": "Liga Amigos Aguada Cima",
       "emCasa": true,
       "adversario": "Liga Amigos Aguada Cima",
-      "resultado": null,
+      "resultado": "1-1",
       "local": "Campo do Complexo Desportivo de Anadia",
-      "localidade": "Anadia",
-      "origem": "fpf"
+      "origem": "fpf",
+      "localidade": "Anadia"
     },
     {
       "id": "B-08",

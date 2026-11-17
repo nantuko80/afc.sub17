@@ -1,5 +1,5 @@
 {
-  "atualizado": "2026-11-16T08:30:00.000Z",
+  "atualizado": "2026-11-17T19:47:07.062Z",
   "equipas": {
     "A": {
       "jornada": 8,
@@ -162,22 +162,33 @@
       ]
     },
     "B": {
-      "jornada": 6,
+      "jornada": 7,
       "completa": true,
       "linhas": [
         {
           "pos": 1,
           "equipa": "GD Mealhada",
-          "j": 5,
-          "v": 5,
+          "j": 6,
+          "v": 6,
           "e": 0,
           "d": 0,
-          "gm": 29,
-          "gs": 9,
-          "pts": 15
+          "gm": 33,
+          "gs": 11,
+          "pts": 18
         },
         {
           "pos": 2,
+          "equipa": "ARC Barroca",
+          "j": 7,
+          "v": 6,
+          "e": 0,
+          "d": 1,
+          "gm": 11,
+          "gs": 7,
+          "pts": 18
+        },
+        {
+          "pos": 3,
           "equipa": "Gverreiros do Futuro de Vale Domingos \"B\"",
           "j": 6,
           "v": 5,
@@ -188,124 +199,113 @@
           "pts": 15
         },
         {
-          "pos": 3,
-          "equipa": "ARC Barroca",
+          "pos": 4,
+          "equipa": "UD Mourisquense",
           "j": 6,
           "v": 5,
           "e": 0,
           "d": 1,
-          "gm": 9,
+          "gm": 17,
           "gs": 6,
           "pts": 15
         },
         {
-          "pos": 4,
-          "equipa": "UD Mourisquense",
-          "j": 5,
+          "pos": 5,
+          "equipa": "FC Vaguense",
+          "j": 6,
           "v": 4,
           "e": 0,
-          "d": 1,
-          "gm": 13,
-          "gs": 5,
+          "d": 2,
+          "gm": 11,
+          "gs": 15,
           "pts": 12
         },
         {
-          "pos": 5,
-          "equipa": "FC Vaguense",
-          "j": 5,
-          "v": 3,
-          "e": 0,
-          "d": 2,
-          "gm": 6,
-          "gs": 14,
-          "pts": 9
-        },
-        {
           "pos": 6,
-          "equipa": "Oliveira Bairro SC \"B\"",
-          "j": 4,
+          "equipa": "N.E.G.E.",
+          "j": 7,
           "v": 2,
-          "e": 0,
-          "d": 2,
-          "gm": 6,
-          "gs": 5,
-          "pts": 6
+          "e": 2,
+          "d": 3,
+          "gm": 14,
+          "gs": 9,
+          "pts": 8
         },
         {
           "pos": 7,
-          "equipa": "Cl. Estrela Azul",
+          "equipa": "Oliveira Bairro SC \"B\"",
           "j": 5,
           "v": 2,
           "e": 0,
           "d": 3,
-          "gm": 7,
-          "gs": 13,
+          "gm": 8,
+          "gs": 9,
           "pts": 6
         },
         {
           "pos": 8,
-          "equipa": "N.E.G.E.",
+          "equipa": "Cl. Estrela Azul",
+          "j": 6,
+          "v": 2,
+          "e": 0,
+          "d": 4,
+          "gm": 8,
+          "gs": 18,
+          "pts": 6
+        },
+        {
+          "pos": 9,
+          "equipa": "Anadia FC \"B\"",
+          "j": 6,
+          "v": 1,
+          "e": 2,
+          "d": 3,
+          "gm": 12,
+          "gs": 14,
+          "pts": 5
+        },
+        {
+          "pos": 10,
+          "equipa": "Liga Amigos Aguada Cima",
           "j": 6,
           "v": 1,
           "e": 2,
           "d": 3,
           "gm": 11,
-          "gs": 9,
+          "gs": 22,
           "pts": 5
-        },
-        {
-          "pos": 9,
-          "equipa": "Anadia FC \"B\"",
-          "j": 5,
-          "v": 1,
-          "e": 1,
-          "d": 3,
-          "gm": 11,
-          "gs": 13,
-          "pts": 4
-        },
-        {
-          "pos": 10,
-          "equipa": "Liga Amigos Aguada Cima",
-          "j": 5,
-          "v": 1,
-          "e": 1,
-          "d": 3,
-          "gm": 10,
-          "gs": 21,
-          "pts": 4
         },
         {
           "pos": 11,
           "equipa": "SC Fermentelos",
-          "j": 4,
+          "j": 5,
           "v": 1,
           "e": 0,
-          "d": 3,
-          "gm": 9,
-          "gs": 12,
+          "d": 4,
+          "gm": 10,
+          "gs": 14,
           "pts": 3
         },
         {
           "pos": 12,
           "equipa": "GD Águas Boas",
-          "j": 5,
+          "j": 6,
           "v": 0,
           "e": 1,
-          "d": 4,
+          "d": 5,
           "gm": 3,
-          "gs": 12,
+          "gs": 15,
           "pts": 1
         },
         {
           "pos": 13,
           "equipa": "GD Eixense",
-          "j": 5,
+          "j": 6,
           "v": 0,
           "e": 1,
-          "d": 4,
-          "gm": 2,
-          "gs": 17,
+          "d": 5,
+          "gm": 3,
+          "gs": 21,
           "pts": 1
         }
       ]
