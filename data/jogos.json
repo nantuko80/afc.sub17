@@ -1,6 +1,6 @@
 {
   "epoca": "2026/27",
-  "atualizado": "2026-11-17T19:47:07.062Z",
+  "atualizado": "2026-11-18T21:10:00.000Z",
   "fonte": "https://resultados.fpf.pt",
   "equipas": {
     "A": {
@@ -233,8 +233,8 @@
       "id": "A-09",
       "equipa": "A",
       "jornada": 9,
-      "data": "2026-11-22",
-      "hora": "09:00",
+      "data": "2026-11-21",
+      "hora": "17:00",
       "casa": "Juveforce - ADC Ponte Vagos",
       "fora": "Anadia FC",
       "emCasa": false,
