@@ -1,6 +1,6 @@
 {
   "epoca": "2026/27",
-  "atualizado": "2026-11-18T21:10:00.000Z",
+  "atualizado": "2026-11-24T08:52:16.793Z",
   "fonte": "https://resultados.fpf.pt",
   "equipas": {
     "A": {
@@ -239,7 +239,7 @@
       "fora": "Anadia FC",
       "emCasa": false,
       "adversario": "Juveforce - ADC Ponte Vagos",
-      "resultado": null,
+      "resultado": "3-1",
       "local": "Campo Jose Maria Neto",
       "origem": "fpf",
       "localidade": "Ponte de Vagos"
