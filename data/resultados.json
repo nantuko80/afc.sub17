@@ -1,5 +1,5 @@
 {
-  "atualizado": "2026-11-24T08:52:16.793Z",
+  "atualizado": "2026-11-24T08:56:44.470Z",
   "equipas": {
     "A": {
       "jornadas": {
@@ -143,6 +143,14 @@
           {"data":"2026-11-15","casa":"UD Mourisquense","fora":"GD Eixense","resultado":"4-1"},
           {"data":"2026-11-15","casa":"ARC Barroca","fora":"SC Fermentelos","resultado":"2-1"},
           {"data":"2026-11-15","casa":"Anadia FC \"B\"","fora":"Liga Amigos Aguada Cima","resultado":"1-1"}
+        ],
+        "8": [
+          {"data":"2026-11-21","casa":"Gverreiros do Futuro de Vale Domingos \"B\"","fora":"Anadia FC \"B\"","resultado":"5-3"},
+          {"data":"2026-11-21","casa":"Liga Amigos Aguada Cima","fora":"Cl. Estrela Azul","resultado":"8-0"},
+          {"data":"2026-11-22","casa":"N.E.G.E.","fora":"UD Mourisquense","resultado":"1-0"},
+          {"data":"2026-11-22","casa":"SC Fermentelos","fora":"Oliveira Bairro SC \"B\"","resultado":"0-4"},
+          {"data":"2026-11-22","casa":"GD Mealhada","fora":"GD Águas Boas","resultado":"4-0"},
+          {"data":"2026-11-22","casa":"FC Vaguense","fora":"ARC Barroca","resultado":"2-1"}
         ]
       }
     }

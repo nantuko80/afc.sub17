@@ -1,6 +1,6 @@
 {
   "epoca": "2026/27",
-  "atualizado": "2026-11-24T08:52:16.793Z",
+  "atualizado": "2026-11-24T08:56:44.470Z",
   "fonte": "https://resultados.fpf.pt",
   "equipas": {
     "A": {
@@ -224,7 +224,7 @@
       "fora": "Anadia FC \"B\"",
       "emCasa": false,
       "adversario": "Gverreiros do Futuro de Vale Domingos \"B\"",
-      "resultado": null,
+      "resultado": "5-3",
       "local": "Campo 1º Maio",
       "localidade": null,
       "origem": "fpf"
