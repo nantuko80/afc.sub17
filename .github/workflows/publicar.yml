@@ -43,5 +43,8 @@ jobs:
       - uses: actions/upload-pages-artifact@v5
         with:
           path: _site
+      # O GitHub demora uns segundos a listar o artefacto acabado de enviar; sem esta espera o deploy falha com "No artifacts named github-pages".
+      - name: Esperar pelo artefacto
+        run: sleep 20
       - id: deploy
         uses: actions/deploy-pages@v5
